@@ -18,13 +18,7 @@ import {
    (REPLACE with your own config)
 ================================ */
 const firebaseConfig = {
-    apiKey: "AIzaSyDpxmMVUhqos1w-gweyDdjC2qzWbNCLlQY",
-    authDomain: "fed-assignment-7cc11.firebaseapp.com",
-    databaseURL: "https://fed-assignment-7cc11-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "fed-assignment-7cc11",
-    storageBucket: "fed-assignment-7cc11.firebasestorage.app",
-    messagingSenderId: "738434802843",
-    appId: "1:738434802843:web:8263aad78ca97cbb5c923e"
+    
 };
 
 
