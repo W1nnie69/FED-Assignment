@@ -6,13 +6,20 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <p>Stuff goes here -></p>
-    <div class="input-field">
-        <input type="text" name="username" placeholder="Enter your username">
-        <input type="text" name="password" placeholder="Enter your password">
-        
-    </div>
+    <form class="login-form" id="loginForm">
+        <h2>LOGIN!</h2>
 
-<script type="module" src="./js/firebase.js"></script>
+        <label for="email">Email</label>
+        <input type="text" name="email" placeholder="Enter your email" required>
+
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="Enter your password" required>
+        
+        <button type="submit">Login</button>
+
+        <div id="errorMsg" class="error"></div>
+    </form>
+
+<script type="module" src="./js/auth.js"></script>
 </body>
 </html>
