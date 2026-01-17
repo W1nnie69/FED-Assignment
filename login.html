@@ -4,6 +4,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login page</title>
     <link rel="stylesheet" href="./css/style.css">
+    <style>
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        #showpopup {
+            background: none;
+            border: none;
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        #user-type-button {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #user-type-button button {
+            margin-bottom: 10px;
+            height: 40px;
+        }
+    </style>
 </head>
 <body>
     <form class="login-form" id="loginForm">
@@ -19,9 +65,52 @@
 
         <div id="loginerrorMsg" class="error"></div>
 
-        <a href="signup.html">Don't have an account?</a>
+        <button type="button" id="showpopup" onclick="openPopup()">Don't have an account?</button>
     </form>
 
-<script type="module" src="./js/auth.js"></script>
+
+    <div id="popup" class="popup-overlay">
+        <div class="popup">
+            <h2>Select user type</h2>
+            
+            <div id="user-type-button">
+                <button onclick="selectUserType('patron')">Patron</button>
+                <button onclick="selectUserType('vendor')">Vendor</button>
+                <button onclick="selectUserType('operator')">Operator</button>
+            </div>
+            
+            <div class="buttons">
+                <button onclick="submitForm()">Submit</button>
+                <button onclick="closePopup()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+<script type="module" src="./js/login_auth.js"></script>
+
+<script>
+function openPopup() {
+    document.getElementById("popup").style.display = "flex";
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+
+function submitForm() {
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+
+    console.log("Username:", user);
+    console.log("Password:", pass);
+
+    closePopup();
+}
+
+function selectUserType(type) {
+    window.location.href = `signup.html?role=${type}`;
+}
+
+</script>
 </body>
 </html>

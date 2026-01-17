@@ -1,0 +1,69 @@
+/* ================================
+   1. Import Firebase modules
+================================ */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
+import {
+    getDatabase,
+    ref,
+    push,
+    set,
+    get,
+    update,
+    remove,
+    child,
+    onValue
+} from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
+
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js"
+
+import { firebaseConfig } from "./config.js";
+
+/* ================================
+   Initialize Firebase
+================================ */
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const auth = getAuth(app);
+
+const signupForm = document.getElementById('signupForm');
+const signuperrorMsg = document.getElementById('signuperrorMsg');
+const params = new URLSearchParams(window.location.search);
+const role = params.get("role");
+
+signupForm.addEventListener("submit", function(event) {
+event.preventDefault(); //stop form from submiting as there is no REAL backend...
+
+const email = document.getElementById("email").value.trim();
+const password = document.getElementById("password").value.trim();
+
+createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        // SIGNED UP 
+        const user = userCredential.user;
+        const uid = user.uid;
+        console.log("Logging on as:", user, uid)
+        signuperrorMsg.style.color = 'green';
+        signuperrorMsg.textContent = "User creation successful!";
+
+        // Create a user "object" in the db
+        set(ref(db, 'users/' + uid), {
+            email: email,
+            role: role,
+        });
+        
+
+        // setTimeout(() => {
+        //     window.location.href = "dashboard.html" //redirect to dashboard
+        // }, 2000);
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(`errorCode: ${errorCode}, errorMessage: ${errorMessage}`)
+        signuperrorMsg.style.color = 'red';
+        signuperrorMsg.textContent = "Something went wrong with signup thing.";
+    });
+});
+
+
+
