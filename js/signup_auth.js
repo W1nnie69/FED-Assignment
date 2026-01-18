@@ -33,7 +33,7 @@ const password = document.getElementById("password").value.trim();
 
 createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-        // SIGNED UP 
+        // SIGNED UP THRU FIREBASE AUTH
         const user = userCredential.user;
         const uid = user.uid;
         console.log("Logging on as:", user, uid)
@@ -41,6 +41,7 @@ createUserWithEmailAndPassword(auth, email, password)
         signuperrorMsg.textContent = "User creation successful!";
 
         // Create a user "object" in the db
+        // User role is assigned based on the selection during the signup
         set(ref(db, 'users/' + uid), {
             email: email,
             role: role,
