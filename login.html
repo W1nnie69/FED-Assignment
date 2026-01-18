@@ -80,7 +80,6 @@
             </div>
             
             <div class="buttons">
-                <button onclick="submitForm()">Submit</button>
                 <button onclick="closePopup()">Cancel</button>
             </div>
         </div>
@@ -95,16 +94,6 @@ function openPopup() {
 
 function closePopup() {
     document.getElementById("popup").style.display = "none";
-}
-
-function submitForm() {
-    const user = document.getElementById("username").value;
-    const pass = document.getElementById("password").value;
-
-    console.log("Username:", user);
-    console.log("Password:", pass);
-
-    closePopup();
 }
 
 function selectUserType(type) {

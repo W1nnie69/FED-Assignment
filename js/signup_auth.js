@@ -6,12 +6,7 @@ import {
     getDatabase,
     ref,
     push,
-    set,
-    get,
-    update,
-    remove,
-    child,
-    onValue
+    set
 } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
 
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js"
@@ -51,7 +46,6 @@ createUserWithEmailAndPassword(auth, email, password)
             role: role,
         });
         
-
         // setTimeout(() => {
         //     window.location.href = "dashboard.html" //redirect to dashboard
         // }, 2000);
