@@ -6,8 +6,7 @@ import {
     getDatabase,
     ref,
     get,
-    update,
-    child,
+    child
 } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
 
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js"
@@ -18,7 +17,6 @@ import { firebaseConfig } from "./config.js";
    Initialize Firebase
 ================================ */
 const app = initializeApp(firebaseConfig);
-// const db = getDatabase(app);
 const dbRef = ref(getDatabase());
 const auth = getAuth(app);
 
@@ -50,7 +48,7 @@ loginForm.addEventListener("submit", function(event) {
                     loginerrorMsg.style.color = 'green';
                     loginerrorMsg.textContent = "Login successful!";
                 } else {
-                    console.log("No user data found in db (u fucked up)");
+                    console.log("No user data found in db (u messed up)");
                 }
             }).catch((error) => {
                 console.log("error:", error);

@@ -5,7 +5,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebas
 import {
     getDatabase,
     ref,
-    push,
     set
 } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
 
