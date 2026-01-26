@@ -47,6 +47,10 @@ loginForm.addEventListener("submit", function(event) {
                     console.log("User role:", role);
                     loginerrorMsg.style.color = 'green';
                     loginerrorMsg.textContent = "Login successful!";
+
+                    // cache user's role in localstorage
+                    localStorage.setItem("role", role);
+                    
                 } else {
                     console.log("No user data found in db (u messed up)");
                 }
