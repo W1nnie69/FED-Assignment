@@ -2,39 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <link rel="stylesheet" href="mainmenu.css">
-  <title>Header</title>
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="mainmenu.css" />
+  <title>Main Menu</title>
 </head>
 
 <body>
 
-<header> 
-  <!-- Logo -->
-  <div class="logo" aria-label="Logo"></div>
+  <header>
+    <!-- Logo -->
+    <div class="logo" aria-label="Logo"></div>
 
-  <!-- Navigation -->
-  <nav aria-label="Main navigation">
-    <ul>
-      <li><a href="#" class="active">Home</a></li>
-      <li><a href="#">Locations</a></li>
-      <li><a href="#">Order History</a></li>
-    </ul>
-  </nav>
+    <!-- Navigation -->
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">Locations</a></li>
+        <li><a href="#">Order History</a></li>
+      </ul>
+    </nav>
 
-  <!-- Language -->
-  <button class="lang" aria-label="Change language">
-    Us Eng
-  </button>
+    <!-- Language -->
+    <button class="lang" type="button" aria-label="Change language">
+      Us Eng
+    </button>
 
-  <!-- Right actions -->
-  <div class="actions">
-    <div class="icon" >cart</div>
-    <div class="icon" >notif</div>
-    <button>Logout</button>
-    <div class="icon profile" aria-label="User profile"></div>
-  </div>
-</header>
+    <!-- Right actions -->
+    <div class="actions">
+      <div class="icon" aria-label="Cart">cart</div>
+      <div class="icon" aria-label="Notifications">notif</div>
+      <button type="button">Logout</button>
+      <div class="icon profile" aria-label="User profile"></div>
+    </div>
+  </header>
+
+  <!-- Featured Items -->
 <section class="featured">
   <div class="section-header">
     <h3 class="section-title">Featured Items</h3>
@@ -42,13 +44,56 @@
   </div>
 
   <div class="card-row">
-    <div class="card-box"></div>
-    <div class="card-box"></div>
-    <div class="card-box"></div>
-    <div class="card-box"></div>
-    <div class="card-box"></div>
+
+    <div class="card">
+      <div class="card-image"></div>
+      <div class="card-content">
+        <h4 class="item-title">Hainanese Chicken Rice</h4>
+        <p class="item-desc">Tender poached chicken with fragrant rice</p>
+        <p class="item-price">$5.50</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image"></div>
+      <div class="card-content">
+        <h4 class="item-title">Laksa</h4>
+        <p class="item-desc">Spicy coconut noodle soup with prawns</p>
+        <p class="item-price">$6.00</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image"></div>
+      <div class="card-content">
+        <h4 class="item-title">Char Kway Teow</h4>
+        <p class="item-desc">Wok-fried flat noodles with cockles & egg</p>
+        <p class="item-price">$4.50</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image"></div>
+      <div class="card-content">
+        <h4 class="item-title">Roti Prata</h4>
+        <p class="item-desc">Crispy flatbread served with curry</p>
+        <p class="item-price">$2.00</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image"></div>
+      <div class="card-content">
+        <h4 class="item-title">Chilli Crab</h4>
+        <p class="item-desc">Sweet and spicy crab in rich sauce</p>
+        <p class="item-price">$25.00</p>
+      </div>
+    </div>
+
   </div>
 </section>
+
+<!-- Most Ordered -->
 <section class="featured">
   <div class="section-header">
     <h3 class="section-title">Most Ordered</h3>
@@ -56,11 +101,52 @@
   </div>
 
   <div class="card-row">
-    <div class="card-box"></div>
-    <div class="card-box"></div>
-    <div class="card-box"></div>
-    <div class="card-box"></div>
-    <div class="card-box"></div>
+
+    <div class="card">
+      <div class="card-image"></div>
+      <div class="card-content">
+        <h4 class="item-title">Nasi Lemak</h4>
+        <p class="item-desc">Coconut rice with sambal & fried chicken</p>
+        <p class="item-price">$5.00</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image"></div>
+      <div class="card-content">
+        <h4 class="item-title">Bak Kut Teh</h4>
+        <p class="item-desc">Peppery pork rib soup with garlic</p>
+        <p class="item-price">$7.00</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image"></div>
+      <div class="card-content">
+        <h4 class="item-title">Mee Goreng</h4>
+        <p class="item-desc">Spicy fried noodles with seafood</p>
+        <p class="item-price">$5.50</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image"></div>
+      <div class="card-content">
+        <h4 class="item-title">Satay</h4>
+        <p class="item-desc">Grilled skewers with peanut sauce</p>
+        <p class="item-price">$6.50</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image"></div>
+      <div class="card-content">
+        <h4 class="item-title">Carrot Cake (Chai Tow Kway)</h4>
+        <p class="item-desc">Stir-fried radish cake with egg</p>
+        <p class="item-price">$4.00</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
