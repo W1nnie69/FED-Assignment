@@ -94,10 +94,40 @@ button{
   gap: 16px;
 }
 
-.card-box {
-  width: 160px;
-  height: 200px;
-  background-color: #e0e0e0;
+.card {
+  width: 180px;
+  background-color: #e6e6e6;
   border-radius: 16px;
+  overflow: hidden;
 }
+
+.card-image {
+  height: 130px;
+  background-color: #d0d0d0;
+}
+
+.card-content {
+  padding: 12px;
+}
+
+.item-title {
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #222;
+}
+
+.item-desc {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: #666;
+}
+
+.item-price {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #444;
+}
+
 
