@@ -3,34 +3,41 @@ let rating = 0;
 
 console.log(stars)
 
-stars.forEach(function(star, index)
+function highlightStars(uptoIndex)
 {
-    star.addEventListener("click", function()
-    {
-        rating = index + 1
+    stars.forEach((star, i) => {
+        star.style.color = i <= uptoIndex ? "yellow" : "black";
+    })
+}
 
-        for (let i = 0; i < stars.length; i++)
+stars.forEach((star, index) => {
+    star.addEventListener("click", () => {
+        if (rating === index + 1)
         {
-            if (i <= index)
-            {
-                stars[i].style.color = "yellow";
-            }
-
-            else
-            {
-                stars[i].style.color = "black";
-            }
+            rating = 0;
+            highlightStars(-1);
         }
-        
+        else
+        {
+            rating = index + 1;
+            highlightStars(index);           
+        }
     });
+
+    star.addEventListener("mouseover", () => {
+        highlightStars(index)
+    })
+
+    star.addEventListener("mouseout", () => {
+        highlightStars(rating - 1);
+    }) 
 });
 
 const submitbtn = document.querySelector("button");
 const reviewtxt = document.getElementById("review");
 const thankyou = document.getElementById("thankyou");
 
-submitbtn.addEventListener("click", function()
-{
+submitbtn.addEventListener("click", () => {
     let message = "Thank you for your feedback!"
 
     if (rating > 0)
@@ -51,6 +58,6 @@ submitbtn.addEventListener("click", function()
     }, 3000);
 
     rating = 0;
-    reviewText.value = "";
-    stars.forEach(star => star.style.color = "black");
+    reviewtxt.value = "";
+    highlightStars(-1);
 })
