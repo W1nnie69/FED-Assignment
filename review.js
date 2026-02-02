@@ -27,6 +27,7 @@ stars.forEach(function(star, index)
 
 const submitbtn = document.querySelector("button");
 const reviewtxt = document.getElementById("review");
+const thankyou = document.getElementById("thankyou");
 
 submitbtn.addEventListener("click", function()
 {
@@ -42,7 +43,12 @@ submitbtn.addEventListener("click", function()
         message += "\nReview: " + reviewtxt.value;
     }
 
-    alert(message);
+    thankyou.textContent = message;
+    thankyou.classList.add("show");
+
+    setTimeout(() => {
+        thankyou.classList.remove("show");
+    }, 3000);
 
     rating = 0;
     reviewText.value = "";
