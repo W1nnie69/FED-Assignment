@@ -32,6 +32,7 @@ onAuthStateChanged(auth, user => {
     console.log("user is logged");
     
     // enforces role based access control to disallow user mismatch (e.g. vendor accessing operator pages)
+    // role is cached in localStorage for performance; source of truth is Firebase DB
     const requiredRole = document.body.dataset.requiredRole;
     const userRole = localStorage.getItem("role");
 
