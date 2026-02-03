@@ -34,21 +34,29 @@ createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
         // SIGNED UP THRU FIREBASE AUTH
         const user = userCredential.user;
-        const uid = user.uid;
-        console.log("Logging on as:", user, uid)
+        console.log("Logging on as:", user, user.uid)
         signuperrorMsg.style.color = 'green';
         signuperrorMsg.textContent = "User creation successful!";
 
         // Create a user "object" in the db
         // User role is assigned based on the selection during the signup
-        set(ref(db, 'users/' + uid), {
+        set(ref(db, 'users/' + user.uid), {
             email: email,
             role: role,
-        });
+        })
+        .then(() => {
+            alert("Success! You will be redirected to the login page in 5 seconds.");
+
+            setTimeout(() => {
+            window.location.href = "login.html" //redirect to login page
+            }, 5000);
+
+        })
+        .catch((error) => {
+            console.error("Error writing to DB:", error);
+            alert("There was an error signing up. Please try again.");
+        })
         
-        // setTimeout(() => {
-        //     window.location.href = "dashboard.html" //redirect to dashboard
-        // }, 2000);
     })
     .catch((error) => {
         const errorCode = error.code;
