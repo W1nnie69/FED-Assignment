@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="cart.css" />
+  <title>Payment</title>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <img src="images/foodhub_logo.jpg" alt="Hawker Logo">
+  </div>
+
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#">Locations</a></li>
+      <li><a href="#">Order History</a></li>
+    </ul>
+  </nav>
+
+  <button class="lang" type="button">Us Eng</button>
+
+  <div class="actions">
+    <div class="icon">
+      <img src="https://cdn-icons-png.flaticon.com/128/1170/1170678.png" alt="Cart">
+    </div>
+
+    <div class="icon">
+      <img src="https://cdn-icons-png.flaticon.com/128/3602/3602145.png" alt="Notifications">
+    </div>
+
+    <button class="logout">Logout</button>
+
+    <div class="profile">
+      <img src="https://cdn-icons-png.flaticon.com/128/848/848043.png" alt="User profile">
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <h2 class="page-title">Payment</h2>
+
+  <!-- TOP ROW -->
+  <section class="top-row">
+    <!-- Optional Add-ons -->
+    <div class="panel panel-wide">
+      <div class="panel-head">
+        <h3 class="panel-title">Optional Add-ons &amp; Services</h3>
+        <p class="panel-sub">Enhance your order with these optional extras</p>
+      </div>
+
+      <div class="addon-list">
+        <div class="addon-item">
+          <div class="addon-left">
+            <div class="addon-icon"></div>
+            <div>
+              <p class="addon-name">Premium Packaging</p>
+              <p class="addon-desc">Gift-quality packaging with ribbon</p>
+            </div>
+          </div>
+          <p class="addon-price">+$2.50</p>
+        </div>
+
+        <div class="addon-item">
+          <div class="addon-left">
+            <div class="addon-icon"></div>
+            <div>
+              <p class="addon-name">Express Delivery</p>
+              <p class="addon-desc">Delivered within 30 minutes</p>
+            </div>
+          </div>
+          <p class="addon-price">+$5.00</p>
+        </div>
+
+        <div class="addon-item">
+          <div class="addon-left">
+            <div class="addon-icon"></div>
+            <div>
+              <p class="addon-name">Standard Delivery</p>
+              <p class="addon-desc">Delivered within 60 minutes</p>
+            </div>
+          </div>
+          <p class="addon-price">+$2.00</p>
+        </div>
+
+        <div class="addon-item">
+          <div class="addon-left">
+            <div class="addon-icon"></div>
+            <div>
+              <p class="addon-name">Gift Message Card</p>
+              <p class="addon-desc">Include a personalized message</p>
+            </div>
+          </div>
+          <p class="addon-price">+$1.50</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Summary -->
+    <aside class="panel panel-narrow">
+      <div class="panel-head">
+        <h3 class="panel-title">Order Summary</h3>
+      </div>
+
+      <div class="summary">
+        <p class="summary-label">Items</p>
+
+        <div class="summary-row">
+          <div>
+            <p class="sum-name">Kopi</p>
+            <p class="sum-sub">Qty: 2</p>
+          </div>
+          <p class="sum-price">$3.00</p>
+        </div>
+
+        <div class="summary-row">
+          <div>
+            <p class="sum-name">Kaya Toast Set</p>
+            <p class="sum-sub">Qty: 1</p>
+          </div>
+          <p class="sum-price">$4.50</p>
+        </div>
+
+        <div class="summary-row">
+          <div>
+            <p class="sum-name">Teh Peng</p>
+            <p class="sum-sub">Qty: 1</p>
+          </div>
+          <p class="sum-price">$2.00</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="summary-row">
+          <p class="sum-sub">Subtotal</p>
+          <p class="sum-sub">$9.50</p>
+        </div>
+
+        <div class="summary-row">
+          <p class="sum-sub">Service Fee</p>
+          <p class="sum-sub">$0.75</p>
+        </div>
+
+        <div class="summary-total">
+          <p>Total</p>
+          <p>$10.25</p>
+        </div>
+
+        <div class="note">
+          Your payment will be processed securely. You’ll receive a confirmation
+          once the transaction is complete.
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- PAYMENT FORM (BOTTOM LEFT) -->
+  <section class="panel payment-panel">
+    <div class="panel-head">
+      <h3 class="panel-title">Payment Method</h3>
+    </div>
+
+    <div class="method-tabs">
+      <button class="method active" type="button">
+        <span class="method-top">💳</span>
+        <span class="method-name">Credit Card</span>
+      </button>
+
+      <button class="method" type="button">
+        <span class="method-top">PP</span>
+        <span class="method-name">PayNow</span>
+      </button>
+    </div>
+
+    <form class="form">
+      <label class="field">
+        <span class="label">Card Number</span>
+        <input type="text" placeholder="1234 5678 9012 3456">
+      </label>
+
+      <div class="row-2">
+        <label class="field">
+          <span class="label">Expiry Date</span>
+          <input type="text" placeholder="MM/YY">
+        </label>
+
+        <label class="field">
+          <span class="label">CVV</span>
+          <input type="text" placeholder="123">
+        </label>
+      </div>
+
+      <label class="field">
+        <span class="label">Cardholder Name</span>
+        <input type="text" placeholder="John Doe">
+      </label>
+
+      <div class="billing">
+        <p class="billing-title">Billing Address</p>
+
+        <label class="field">
+          <span class="label">Street Address</span>
+          <input type="text" placeholder="123 Main Street">
+        </label>
+
+        <div class="row-2">
+          <label class="field">
+            <span class="label">City</span>
+            <input type="text" placeholder="Singapore">
+          </label>
+
+          <label class="field">
+            <span class="label">Postal Code</span>
+            <input type="text" placeholder="123456">
+          </label>
+        </div>
+      </div>
+
+      <button class="pay-btn" type="button">Complete Payment</button>
+      <p class="secure">🔒 Secure SSL encrypted payment</p>
+    </form>
+  </section>
+</main>
+
+</body>
+</html>

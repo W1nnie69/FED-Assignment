@@ -1,0 +1,366 @@
+/* ===== base ===== */
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body{
+  font-family: 'Inter', sans-serif;
+  background: #f6f6f6;
+  color: #222;
+}
+
+/* ===== header  ===== */
+header{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  padding: 14px 20px;
+  background: white;
+  border-bottom: 1px solid #eee;
+}
+
+.logo{
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+nav ul{
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav a{
+  text-decoration: none;
+  font-weight: 600;
+  color: #555;
+}
+
+.lang{
+  margin-left: auto;
+  border: 1px solid black;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-weight: 600;
+  background: white;
+  cursor: pointer;
+}
+
+.actions{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+button{
+  border: none;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.icon{
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon img{
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
+.profile{
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===== page ===== */
+.page{
+  padding: 22px;
+  margin-top: 90px;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-title{
+  margin: 0 0 14px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* ===== panels ===== */
+.panel{
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.panel-head{
+  margin-bottom: 12px;
+}
+
+.panel-title{
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.panel-sub{
+  margin: 6px 0 0;
+  font-size: 11px;
+  color: #777;
+}
+
+/* ===== top row layout ===== */
+.top-row{
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.panel-wide{
+  flex: 1;
+}
+
+.panel-narrow{
+  width: 280px;
+}
+
+/* ===== add-ons list ===== */
+.addon-list{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.addon-item{
+  background: #fafafa;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 12px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.addon-left{
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.addon-icon{
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: #e6e6e6;
+  flex: 0 0 auto;
+}
+
+.addon-name{
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.addon-desc{
+  margin: 4px 0 0;
+  font-size: 11px;
+  color: #777;
+}
+
+.addon-price{
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ===== summary ===== */
+.summary{
+  font-size: 12px;
+}
+
+.summary-label{
+  margin: 0 0 10px;
+  font-weight: 700;
+}
+
+.summary-row{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.sum-name{
+  margin: 0;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.sum-sub{
+  margin: 3px 0 0;
+  font-size: 11px;
+  color: #777;
+}
+
+.sum-price{
+  margin: 0;
+  font-weight: 700;
+}
+
+.divider{
+  height: 1px;
+  background: #eee;
+  margin: 12px 0;
+}
+
+.summary-total{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 800;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.note{
+  margin-top: 12px;
+  font-size: 11px;
+  color: #777;
+  background: #f7f7f7;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* ===== payment method panel ===== */
+.payment-panel{
+  width: 520px;
+}
+
+.method-tabs{
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.method{
+  flex: 1;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  background: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+.method.active{
+  border-color: #111;
+}
+
+.method-top{
+  display: block;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.method-name{
+  font-size: 11px;
+  color: #555;
+  font-weight: 700;
+}
+
+/* form */
+.form{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.field{
+  display: block;
+}
+
+.label{
+  display: block;
+  font-size: 11px;
+  color: #555;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+input{
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  outline: none;
+  background: #fff;
+}
+
+.row-2{
+  display: flex;
+  gap: 10px;
+}
+
+.row-2 .field{
+  flex: 1;
+}
+
+.billing-title{
+  margin: 4px 0 10px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.pay-btn{
+  background: #111;
+  color: #fff;
+  border-radius: 10px;
+  padding: 12px;
+  font-weight: 800;
+}
+
+.secure{
+  margin: 0;
+  text-align: center;
+  font-size: 11px;
+  color: #777;
+}
