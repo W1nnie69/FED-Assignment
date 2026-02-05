@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login page</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
     <style>
         .popup-overlay {
             position: fixed;
@@ -85,7 +85,7 @@
         </div>
     </div>
 
-<script type="module" src="./js/login_auth.js"></script>
+<script type="module" src="login_auth.js"></script>
 
 <script>
 function openPopup() {
@@ -97,7 +97,7 @@ function closePopup() {
 }
 
 function selectUserType(type) {
-    window.location.href = `signup.html?role=${type}`;
+    window.location.href = `../sign-up-page/signup.html?role=${type}`;
 }
 
 </script>
