@@ -2,26 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Queue Page</title>
+    <title>Queue Status</title>
     <link rel="stylesheet" href="queue.css">
 </head>
 <body>
-    <h1>Queue</h1>
 
-    <section class="container">
-        <p>Your Queue Number</p>
-        <p id="queuenum">--</p>
+    <div class="queue-container">
+        <h1>Queue Status</h1>
 
-        <p>Estimated Waiting Time:</p>
-        <p id="waittime">-- mins</p>
+        <p class="queue-number">
+            Your Queue Number: <span id="queueNum">1</span>
+        </p>
 
-        <button id="nextbtn">Next</button>
-    </section>
+        <p class="wait-time">
+            Estimated Wait Time: <span id="waitTime"></span> minutes
+        </p>
 
-    <div id="queue-popup" class="hidden"></div>
+    </div>
+    <div id="orderready" class="hidden"></div>
 
     <script src="queue.js"></script>
-    
 </body>
 </html>
