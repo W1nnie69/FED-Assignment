@@ -3,53 +3,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login page</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <style>
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .popup {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            width: 300px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .buttons {
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        #showpopup {
-            background: none;
-            border: none;
-            color: blue;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-
-        #user-type-button {
-            display: flex;
-            flex-direction: column;
-        }
-
-        #user-type-button button {
-            margin-bottom: 10px;
-            height: 40px;
-        }
-    </style>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="./login.css">
 </head>
 <body>
     <form class="login-form" id="loginForm">
@@ -85,7 +40,7 @@
         </div>
     </div>
 
-<script type="module" src="./js/login_auth.js"></script>
+<script type="module" src="./login_auth.js"></script>
 
 <script>
 function openPopup() {
@@ -97,7 +52,8 @@ function closePopup() {
 }
 
 function selectUserType(type) {
-    window.location.href = `signup.html?role=${type}`;
+    console.log("asdfsdfaesdrfgaerg3333")
+    window.parent.location.hash = `#/signup?role=${type}`;
 }
 
 </script>
