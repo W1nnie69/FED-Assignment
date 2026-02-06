@@ -48,7 +48,7 @@ createUserWithEmailAndPassword(auth, email, password)
             alert("Success! You will be redirected to the login page in 5 seconds.");
 
             setTimeout(() => {
-            window.location.href = "login.html" //redirect to login page
+            window.location.href = "../login-page/login.html" //redirect to login page
             }, 5000);
 
         })
