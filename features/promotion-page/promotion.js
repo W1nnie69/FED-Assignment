@@ -1,6 +1,7 @@
 const claimButtons = document.querySelectorAll(".claim-btn");
 const promoPopup = document.getElementById("promo-popup");
 
+// Loop through each claim button and add a click event
 claimButtons.forEach(button => 
 {
     button.addEventListener("click", () =>
@@ -13,5 +14,11 @@ claimButtons.forEach(button =>
         setTimeout(() => {
             promoPopup.classList.remove("show");
         }, 3000);
+
+        // Disable the button so it can't be clicked again
+        button.disabled = true;
+        button.style.backgroundColor = "#888";
+        button.style.cursor = "not-allowed";
+        button.textContent = "Claimed";
     });
 });
