@@ -68,7 +68,7 @@ loginForm.addEventListener("submit", function(event) {
                     localStorage.setItem("role", userRole);
 
                     // window.location.href = "vendor_dashboard.html"
-                    window.parent.location.hash = `#/${userRole}_dash` //redirect to dashboard appropriate dashboard
+                    // window.parent.location.hash = `#/${userRole}_dash` //redirect to dashboard appropriate dashboard
                     
                 } else {
                     console.log("No user data found in db (u messed up)");

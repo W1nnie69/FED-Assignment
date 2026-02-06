@@ -31,6 +31,16 @@ onAuthStateChanged(auth, (user) => {
 
     callbacks.forEach(cb => cb());
     callbacks = [];
+
+    if (window.router) window.router();
+
+    // once user is logged in, it will redirect to the respective dashboard
+    if (user) {
+        const role = localStorage.getItem("role");
+        if (location.hash === "#/login") {
+            window.parent.location.hash = `#/${role}_dash`;
+        }
+    }
 });
 
 export function onAuthReady(cb) {
