@@ -1,11 +1,13 @@
 // i regret picking this feature!!!!!
 // now i have to modify everyone's html !!!! 
 // kill me
-import { currentUser }  from "../Role-based-access-control/auth_guard.js";
+import { currentUser, onAuthReady }  from "../Role-based-access-control/auth_guard.js";
+
+let authInitialized = false;
 
 const routes = {
     login: {
-        page: "login-page/loginspa",
+        page: "login-page/login",
         requiresAuth: false
     },
     signup: {
@@ -20,32 +22,51 @@ const routes = {
 
 }
 
-function loadPageCSS(page) {
-    // remove old css
-    const existingCSS = document.getElementById("page-style");
-    if (existingCSS) existingCSS.remove();
+onAuthReady(() => {
+    authInitialized = true;
+    router(); // run first time after auth ready
+})
 
-    // add new css
-    const link = document.createElement("link");
-    link.id = "page-style";
-    link.rel = "stylesheet";
-    link.href = `./features/${page}.css`;
-    document.head.appendChild(link);
+
+// reference the iframe in index.html
+const iframe = document.getElementById("page-frame");
+
+function parseHash() {
+    // location.hash = "#/signup?role=vendor"
+    let full = location.hash.slice(2); // remove "#/"
+
+    // if (!full) {
+    //     full = "#/login";
+    // }
+
+    const [route, queryString] = full.split("?");
+
+    const params = {};
+    if (queryString) {
+        queryString.split("&").forEach(pair => {
+            const [key, value] = pair.split("=");
+            params[key] = decodeURIComponent(value);
+        });
+    }
+    
+    return { route, params };
 }
 
-export async function router() {
-    const app = document.getElementById("app");
-    const routeName = location.hash.replace("#/", "") || "login";
+export function router() {
+    console.log("running router");
+    // const routeName = location.hash.replace("#/", "") || "login";
+    const { route: routeName, params } = parseHash();
     const route = routes[routeName]
 
     if (!route) {
-        app.innerHTML = "<h1>404</h1>";
+        // iframe.src = "404.html";
+        location.hash = "#/login";
         return; 
     }
 
     // auth
     if (route.requiresAuth && !currentUser) {
-        location.hash = "/login";
+        location.hash = "#/login";
         return;
     }
 
@@ -53,24 +74,22 @@ export async function router() {
     if (route.roleRequired) {
         const userRole = localStorage.getItem("role");
         if (userRole !== route.roleRequired) {
-            app.innerHTML = "<h1>403 Access Denied</h1>"
+            iframe.src = "403.html";
             return;
         }
     }
 
-    // load page & it's css
-    const res = await fetch(`./features/${route.page}.html`)
-    app.innerHTML = await res.text();
-    loadPageCSS(route.page);
-
-    switch (route.page) {
-        case "login-page/loginspa":
-            import("../login-page/login_auth.js")
-            .then(module => module.initLoginPage());
-            break;
+    let src = `./features/${route.page}.html`;
+    if (Object.keys(params).length) {
+        src += "?" + new URLSearchParams(params).toString();
     }
-    
+
+    iframe.src = src;
+
+
 }
+
+window.router = router;
 
 window.addEventListener("hashchange", router);
 window.addEventListener("load", router);

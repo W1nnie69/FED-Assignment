@@ -7,8 +7,6 @@ import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/fi
 
 import { firebaseConfig } from "../../assets/js/config.js";
 
-import { router } from "../client-side-routing/routing.js";
-
 /* ================================
    Initialize Firebase
 ================================ */
@@ -22,9 +20,23 @@ console.log("starting script");
 
 export let currentUser = null;
 
+let authResolved = false;
+let callbacks = [];
+
+
 // enforces auth with firebase, make sure user is logged in.
-onAuthStateChanged(auth, user => {
-   currentUser = user
-   router();
+onAuthStateChanged(auth, (user) => {
+    currentUser = user;
+    authResolved = true;
+
+    callbacks.forEach(cb => cb());
+    callbacks = [];
 });
-   
+
+export function onAuthReady(cb) {
+    if (authResolved) {
+        cb();
+    } else {
+        callbacks.push(cb);
+    }
+}

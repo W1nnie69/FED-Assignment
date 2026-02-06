@@ -3,6 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <title>FED SPA</title>
+  <style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  #app {
+    width: 100%;
+    height: 100%;
+  }
+
+  #page-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+</style>
 </head>
 <body>
 
@@ -12,10 +31,11 @@
     <a href="#/operator_dash">Operator Dashboard</a>
   </nav>
 
-  <main id="app">
-    <!-- Dynamic content loads here -->
-  </main>
+  <div id="app">
+    <iframe id="page-frame" src=""></iframe>
+  </div>
 
+  <!-- <script type="module" src="./features/login-page/login_auth.js"></script> -->
   <script type="module" src="./features/Role-based-access-control/auth_guard.js"></script>
   <script type="module" src="./features/client-side-routing/routing.js"></script>
 
