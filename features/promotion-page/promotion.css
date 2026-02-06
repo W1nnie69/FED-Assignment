@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.promotion {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.promo-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.promo-card h2 {
+    margin-bottom: 10px;
+}
+
+.promo-card p {
+    margin-bottom: 20px;
+}
+
+.promo-card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.claim-btn {
+    margin-top: auto;
+    padding: 8px 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.claim-btn:hover {
+    background-color: #45a049;
+}
+
+#promo-popup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+#promo-popup.show {
+    opacity: 1;
+}
