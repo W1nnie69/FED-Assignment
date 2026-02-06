@@ -1,7 +1,7 @@
 // i regret picking this feature!!!!!
 // now i have to modify everyone's html !!!! 
 // kill me
-import { currentUser, onAuthReady }  from "../Role-based-access-control/auth_guard.js";
+import { currentUser, onAuthReady }  from "../Role-based-access-control/auth.js";
 
 let authInitialized = false;
 
