@@ -10,7 +10,7 @@ import {
 
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js"
 
-import { firebaseConfig } from "./config.js";
+import { firebaseConfig } from "../../assets/js/config.js";
 
 /* ================================
    Initialize Firebase
