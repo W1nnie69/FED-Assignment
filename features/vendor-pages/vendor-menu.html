@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Management - Food Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./vendor-styles.css">
+    <style>
+        /* Menu page specific styles */
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-add {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-add:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .filters {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+
+        .filter-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.75rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .filter-select {
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .menu-card {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .menu-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .availability-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .badge-available {
+            background: rgba(6, 214, 160, 0.9);
+            color: white;
+        }
+
+        .badge-soldout {
+            background: rgba(230, 57, 70, 0.9);
+            color: white;
+        }
+
+        .menu-content {
+            padding: 1.5rem;
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .menu-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .menu-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .menu-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--bg-primary);
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .menu-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .menu-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            padding: 0.25rem 0.75rem;
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .menu-actions {
+            display: flex;
+            gap: 0.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .btn-icon {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            border: 2px solid var(--border);
+            background: transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .btn-icon:hover {
+            background: var(--bg-primary);
+        }
+
+        .btn-icon.edit:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-icon.delete:hover {
+            border-color: var(--danger);
+            color: var(--danger);
+        }
+
+        .btn-icon.toggle {
+            background: var(--success);
+            color: white;
+            border-color: var(--success);
+        }
+
+        .btn-icon.toggle:hover {
+            background: #05c090;
+        }
+
+        .btn-icon.toggle.soldout {
+            background: var(--danger);
+            border-color: var(--danger);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: 2rem;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        .close-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: var(--bg-primary);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            font-size: 1.5rem;
+        }
+
+        .close-btn:hover {
+            background: var(--danger);
+            color: white;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .image-upload {
+            border: 2px dashed var(--border);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .image-upload:hover {
+            border-color: var(--primary);
+            background: var(--bg-primary);
+        }
+
+        .image-upload input {
+            display: none;
+        }
+
+        .image-preview {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .tag-input-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            min-height: 50px;
+        }
+
+        .tag-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.375rem 0.75rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .tag-remove {
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .tag-input {
+            border: none;
+            outline: none;
+            flex: 1;
+            min-width: 120px;
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+
+        .modal-footer {
+            padding: 1.5rem 2rem;
+            border-top: 2px solid var(--border);
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        .btn-cancel {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .btn-cancel:hover {
+            background: var(--text-muted);
+            color: white;
+        }
+
+        .btn-save {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-save:hover {
+            background: var(--primary-dark);
+        }
+
+        @media (max-width: 768px) {
+            .filter-row {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="layout-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-logo">
+                Food<span>Hub</span>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-section-title">Main</div>
+                <a href="vendor-dashboard.html" class="nav-link">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="vendor-orders.html" class="nav-link">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                    </svg>
+                    Orders
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Business</div>
+                <a href="vendor-menu.html" class="nav-link active">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                    </svg>
+                    Menu Management
+                </a>
+                <a href="vendor-profile.html" class="nav-link">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                    </svg>
+                    Business Profile
+                </a>
+                <a href="vendor-analytics.html" class="nav-link">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                    Analytics
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Compliance</div>
+                <a href="vendor-rental.html" class="nav-link">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                    Rental & Compliance
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Account</div>
+                <a href="#" class="nav-link">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    Settings
+                </a>
+                <a onclick="logout()" class="nav-link">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                    </svg>
+                    Logout
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <h1 class="page-title">Menu Management</h1>
+                <div class="header-actions">
+                    <button class="btn-add" onclick="openAddModal()">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                        </svg>
+                        Add Menu Item
+                    </button>
+                </div>
+            </header>
+
+            <!-- Filters -->
+            <div class="filters">
+                <div class="filter-row">
+                    <div class="search-box">
+                        <svg class="search-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                        <input type="text" placeholder="Search menu items..." id="searchInput" oninput="filterMenu()">
+                    </div>
+                    <select class="filter-select" id="categoryFilter" onchange="filterMenu()">
+                        <option value="">All Categories</option>
+                        <option value="Mains">Mains</option>
+                        <option value="Sides">Sides</option>
+                        <option value="Drinks">Drinks</option>
+                        <option value="Desserts">Desserts</option>
+                    </select>
+                    <select class="filter-select" id="cuisineFilter" onchange="filterMenu()">
+                        <option value="">All Cuisines</option>
+                        <option value="American">American</option>
+                        <option value="Italian">Italian</option>
+                        <option value="Mexican">Mexican</option>
+                        <option value="Asian">Asian</option>
+                    </select>
+                    <select class="filter-select" id="statusFilter" onchange="filterMenu()">
+                        <option value="">All Status</option>
+                        <option value="available">Available</option>
+                        <option value="soldout">Sold Out</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Menu Grid -->
+            <div class="menu-grid" id="menuGrid">
+                <!-- Menu items will be rendered here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Modal -->
+    <div class="modal" id="menuModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Add Menu Item</h2>
+                <button class="close-btn" onclick="closeModal()">✕</button>
+            </div>
+            <form id="menuForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label">Item Name *</label>
+                        <input type="text" class="form-input" id="itemName" required placeholder="e.g., Classic Burger">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Description *</label>
+                        <textarea class="form-textarea" id="itemDescription" required placeholder="Describe your delicious item..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Price ($) *</label>
+                        <input type="number" class="form-input" id="itemPrice" step="0.01" min="0" required placeholder="12.99">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Category *</label>
+                        <select class="form-select" id="itemCategory" required>
+                            <option value="">Select Category</option>
+                            <option value="Mains">Mains</option>
+                            <option value="Sides">Sides</option>
+                            <option value="Drinks">Drinks</option>
+                            <option value="Desserts">Desserts</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Cuisine Tags (press Enter to add)</label>
+                        <div class="tag-input-container" id="tagContainer">
+                            <input type="text" class="tag-input" id="tagInput" placeholder="e.g., American" onkeypress="handleTagInput(event)">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Item Image</label>
+                        <label class="image-upload" for="imageInput">
+                            <svg width="40" height="40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                            <p>Click to upload image or drag and drop</p>
+                            <input type="file" id="imageInput" accept="image/*" onchange="handleImageChange(event)">
+                        </label>
+                        <img id="imagePreview" class="image-preview" style="display: none;">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-cancel" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="btn btn-save">Save Item</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Sample menu data
+        let menuItems = [
+            {
+                id: 1,
+                name: "Classic Burger",
+                description: "Juicy beef patty with lettuce, tomato, and our special sauce",
+                price: 12.99,
+                category: "Mains",
+                cuisines: ["American", "Fast Food"],
+                image: null,
+                available: true
+            },
+            {
+                id: 2,
+                name: "Margherita Pizza",
+                description: "Fresh mozzarella, basil, and tomato sauce on crispy crust",
+                price: 14.99,
+                category: "Mains",
+                cuisines: ["Italian"],
+                image: null,
+                available: true
+            },
+            {
+                id: 3,
+                name: "Chicken Tacos",
+                description: "Three soft tacos with grilled chicken and fresh salsa",
+                price: 10.99,
+                category: "Mains",
+                cuisines: ["Mexican"],
+                image: null,
+                available: false
+            },
+            {
+                id: 4,
+                name: "French Fries",
+                description: "Crispy golden fries with sea salt",
+                price: 4.99,
+                category: "Sides",
+                cuisines: ["American"],
+                image: null,
+                available: true
+            }
+        ];
+
+        let currentEditId = null;
+        let currentTags = [];
+
+        function renderMenu() {
+            const grid = document.getElementById('menuGrid');
+            grid.innerHTML = '';
+
+            menuItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'menu-card';
+                card.innerHTML = `
+                    <div class="menu-image">
+                        ${item.image ? `<img src="${item.image}" alt="${item.name}">` : '🍔'}
+                        <span class="availability-badge ${item.available ? 'badge-available' : 'badge-soldout'}">
+                            ${item.available ? 'Available' : 'Sold Out'}
+                        </span>
+                    </div>
+                    <div class="menu-content">
+                        <div class="menu-header">
+                            <div>
+                                <h3 class="menu-title">${item.name}</h3>
+                                <span class="menu-category">${item.category}</span>
+                            </div>
+                            <div class="menu-price">$${item.price.toFixed(2)}</div>
+                        </div>
+                        <p class="menu-description">${item.description}</p>
+                        <div class="menu-tags">
+                            ${item.cuisines.map(cuisine => `<span class="tag">${cuisine}</span>`).join('')}
+                        </div>
+                        <div class="menu-actions">
+                            <button class="btn-icon edit" onclick="editItem(${item.id})">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                </svg>
+                                Edit
+                            </button>
+                            <button class="btn-icon toggle ${!item.available ? 'soldout' : ''}" onclick="toggleAvailability(${item.id})">
+                                ${item.available ? '✓ Available' : '✕ Sold Out'}
+                            </button>
+                            <button class="btn-icon delete" onclick="deleteItem(${item.id})">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterMenu() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const category = document.getElementById('categoryFilter').value;
+            const cuisine = document.getElementById('cuisineFilter').value;
+            const status = document.getElementById('statusFilter').value;
+
+            const filtered = menuItems.filter(item => {
+                const matchSearch = item.name.toLowerCase().includes(search) || 
+                                  item.description.toLowerCase().includes(search);
+                const matchCategory = !category || item.category === category;
+                const matchCuisine = !cuisine || item.cuisines.includes(cuisine);
+                const matchStatus = !status || 
+                                   (status === 'available' && item.available) ||
+                                   (status === 'soldout' && !item.available);
+
+                return matchSearch && matchCategory && matchCuisine && matchStatus;
+            });
+
+            const grid = document.getElementById('menuGrid');
+            grid.innerHTML = '';
+            filtered.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'menu-card';
+                card.innerHTML = `
+                    <div class="menu-image">
+                        ${item.image ? `<img src="${item.image}" alt="${item.name}">` : '🍔'}
+                        <span class="availability-badge ${item.available ? 'badge-available' : 'badge-soldout'}">
+                            ${item.available ? 'Available' : 'Sold Out'}
+                        </span>
+                    </div>
+                    <div class="menu-content">
+                        <div class="menu-header">
+                            <div>
+                                <h3 class="menu-title">${item.name}</h3>
+                                <span class="menu-category">${item.category}</span>
+                            </div>
+                            <div class="menu-price">$${item.price.toFixed(2)}</div>
+                        </div>
+                        <p class="menu-description">${item.description}</p>
+                        <div class="menu-tags">
+                            ${item.cuisines.map(cuisine => `<span class="tag">${cuisine}</span>`).join('')}
+                        </div>
+                        <div class="menu-actions">
+                            <button class="btn-icon edit" onclick="editItem(${item.id})">Edit</button>
+                            <button class="btn-icon toggle ${!item.available ? 'soldout' : ''}" onclick="toggleAvailability(${item.id})">
+                                ${item.available ? '✓' : '✕'}
+                            </button>
+                            <button class="btn-icon delete" onclick="deleteItem(${item.id})">Delete</button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function openAddModal() {
+            currentEditId = null;
+            currentTags = [];
+            document.getElementById('modalTitle').textContent = 'Add Menu Item';
+            document.getElementById('menuForm').reset();
+            document.getElementById('imagePreview').style.display = 'none';
+            updateTagDisplay();
+            document.getElementById('menuModal').classList.add('active');
+        }
+
+        function editItem(id) {
+            const item = menuItems.find(i => i.id === id);
+            currentEditId = id;
+            currentTags = [...item.cuisines];
+            
+            document.getElementById('modalTitle').textContent = 'Edit Menu Item';
+            document.getElementById('itemName').value = item.name;
+            document.getElementById('itemDescription').value = item.description;
+            document.getElementById('itemPrice').value = item.price;
+            document.getElementById('itemCategory').value = item.category;
+            
+            if (item.image) {
+                document.getElementById('imagePreview').src = item.image;
+                document.getElementById('imagePreview').style.display = 'block';
+            }
+            
+            updateTagDisplay();
+            document.getElementById('menuModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('menuModal').classList.remove('active');
+        }
+
+        function handleTagInput(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                const input = event.target;
+                const value = input.value.trim();
+                
+                if (value && !currentTags.includes(value)) {
+                    currentTags.push(value);
+                    input.value = '';
+                    updateTagDisplay();
+                }
+            }
+        }
+
+        function removeTag(tag) {
+            currentTags = currentTags.filter(t => t !== tag);
+            updateTagDisplay();
+        }
+
+        function updateTagDisplay() {
+            const container = document.getElementById('tagContainer');
+            const input = document.getElementById('tagInput');
+            
+            container.innerHTML = '';
+            currentTags.forEach(tag => {
+                const tagElement = document.createElement('span');
+                tagElement.className = 'tag-item';
+                tagElement.innerHTML = `${tag} <span class="tag-remove" onclick="removeTag('${tag}')">×</span>`;
+                container.appendChild(tagElement);
+            });
+            container.appendChild(input);
+        }
+
+        function handleImageChange(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('imagePreview');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function toggleAvailability(id) {
+            const item = menuItems.find(i => i.id === id);
+            item.available = !item.available;
+            renderMenu();
+        }
+
+        function deleteItem(id) {
+            if (confirm('Are you sure you want to delete this menu item?')) {
+                menuItems = menuItems.filter(i => i.id !== id);
+                renderMenu();
+            }
+        }
+
+        document.getElementById('menuForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const itemData = {
+                name: document.getElementById('itemName').value,
+                description: document.getElementById('itemDescription').value,
+                price: parseFloat(document.getElementById('itemPrice').value),
+                category: document.getElementById('itemCategory').value,
+                cuisines: currentTags,
+                image: document.getElementById('imagePreview').src || null,
+                available: true
+            };
+
+            if (currentEditId) {
+                const item = menuItems.find(i => i.id === currentEditId);
+                Object.assign(item, itemData);
+            } else {
+                itemData.id = menuItems.length > 0 ? Math.max(...menuItems.map(i => i.id)) + 1 : 1;
+                menuItems.push(itemData);
+            }
+
+            closeModal();
+            renderMenu();
+        });
+        
+        function logout() {
+        setTimeout(() => {
+            window.parent.location.hash = "#/login";
+        }, 500);
+        
+        };
+
+        // Initialize
+        renderMenu();
+    </script>
+</body>
+</html>

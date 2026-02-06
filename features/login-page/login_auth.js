@@ -20,6 +20,19 @@ const app = initializeApp(firebaseConfig);
 const dbRef = ref(getDatabase());
 const auth = getAuth(app);
 
+// login page init, to set up listeners for clicking
+// export function initLoginPage() {
+//     document.getElementById("showpopup")?.addEventListener("click", () => {
+//         document.getElementById("popup").style.display = "flex";
+//     });
+
+//     document.querySelector("#popup .buttons button")?.addEventListener("click", () => {
+//         document.getElementById("popup").style.display = "none";
+//     });
+
+    
+// }
+
 const loginForm = document.getElementById('loginForm');
 const loginerrorMsg = document.getElementById('loginerrorMsg');
 
@@ -30,7 +43,7 @@ loginForm.addEventListener("submit", function(event) {
     const password = document.getElementById("password").value.trim();
 
     // calls the signOut function to ensure any existing user isnt signed in lol
-    signOut(auth);
+    // signOut(auth);
 
     //call firebase auth func 
     signInWithEmailAndPassword(auth, email, password)
@@ -53,19 +66,17 @@ loginForm.addEventListener("submit", function(event) {
 
                     // cache user's role in localstorage
                     localStorage.setItem("role", userRole);
+
+                    // window.location.href = "vendor_dashboard.html"
+                    window.parent.location.hash = `#/${userRole}_dash` //redirect to dashboard appropriate dashboard
                     
                 } else {
                     console.log("No user data found in db (u messed up)");
                 }
             }).catch((error) => {
                 console.log("error:", error);
-            });
-
-            setTimeout(() => {
-                // window.location.href = "vendor_dashboard.html"
-                window.location.href = `${localStorage.getItem("role")}_dashboard.html` //redirect to dashboard appropriate dashboard
-            }, 2000);
-            
+            });            
+        
         })
         .catch((error) => {
             const errorCode = error.code;

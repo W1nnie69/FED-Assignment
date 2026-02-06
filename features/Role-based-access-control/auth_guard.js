@@ -18,30 +18,25 @@ const auth = getAuth(app);
 
 console.log("starting script");
 
+export let currentUser = null;
+
+let authResolved = false;
+let callbacks = [];
+
+
 // enforces auth with firebase, make sure user is logged in.
-onAuthStateChanged(auth, user => {
-  if (!user) {
-    // Not logged in
-    console.log("user not logged in");
-    alert("You are not logged in!");
-    window.location.replace("login.html");
-    return;
-    }
-    
-    // document.body.classList.remove("hidden");
-    console.log("user is logged");
-    
-    // enforces role based access control to disallow user mismatch (e.g. vendor accessing operator pages)
-    // role is cached in localStorage for performance; source of truth is Firebase DB
-    const requiredRole = document.body.dataset.requiredRole;
-    const userRole = localStorage.getItem("role");
+onAuthStateChanged(auth, (user) => {
+    currentUser = user;
+    authResolved = true;
 
-    // if the page doesnt require any roles, function will return.
-    if (!requiredRole) return;
-
-    if (!userRole || userRole !== requiredRole) {
-        alert("Access denied");
-        window.location.replace("login.html");
-    }
+    callbacks.forEach(cb => cb());
+    callbacks = [];
 });
-   
+
+export function onAuthReady(cb) {
+    if (authResolved) {
+        cb();
+    } else {
+        callbacks.push(cb);
+    }
+}

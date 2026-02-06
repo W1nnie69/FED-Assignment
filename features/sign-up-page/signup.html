@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign up page</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
     <form class="login-form" id="signupForm">
@@ -22,9 +23,15 @@
 
         <div id="signuperrorMsg" class="error"></div>
 
-        <a href="login.html">Have an account?</a>
+        <a onclick="redirectToLogin()">Have an account?</a>
     </form>
 
-<script type="module" src="signup_auth.js"></script>
+<script type="module" src="./signup_auth.js"></script>
+<script>
+    function redirectToLogin() {
+        window.parent.location.hash = "#/login";
+        // window.parent.router();
+    }
+</script>
 </body>
 </html>
