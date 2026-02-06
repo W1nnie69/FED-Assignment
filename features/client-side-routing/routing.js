@@ -18,8 +18,12 @@ const routes = {
         page: "operator-dashboard/operator_dashboard",
         requiresAuth: true,
         roleRequired: "operator"
+    },
+    vendor_dash: {
+        page: "vendor-pages/vendor-dashboard",
+        requiresAuth: true,
+        roleRequired: "vendor"  
     }
-
 }
 
 onAuthReady(() => {
