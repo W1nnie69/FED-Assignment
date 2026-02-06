@@ -76,6 +76,7 @@ export function router() {
     // auth
     if (route.requiresAuth && !currentUser) {
         console.log("User not logged in")
+        alert("User is not logged in")
         location.hash = "#/login";
         return;
     }
