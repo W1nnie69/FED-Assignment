@@ -33,7 +33,17 @@
         </div>
 
         <div class="input-group">
-          <label for="score">Enter Score</label>
+          <label for="inspectionDate">Inspection Date</label>
+          <input
+            type="date"
+            id="inspectionDate"
+            name="inspectionDate"
+            required
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="score">Enter Score( 0-100 )</label>
           <input
             type="number"
             id="score"
@@ -44,14 +54,16 @@
         </div>
 
         <div class="input-group">
-          <label for="grade">Enter Grade</label>
-          <input
-            type="text"
-            id="grade"
-            name="grade"
-            placeholder="Enter Grade"
-            required
-          />
+          <label for="grade">Hygiene Grade</label>
+          <select id="grade" name="grade" required>
+            <option value="" disabled selected hidden>
+              Select Hygiene Grade
+            </option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+          </select>
         </div>
 
         <div class="input-group">
