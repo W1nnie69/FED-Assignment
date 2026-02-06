@@ -5,7 +5,7 @@ import { currentUser }  from "../Role-based-access-control/auth_guard.js";
 
 const routes = {
     login: {
-        page: "login-page/login",
+        page: "login-page/loginspa",
         requiresAuth: false
     },
     signup: {
@@ -29,7 +29,7 @@ function loadPageCSS(page) {
     const link = document.createElement("link");
     link.id = "page-style";
     link.rel = "stylesheet";
-    link.href = `./feature/${page}.css`;
+    link.href = `./features/${page}.css`;
     document.head.appendChild(link);
 }
 
@@ -61,7 +61,15 @@ export async function router() {
     // load page & it's css
     const res = await fetch(`./features/${route.page}.html`)
     app.innerHTML = await res.text();
-    loadPageCSS(page);
+    loadPageCSS(route.page);
+
+    switch (route.page) {
+        case "login-page/loginspa":
+            import("../login-page/login_auth.js")
+            .then(module => module.initLoginPage());
+            break;
+    }
+    
 }
 
 window.addEventListener("hashchange", router);

@@ -7,14 +7,17 @@
 <body>
 
   <nav>
+    <a href="#/signup">Sign Up</a>
     <a href="#/login">Login</a>
-    <a href="#/dashboard">Dashboard</a>
+    <a href="#/operator_dash">Operator Dashboard</a>
   </nav>
 
   <main id="app">
     <!-- Dynamic content loads here -->
   </main>
 
-  <script src="js/router.js"></script>
+  <script type="module" src="./features/Role-based-access-control/auth_guard.js"></script>
+  <script type="module" src="./features/client-side-routing/routing.js"></script>
+
 </body>
 </html>

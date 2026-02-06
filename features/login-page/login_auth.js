@@ -11,7 +11,7 @@ import {
 
 import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js"
 
-import { firebaseConfig } from "./config.js";
+import { firebaseConfig } from "../../assets/js/config.js";
 
 /* ================================
    Initialize Firebase
@@ -19,6 +19,19 @@ import { firebaseConfig } from "./config.js";
 const app = initializeApp(firebaseConfig);
 const dbRef = ref(getDatabase());
 const auth = getAuth(app);
+
+// login page init, to set up listeners for clicking
+export function initLoginPage() {
+    document.getElementById("showpopup")?.addEventListener("click", () => {
+        document.getElementById("popup").style.display = "flex";
+    });
+
+    document.querySelector("#popup .buttons button")?.addEventListener("click", () => {
+        document.getElementById("popup").style.display = "none";
+    });
+
+    
+}
 
 const loginForm = document.getElementById('loginForm');
 const loginerrorMsg = document.getElementById('loginerrorMsg');
