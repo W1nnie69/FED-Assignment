@@ -58,18 +58,24 @@ function parseHash() {
 
 export function router() {
     console.log("running router");
+    if (!authInitialized) return;
     // const routeName = location.hash.replace("#/", "") || "login";
     const { route: routeName, params } = parseHash();
     const route = routes[routeName]
 
     if (!route) {
-        // iframe.src = "404.html";
-        location.hash = "#/login";
-        return; 
+        if (currentUser) {
+            const role = localStorage.getItem("role");
+            location.hash = `#/${role}_dash`;
+        } else {
+            location.hash = "#/login";
+        }
+        return;
     }
 
     // auth
     if (route.requiresAuth && !currentUser) {
+        console.log("User not logged in")
         location.hash = "#/login";
         return;
     }
@@ -78,7 +84,8 @@ export function router() {
     if (route.roleRequired) {
         const userRole = localStorage.getItem("role");
         if (userRole !== route.roleRequired) {
-            iframe.src = "403.html";
+            console.log("Access Denied lil bro")
+            iframe.src = "../../assets/access_denied.html";
             return;
         }
     }
