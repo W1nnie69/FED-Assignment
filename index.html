@@ -38,6 +38,24 @@
   <!-- <script type="module" src="./features/login-page/login_auth.js"></script> -->
   <script type="module" src="./features/Role-based-access-control/auth_guard.js"></script>
   <script type="module" src="./features/client-side-routing/routing.js"></script>
+  <script type="module" src="./assets/js/logout.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { firebaseConfig } from "./assets/js/config.js";
 
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    window.logout = async function () {
+        try {
+            await signOut(auth);
+            window.location.hash = "#/login";
+        } catch (err) {
+            console.error(err);
+            alert("Logout failed");
+        }
+    };
+  </script>
 </body>
 </html>
