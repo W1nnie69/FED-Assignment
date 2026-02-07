@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Locations</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../main-menu/mainmenu.css" />
+  <link rel="stylesheet" href="location.css" />
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <img src="../images/foodhub_logo.jpg" alt="Hawker Logo">
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="../main-menu/mainmenu.html">Home</a></li>
+      <li><a href="location.html" class="active">Locations</a></li>
+      <li><a href="../order-history/order-history.html">Order History</a></li>
+    </ul>
+  </nav>
+
+  <div class="lang-wrap">
+   <button class="lang" type="button" id="langBtn">EN</button>
+
+   <div class="lang-menu" id="langMenu">
+     <button type="button" data-lang="en">English</button>
+     <button type="button" data-lang="zh-CN">中文</button>
+     <button type="button" data-lang="ms">BM</button>
+     <button type="button" data-lang="ta">தமிழ்</button>
+   </div>
+ </div>
+
+
+  <div class="actions">
+    <a href="../cart/cart.html" class="icon">
+      <img src="https://cdn-icons-png.flaticon.com/128/1170/1170678.png" alt="Cart">
+    </a>
+
+    <div class="icon" id="notifIcon">
+      <img src="https://cdn-icons-png.flaticon.com/128/3602/3602145.png" alt="Notifications">
+    </div>
+
+    <button class="logout" id="logoutBtn">Logout</button>
+
+    <div class="profile" id="profileIcon">
+      <img src="https://cdn-icons-png.flaticon.com/128/848/848043.png" alt="User profile">
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <h2 class="page-title">Locations</h2>
+
+  <section class="loc-row">
+
+    <!-- Lau Pa Sat -->
+    <article class="loc-card"
+      onclick="goToMap('Lau Pa Sat Singapore')">
+      <div class="loc-img"><img src="https://tribe-tours.com/wp-content/uploads/2024/01/lau-pa-sat-night-tour-scaled.jpg" alt="Lau Pa Sat"></div>
+      <div class="loc-content">
+        <h4 class="loc-name">Lau Pa Sat</h4>
+        <p class="loc-desc">18 Raffles Quay</p>
+        <p class="loc-time">Opens: 7am – 11pm</p>
+      </div>
+    </article>
+
+    <!-- Maxwell -->
+    <article class="loc-card"
+      onclick="goToMap('Maxwell Food Centre Singapore')">
+      <div class="loc-img"><img src="https://hawkerpedia.com.sg/wp-content/uploads/2025/05/Maxwell-Food-Centre-10-Must-Try-Stalls-and-How-to-Get-There.jpg" alt="Maxwell Food Centre"></div>
+      <div class="loc-content">
+        <h4 class="loc-name">Maxwell Food Centre</h4>
+        <p class="loc-desc">1 Kadayanallur St</p>
+        <p class="loc-time">Opens: 8am – 10pm</p>
+      </div>
+    </article>
+
+    <!-- Old Airport -->
+    <article class="loc-card"
+      onclick="goToMap('Old Airport Road Food Centre Singapore')">
+      <div class="loc-img"><img src="https://sethlui.com/wp-content/uploads/2018/07/old-airport-road-food-centre-11.jpg" alt="Old Airport Road Food Centre"></div>
+      <div class="loc-content">
+        <h4 class="loc-name">Old Airport Road FC</h4>
+        <p class="loc-desc">51 Old Airport Rd</p>
+        <p class="loc-time">Opens: 10am – 10pm</p>
+      </div>
+    </article>
+
+    <!-- Tiong Bahru -->
+    <article class="loc-card"
+      onclick="goToMap('Tiong Bahru Market Singapore')">
+      <div class="loc-img"> <img src="https://tse1.mm.bing.net/th/id/OIP.122RsI7mYikUnJW07VDilAHaFj?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Tiong Bahru Market"></div>
+      <div class="loc-content">
+        <h4 class="loc-name">Tiong Bahru Market</h4>
+        <p class="loc-desc">30 Seng Poh Rd</p>
+        <p class="loc-time">Opens: 7am – 3pm</p>
+      </div>
+    </article>
+
+    <!-- Amoy -->
+    <article class="loc-card"
+      onclick="goToMap('Amoy Street Food Centre Singapore')">
+      <div class="loc-img"><img src="https://danielfooddiary.com/wp-content/uploads/2017/08/amoy19.jpg" alt="Amoy Street Food Centre"></div>
+      <div class="loc-content">
+        <h4 class="loc-name">Amoy Street FC</h4>
+        <p class="loc-desc">7 Maxwell Rd</p>
+        <p class="loc-time">Opens: 10am – 8pm</p>
+      </div>
+    </article>
+
+    <!-- Tekka -->
+    <article class="loc-card"
+      onclick="goToMap('Tekka Centre Singapore')">
+      <div class="loc-img"><img src="https://live.staticflickr.com/4743/39320300954_c9db618b16_b.jpg" alt="Tekka Centre"></div>
+      <div class="loc-content">
+        <h4 class="loc-name">Tekka Centre</h4>
+        <p class="loc-desc">665 Buffalo Rd</p>
+        <p class="loc-time">Opens: 7am – 9pm</p>
+      </div>
+    </article>
+
+    <!-- Bedok -->
+    <article class="loc-card"
+      onclick="goToMap('Bedok 85 Market Singapore')">
+      <div class="loc-img"><img src="https://tse4.mm.bing.net/th/id/OIP.Hm22BTMcQWMQwd4EOnEudQHaE8?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Bedok 85 Market"></div>
+      <div class="loc-content">
+        <h4 class="loc-name">Bedok 85</h4>
+        <p class="loc-desc">85 Bedok North St 4</p>
+        <p class="loc-time">Opens: 6pm – 2am</p>
+      </div>
+    </article>
+
+    <!-- Chinatown -->
+    <article class="loc-card"
+      onclick="goToMap('Chinatown Complex Singapore')">
+      <div class="loc-img"><img src="https://media-cdn.tripadvisor.com/media/photo-s/03/bc/fb/0c/chinatown-complex.jpg" alt="Chinatown Complex"></div>
+      <div class="loc-content">
+        <h4 class="loc-name">Chinatown Complex</h4>
+        <p class="loc-desc">335 Smith St</p>
+        <p class="loc-time">Opens: 8am – 10pm</p>
+      </div>
+    </article>
+
+    <!-- Newton -->
+    <article class="loc-card"
+      onclick="goToMap('Newton Food Centre Singapore')">
+      <div class="loc-img"><img src="https://media.timeout.com/images/105985806/1920/1080/image.jpg" alt="Newton Food Centre"></div>
+      <div class="loc-content">
+        <h4 class="loc-name">Newton Food Centre</h4>
+        <p class="loc-desc">500 Clemenceau Ave N</p>
+        <p class="loc-time">Opens: 12pm – 2am</p>
+      </div>
+    </article>
+
+    <!-- East Coast -->
+    <article class="loc-card"
+      onclick="goToMap('East Coast Lagoon Food Village Singapore')">
+      <div class="loc-img"><img src="https://hawkerpedia.com.sg/wp-content/uploads/2025/05/East-Coast-Lagoon-Food-Village-10-Must-Try-Stalls-and-How-to-Get-There.jpg" alt="East Coast Lagoon Food Village"></div>
+      <div class="loc-content">
+        <h4 class="loc-name">East Coast Lagoon FC</h4>
+        <p class="loc-desc">1220 East Coast Pkwy</p>
+        <p class="loc-time">Opens: 11am – 11pm</p>
+      </div>
+    </article>
+
+  </section>
+</main>
+
+<script>
+  function goToMap(place) {
+    window.location.href =
+      "../map/map.html?place=" + encodeURIComponent(place);
+  }
+
+  // make other buttons interactive
+  document.getElementById("notifIcon").onclick = () =>
+    alert("Notifications clicked");
+
+  document.getElementById("profileIcon").onclick = () =>
+    alert("Profile clicked");
+
+  document.getElementById("logoutBtn").onclick = () =>
+    alert("Logged out");
+</script>
+<script src="../translate.js"></script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+</body>
+</html>

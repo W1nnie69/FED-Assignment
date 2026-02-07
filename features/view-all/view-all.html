@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Dishes</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="view-all.css" />
+  <link rel="stylesheet" href="../main-menu/mainmenu.css">
+</head>
+
+<body>
+  <div id="google_translate_element" style="display:none;"></div>
+
+<header>
+  <div class="logo">
+    <!-- FIXED PATH: usually view-all folder -> ../images -->
+    <img src="../images/foodhub_logo.jpg" alt="Hawker Logo">
+  </div>
+
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="../main-menu/mainmenu.html">Home</a></li>
+      <li><a href="../location/location.html">Locations</a></li>
+      <li><a href="../order-history/order-history.html">Order History</a></li>
+    </ul>
+  </nav>
+
+  <!-- keep simple lang button for now -->
+  <div class="lang-wrap">
+    <button class="lang" type="button" id="langBtn">EN</button>
+
+    <div class="lang-menu" id="langMenu">
+      <button type="button" data-lang="en">English</button>
+      <button type="button" data-lang="zh-CN">中文</button>
+      <button type="button" data-lang="ms">BM</button>
+      <button type="button" data-lang="ta">தமிழ்</button>
+    </div>
+  </div>
+  <div class="actions">
+    <a href="../cart/cart.html" class="icon">
+      <img src="https://cdn-icons-png.flaticon.com/128/1170/1170678.png" alt="Cart">
+    </a>
+
+    <div class="icon">
+      <img src="https://cdn-icons-png.flaticon.com/128/3602/3602145.png" alt="Notifications">
+    </div>
+
+    <button class="logout">Logout</button>
+
+    <div class="profile">
+      <img src="https://cdn-icons-png.flaticon.com/128/848/848043.png" alt="User profile">
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <!-- Top Bar -->
+  <section class="page-head">
+    <div>
+      <h2 class="page-title">Featured Dishes</h2>
+      <p class="page-subtitle">Browse Singapore hawker favourites</p>
+    </div>
+
+    <div class="page-controls">
+      <input id="searchInput" class="search" type="search" placeholder="Search dishes..." />
+      <select id="sortSelect" class="sort">
+        <option value="popular">Sort: Popular</option>
+        <option value="low">Price: Low to High</option>
+        <option value="high">Price: High to Low</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- Category chips -->
+  <section class="chips" id="chips">
+    <button class="chip active" type="button" data-category="All">All</button>
+    <button class="chip" type="button" data-category="Rice">Rice</button>
+    <button class="chip" type="button" data-category="Noodles">Noodles</button>
+    <button class="chip" type="button" data-category="Soup">Soup</button>
+    <button class="chip" type="button" data-category="Snacks">Snacks</button>
+    <button class="chip" type="button" data-category="Drinks">Drinks</button>
+    <button class="chip" type="button" data-category="Dessert">Dessert</button>
+  </section>
+
+  <!-- Grid -->
+  <section class="grid" id="dishGrid">
+    <!-- ✅ Each card now has: data-category, data-price, data-popular -->
+
+    <article class="grid-card" data-category="Rice" data-price="5.50" data-popular="98">
+      <div class="grid-image">
+        <img src="https://th.bing.com/th/id/OIP.nedEqmFVvzaihJYIyAjVSQHaE6?w=271&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Hainanese Chicken Rice">
+      </div>
+      <div class="grid-content">
+        <h4 class="item-title">Hainanese Chicken Rice</h4>
+        <p class="item-loc">Chinatown Complex</p>
+        <p class="item-desc">Tender poached chicken with fragrant rice</p>
+        <p class="item-price">$5.50</p>
+      </div>
+    </article>
+
+    <article class="grid-card" data-category="Noodles" data-price="6.00" data-popular="96">
+      <div class="grid-image">
+        <img src="https://tse3.mm.bing.net/th/id/OIP.rReww2qRLgb-c7QJptviygHaFS?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Laksa">
+      </div>
+      <div class="grid-content">
+        <h4 class="item-title">Laksa</h4>
+        <p class="item-loc">Katong Laksa</p>
+        <p class="item-desc">Spicy coconut noodle soup with prawns</p>
+        <p class="item-price">$6.00</p>
+      </div>
+    </article>
+
+    <article class="grid-card" data-category="Noodles" data-price="4.50" data-popular="92">
+      <div class="grid-image">
+        <img src="https://th.bing.com/th/id/OIP.4lLBqUSgcVRLElyz3USElgHaE9?w=295&h=197&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Char Kway Teow">
+      </div>
+      <div class="grid-content">
+        <h4 class="item-title">Char Kway Teow</h4>
+        <p class="item-loc">Old Airport Road FC</p>
+        <p class="item-desc">Wok-fried noodles with cockles &amp; egg</p>
+        <p class="item-price">$4.50</p>
+      </div>
+    </article>
+
+    <article class="grid-card" data-category="Rice" data-price="5.00" data-popular="94">
+      <div class="grid-image">
+        <img src="https://tse4.mm.bing.net/th/id/OIP.hJ5Tf61PsjtHaYTB2mEDUQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Nasi Lemak">
+      </div>
+      <div class="grid-content">
+        <h4 class="item-title">Nasi Lemak</h4>
+        <p class="item-loc">Changi Village</p>
+        <p class="item-desc">Coconut rice with sambal &amp; fried chicken</p>
+        <p class="item-price">$5.00</p>
+      </div>
+    </article>
+
+    <article class="grid-card" data-category="Soup" data-price="7.00" data-popular="90">
+      <div class="grid-image">
+        <img src="https://sethlui.com/wp-content/uploads/2021/10/Best-BKT-Tuan-Yuan-BKT-Featured.jpg" alt="Bak Kut Teh">
+      </div>
+      <div class="grid-content">
+        <h4 class="item-title">Bak Kut Teh</h4>
+        <p class="item-loc">Balestier</p>
+        <p class="item-desc">Peppery pork rib soup with garlic</p>
+        <p class="item-price">$7.00</p>
+      </div>
+    </article>
+
+    <article class="grid-card" data-category="Snacks" data-price="6.50" data-popular="93">
+      <div class="grid-image">
+        <img src="https://hungrygowhere.com/wp-content/uploads/2025/03/09-sy-Satay-Singapore-Satay-Street-HungryGoWhere.png" alt="Satay">
+      </div>
+      <div class="grid-content">
+        <h4 class="item-title">Satay</h4>
+        <p class="item-loc">Lau Pa Sat</p>
+        <p class="item-desc">Grilled skewers with peanut sauce</p>
+        <p class="item-price">$6.50</p>
+      </div>
+    </article>
+
+    <article class="grid-card" data-category="Snacks" data-price="2.00" data-popular="91">
+      <div class="grid-image">
+        <img src="https://th.bing.com/th/id/OIP.3YrOYyKsNcVLB5JVlcCobQHaE6?w=264&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Roti Prata">
+      </div>
+      <div class="grid-content">
+        <h4 class="item-title">Roti Prata</h4>
+        <p class="item-desc">Crispy flatbread served with curry</p>
+        <p class="item-price">$2.00</p>
+      </div>
+    </article>
+
+    <article class="grid-card" data-category="Snacks" data-price="4.00" data-popular="89">
+      <div class="grid-image">
+        <img src="https://tse3.mm.bing.net/th/id/OIP.ra3ox_oI6KZFNlAuEGgJ8wHaFj?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Carrot Cake">
+      </div>
+      <div class="grid-content">
+        <h4 class="item-title">Carrot Cake</h4>
+        <p class="item-desc">Stir-fried radish cake with egg</p>
+        <p class="item-price">$4.00</p>
+      </div>
+    </article>
+
+    <article class="grid-card" data-category="Noodles" data-price="5.50" data-popular="88">
+      <div class="grid-image">
+        <img src="https://tse4.mm.bing.net/th/id/OIP.QqZRNQxRPiaD_E6CUK5PUAHaDO?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Mee Goreng">
+      </div>
+      <div class="grid-content">
+        <h4 class="item-title">Mee Goreng</h4>
+        <p class="item-desc">Spicy fried noodles with seafood</p>
+        <p class="item-price">$5.50</p>
+      </div>
+    </article>
+
+    <article class="grid-card" data-category="Snacks" data-price="6.00" data-popular="87">
+      <div class="grid-image">
+        <img src="https://hungrygowhere.com/wp-content/uploads/2023/08/05-ev-best-oyster-omelette-singapore-hougang-fried-oyster-and-kway-teow-hungrygowhere.jpg" alt="Oyster Omelette">
+      </div>
+      <div class="grid-content">
+        <h4 class="item-title">Oyster Omelette</h4>
+        <p class="item-desc">Crispy egg omelette with oysters</p>
+        <p class="item-price">$6.00</p>
+      </div>
+    </article>
+
+    <article class="grid-card" data-category="Dessert" data-price="3.50" data-popular="86">
+      <div class="grid-image">
+        <img src="https://media.istockphoto.com/id/1255725094/photo/ice-kacang-malaysia-popular-cold-dessert.jpg?s=612x612&w=0&k=20&c=7SjvQiKHEE8HLiRyu6n1GfxW-ctSc1irBn3lIqB04mI=" alt="Ice Kacang">
+      </div>
+      <div class="grid-content">
+        <h4 class="item-title">Ice Kacang</h4>
+        <p class="item-desc">Shaved ice dessert with beans &amp; syrup</p>
+        <p class="item-price">$3.50</p>
+      </div>
+    </article>
+  </section>
+</main>
+
+<script src="view-all.js"></script>
+<script src="../translate.js"></script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>

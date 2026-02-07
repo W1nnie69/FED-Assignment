@@ -1,0 +1,121 @@
+
+
+/* Page wrapper already exists in mainmenu.css but we can adjust spacing */
+.page{
+  padding: 22px;
+}
+
+/* Title */
+.page-title{
+  margin: 18px 0 14px;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0.2px;
+  color: #111827;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.page-title::before{
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 10px 18px rgba(255,183,3,0.20);
+}
+
+/* Grid */
+.loc-row{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  padding-bottom: 22px;
+}
+
+/* Card */
+.loc-card{
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+}
+
+.loc-card:hover{
+  transform: scale(1.02);
+  border-color: rgba(255,107,53,0.25);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+}
+
+
+.loc-img{
+  height: 120px;
+  background:
+  linear-gradient(135deg, var(--primary-soft), rgba(255,183,3,0.12));
+  background-size: cover;
+  background-position: center;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Content */
+.loc-content{
+  padding: 14px;
+}
+.loc-img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.loc-name{
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 900;
+  color: #111827;
+}
+
+.loc-desc{
+  margin: 0 0 10px;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.3;
+}
+
+.loc-time{
+  margin: 0;
+  font-size: 12px;
+  font-weight: 800;
+  color: #111827;
+  background: linear-gradient(90deg, var(--primary-soft), white);
+  border: 1px solid rgba(255,107,53,0.18);
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+
+
+@media (max-width: 520px){
+  .loc-time{
+    width: fit-content;
+  }
+}
+
+/* Responsive */
+@media (max-width: 1100px){
+  .loc-row{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 900px){
+  .loc-row{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .page{ padding: 16px; }
+}
+
+@media (max-width: 520px){
+  .loc-row{ grid-template-columns: 1fr; }
+}
