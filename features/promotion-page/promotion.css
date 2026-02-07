@@ -236,7 +236,7 @@ nav a.active {
 /* ===== CLAIM POPUP ===== */
 #promo-popup {
     position: fixed;
-    bottom: 20px; /* appears below instead of top */
+    bottom: 20px;
     right: 20px;
     background: linear-gradient(90deg, var(--primary), var(--accent));
     color: white;
