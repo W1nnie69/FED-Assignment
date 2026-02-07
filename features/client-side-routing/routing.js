@@ -96,7 +96,7 @@ export function router() {
         const userRole = localStorage.getItem("role");
         if (userRole !== route.roleRequired) {
             console.log("Access Denied lil bro")
-            iframe.src = "../../assets/access_denied.html";
+            iframe.src = "../Role-based-access-control/access_denied.html";
             return;
         }
     }
