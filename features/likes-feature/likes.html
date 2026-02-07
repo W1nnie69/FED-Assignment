@@ -7,12 +7,48 @@
     <link rel="stylesheet" href="likes.css">
 </head>
 <body>
-    
+
+    <!-- ===== HEADER ===== -->
     <header>
-        <h1>Our Menu</h1>
+        <div class="logo">
+            <img src="images/foodhub_logo.jpg" alt="Hawker Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../mainmenu/mainmenu.html">Home</a></li>
+                <li><a href="../location/location.html">Locations</a></li>
+                <li><a href="../order-history/order-history.html" class="active">Order History</a></li>
+            </ul>
+        </nav>
+
+        <div class="lang-wrap">
+            <button class="lang" type="button" id="langBtn">EN</button>
+            <div class="lang-menu" id="langMenu">
+                <button type="button" data-lang="en">English</button>
+                <button type="button" data-lang="zh-CN">中文</button>
+                <button type="button" data-lang="ms">BM</button>
+                <button type="button" data-lang="ta">தமிழ்</button>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="../cart/cart.html" class="icon">
+                <img src="https://cdn-icons-png.flaticon.com/128/1170/1170678.png" alt="Cart">
+            </a>
+            <div class="icon">
+                <img src="https://cdn-icons-png.flaticon.com/128/3602/3602145.png" alt="Notifications">
+            </div>
+            <button class="logout">Logout</button>
+            <div class="profile">
+                <img src="https://cdn-icons-png.flaticon.com/128/848/848043.png" alt="User profile">
+            </div>
+        </div>
     </header>
 
-    <main>
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="page">
+        <h1>Our Menu</h1>
+
         <section class="menu-container">
             <article class="menu-item">
                 <header>
@@ -29,7 +65,6 @@
                 <p>Golden crispy fries</p>
                 <button class="like-btn">❤️ <span class="like-count">0</span></button>
             </article>
-
         </section>
     </main>
 

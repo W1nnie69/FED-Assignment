@@ -17,13 +17,13 @@ likeButtons.forEach(button =>
         {
             count++;
             liked = true;
-            button.style.backgroundColor = "#ff6666";
+            button.classList.add("liked");
         }
         else
         {
             count--;
             liked = false;
-            button.style.backgroundColor = "#ffcccc";
+            button.classList.remove("liked");
         }
 
         countSpan.textContent = count;
