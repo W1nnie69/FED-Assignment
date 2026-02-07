@@ -1,0 +1,274 @@
+/* /FED-Assignment/css/common.css */
+
+/* =============== */
+/* Global defaults */
+/* =============== */
+:root {
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --text: #333333;
+  --muted: #666666;
+
+  --border: #cccccc;
+  --border-soft: #e5e7eb;
+
+  --primary: #1e90ff;
+  --focus: rgba(76, 175, 80, 0.3);
+
+  --btn: grey;
+  --btn-hover: #1e90ff;
+
+  --radius-lg: 12px;
+  --radius-md: 8px;
+
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+
+  /* good default for all pages */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding: 40px 16px;
+  color: var(--text);
+}
+
+/* ======================== */
+/* Shared container / layout */
+/* ======================== */
+.form-container,
+.page,
+.card,
+.form-card {
+  background-color: var(--card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+/* Your project uses .form-container a lot */
+.form-container {
+  padding: 40px 50px;
+  width: 350px;
+  max-width: 100%;
+}
+
+/* Headings */
+h1,
+h2 {
+  text-align: center;
+  color: var(--text);
+  margin: 0 0 20px;
+}
+
+/* optional subtitle */
+.subtitle,
+.contact-note,
+.hint {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* ============= */
+/* Input groups  */
+/* ============= */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.input-group label,
+label {
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+  font-size: 14px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  transition: all 0.2s ease;
+  background: #fff;
+  color: #000;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* focus */
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 5px var(--focus);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* select placeholder behaviour (works with hidden default option) */
+select {
+  color: #999999;
+}
+select:valid {
+  color: #000;
+}
+
+/* ================= */
+/* Buttons (shared)  */
+/* ================= */
+.submitbtn,
+.btn-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+button,
+.submitbtn input[type="submit"],
+.submitbtn button {
+  background-color: var(--btn);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.05s ease;
+}
+
+button:hover,
+.submitbtn input[type="submit"]:hover,
+.submitbtn button:hover {
+  background-color: var(--btn-hover);
+}
+
+button:active,
+.submitbtn input[type="submit"]:active,
+.submitbtn button:active {
+  transform: translateY(1px);
+}
+
+/* Disabled button style */
+button:disabled {
+  background: #d1d5db;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+/* ================= */
+/* Table (shared)    */
+/* ================= */
+.history-table,
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 12px 14px;
+  text-align: left;
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+  vertical-align: top;
+}
+
+th {
+  background: #f9fafb;
+  color: #555;
+  font-weight: bold;
+}
+
+/* Sticky header (nice for long tables) */
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* Grade colours (reusable) */
+.grade-A {
+  color: #15803d;
+  font-weight: bold;
+}
+.grade-B {
+  color: #a16207;
+  font-weight: bold;
+}
+.grade-C,
+.grade-D {
+  color: #b91c1c;
+  font-weight: bold;
+}
+
+/* ========================= */
+/* Simple divider (optional) */
+/* ========================= */
+.divider {
+  height: 1px;
+  background: var(--border-soft);
+  margin: 18px 0;
+}
+
+/* ===================== */
+/* Responsive (shared)   */
+/* ===================== */
+@media (max-width: 480px) {
+  body {
+    padding: 24px 12px;
+  }
+
+  .form-container {
+    padding: 24px 18px;
+    width: 100%;
+  }
+
+  h1,
+  h2 {
+    font-size: 20px;
+  }
+
+  /* make buttons full width on phones */
+  button,
+  .submitbtn input[type="submit"],
+  .submitbtn button {
+    width: 100%;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    width: 100%;
+    max-width: 520px;
+  }
+}
