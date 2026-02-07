@@ -11,7 +11,7 @@ import {
 
 import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js"
 
-import { firebaseConfig } from "./config.js";
+import { firebaseConfig } from "../../assets/js/config.js";
 
 /* ================================
    Initialize Firebase
@@ -30,7 +30,7 @@ loginForm.addEventListener("submit", function(event) {
     const password = document.getElementById("password").value.trim();
 
     // calls the signOut function to ensure any existing user isnt signed in lol
-    signOut(auth);
+    // signOut(auth);
 
     //call firebase auth func 
     signInWithEmailAndPassword(auth, email, password)
@@ -39,8 +39,6 @@ loginForm.addEventListener("submit", function(event) {
             const user = userCredential.user;
             console.log("Logging on as:", user.uid)
             
-            // const userRef = ref(db, "users/" + user.uid);
-            
             // queries the db for user's role
             get(child(dbRef, `users/${user.uid}`)).then((snapshot) => {
                 if (snapshot.exists()) {
@@ -48,24 +46,20 @@ loginForm.addEventListener("submit", function(event) {
                     console.log("user data", userData);
                     const userRole = userData.role;
                     console.log("User role:", userRole);
-                    loginerrorMsg.style.color = 'green';
-                    loginerrorMsg.textContent = "Login successful!";
+                    loginsuccessMsg.textContent = "Login successful!";
 
                     // cache user's role in localstorage
+                    // cache user's id in sessionstorage
                     localStorage.setItem("role", userRole);
+                    sessionStorage.setItem("userid", user.uid);
                     
                 } else {
                     console.log("No user data found in db (u messed up)");
                 }
             }).catch((error) => {
                 console.log("error:", error);
-            });
-
-            setTimeout(() => {
-                // window.location.href = "vendor_dashboard.html"
-                window.location.href = `${localStorage.getItem("role")}_dashboard.html` //redirect to dashboard appropriate dashboard
-            }, 2000);
-            
+            });            
+        
         })
         .catch((error) => {
             const errorCode = error.code;
