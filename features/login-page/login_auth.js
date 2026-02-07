@@ -9,9 +9,9 @@ import {
     child
 } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
 
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js"
+import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js"
 
-import { firebaseConfig } from "./config.js";
+import { firebaseConfig } from "../../assets/js/config.js";
 
 /* ================================
    Initialize Firebase
@@ -29,6 +29,9 @@ loginForm.addEventListener("submit", function(event) {
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
 
+    // calls the signOut function to ensure any existing user isnt signed in lol
+    // signOut(auth);
+
     //call firebase auth func 
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -36,27 +39,27 @@ loginForm.addEventListener("submit", function(event) {
             const user = userCredential.user;
             console.log("Logging on as:", user.uid)
             
-            // const userRef = ref(db, "users/" + user.uid);
-            
             // queries the db for user's role
             get(child(dbRef, `users/${user.uid}`)).then((snapshot) => {
                 if (snapshot.exists()) {
                     const userData = snapshot.val();
                     console.log("user data", userData);
-                    const role = userData.role;
-                    console.log("User role:", role);
-                    loginerrorMsg.style.color = 'green';
-                    loginerrorMsg.textContent = "Login successful!";
+                    const userRole = userData.role;
+                    console.log("User role:", userRole);
+                    loginsuccessMsg.textContent = "Login successful!";
+
+                    // cache user's role in localstorage
+                    // cache user's id in sessionstorage
+                    localStorage.setItem("role", userRole);
+                    sessionStorage.setItem("userid", user.uid);
+                    
                 } else {
                     console.log("No user data found in db (u messed up)");
                 }
             }).catch((error) => {
                 console.log("error:", error);
-            });
-
-            // setTimeout(() => {
-            //     window.location.href = "dashboard.html" //redirect to dashboard
-            // }, 2000);
+            });            
+        
         })
         .catch((error) => {
             const errorCode = error.code;
