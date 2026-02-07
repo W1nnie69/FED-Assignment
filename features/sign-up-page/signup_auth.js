@@ -10,7 +10,7 @@ import {
 
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js"
 
-import { firebaseConfig } from "./config.js";
+import { firebaseConfig } from "../../assets/js/config.js";
 
 /* ================================
    Initialize Firebase
@@ -48,7 +48,7 @@ createUserWithEmailAndPassword(auth, email, password)
             alert("Success! You will be redirected to the login page in 5 seconds.");
 
             setTimeout(() => {
-            window.location.href = "login.html" //redirect to login page
+            window.location.href = "../login-page/login.html" //redirect to login page
             }, 5000);
 
         })
