@@ -8,6 +8,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="item.css" />
+  <link rel="stylesheet" href="../main-menu/mainmenu.css">
   <title>Item Details</title>
 </head>
 
@@ -25,8 +26,16 @@
       <li><a href="../order-history/order-history.html">Order History</a></li>
     </ul>
   </nav>
-
-  <button class="lang" type="button">Us Eng</button>
+  <div class="lang-wrap">
+    <button class="lang" type="button" id="langBtn">EN</button>
+    <div class="lang-menu" id="langMenu">
+      <button type="button" data-lang="en">English</button>
+      <button type="button" data-lang="zh-CN">中文</button>
+      <button type="button" data-lang="ms">BM</button>
+      <button type="button" data-lang="ta">தமிழ்</button>
+    </div>
+  </div>
+  
 
   <div class="actions">
     <a href="../cart/cart.html" class="icon">

@@ -118,3 +118,19 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+document.querySelector(".addcart").addEventListener("click", () => {
+
+  const CART_KEY = "cart";
+
+  const name = document.querySelector(".item-page-title").textContent;
+  const price = parseFloat(document.querySelector(".price").textContent.replace("$",""));
+  const qty = parseInt(document.querySelector(".qty-num").textContent);
+
+  const cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+
+  cart.push({ name, price, qty });
+
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+
+  alert("Added to cart!");
+});

@@ -1,51 +1,57 @@
 function googleTranslateElementInit() {
   new google.translate.TranslateElement(
     {
-      pageLanguage: 'en',
-      includedLanguages: 'zh-CN,ms,ta',
+      pageLanguage: "en",
+      includedLanguages: "zh-CN,ms,ta",
       autoDisplay: false
     },
-    'google_translate_element'
+    "google_translate_element"
   );
 }
 
-// Set Google translate cookie
-function setLang(langCode) {
+function applyLang(langCode) {
   document.cookie = "googtrans=/en/" + langCode + ";path=/;";
+  localStorage.setItem("lang", langCode);
   location.reload();
 }
 
-// Reset to English
-function resetToEnglish() {
-  document.cookie = "googtrans=/en/en;path=/;";
-  location.reload();
+function updateLabel(langCode) {
+  const btn = document.getElementById("langBtn");
+  if (!btn) return;
+
+  if (langCode === "zh-CN") btn.textContent = "中文";
+  else if (langCode === "ms") btn.textContent = "BM";
+  else if (langCode === "ta") btn.textContent = "தமிழ்";
+  else btn.textContent = "EN";
 }
+
+window.setLanguage = function (langCode) {
+  applyLang(langCode || "en");
+};
 
 document.addEventListener("DOMContentLoaded", () => {
-  const langBtn = document.querySelector(".lang");
-  if (!langBtn) return;
+  const wrap = document.querySelector(".lang-wrap");
+  const btn = document.getElementById("langBtn");
+  const menu = document.getElementById("langMenu");
 
-  const languages = ["en", "zh-CN", "ms", "ta"];
-  let current = localStorage.getItem("lang") || "en";
+  if (!wrap || !btn || !menu) return;
 
-  updateLabel(current);
+  updateLabel(localStorage.getItem("lang") || "en");
 
-  langBtn.addEventListener("click", () => {
-    let index = languages.indexOf(current);
-    index = (index + 1) % languages.length;
-    current = languages[index];
-
-    localStorage.setItem("lang", current);
-    updateLabel(current);
-
-    if (current === "en") resetToEnglish();
-    else setLang(current);
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    wrap.classList.toggle("open");
   });
 
-  function updateLabel(lang) {
-    if (lang === "zh-CN") langBtn.textContent = "中文";
-    else if (lang === "ms") langBtn.textContent = "BM";
-    else if (lang === "ta") langBtn.textContent = "தமிழ்";
-    else langBtn.textContent = "EN";
-  }
+  document.addEventListener("click", () => wrap.classList.remove("open"));
+  menu.addEventListener("click", (e) => e.stopPropagation());
+
+  menu.querySelectorAll("button[data-lang]").forEach((b) => {
+    b.addEventListener("click", () => {
+      const lang = b.dataset.lang;
+      updateLabel(lang);
+      wrap.classList.remove("open");
+      window.setLanguage(lang);
+    });
+  });
 });

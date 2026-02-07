@@ -10,9 +10,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="view-all.css" />
+  <link rel="stylesheet" href="../main-menu/mainmenu.css">
 </head>
 
 <body>
+  <div id="google_translate_element" style="display:none;"></div>
 
 <header>
   <div class="logo">
@@ -29,8 +31,16 @@
   </nav>
 
   <!-- keep simple lang button for now -->
-  <button class="lang" type="button">Us Eng</button>
+  <div class="lang-wrap">
+    <button class="lang" type="button" id="langBtn">EN</button>
 
+    <div class="lang-menu" id="langMenu">
+      <button type="button" data-lang="en">English</button>
+      <button type="button" data-lang="zh-CN">中文</button>
+      <button type="button" data-lang="ms">BM</button>
+      <button type="button" data-lang="ta">தமிழ்</button>
+    </div>
+  </div>
   <div class="actions">
     <a href="../cart/cart.html" class="icon">
       <img src="https://cdn-icons-png.flaticon.com/128/1170/1170678.png" alt="Cart">
@@ -87,6 +97,7 @@
       </div>
       <div class="grid-content">
         <h4 class="item-title">Hainanese Chicken Rice</h4>
+        <p class="item-loc">Chinatown Complex</p>
         <p class="item-desc">Tender poached chicken with fragrant rice</p>
         <p class="item-price">$5.50</p>
       </div>
@@ -98,6 +109,7 @@
       </div>
       <div class="grid-content">
         <h4 class="item-title">Laksa</h4>
+        <p class="item-loc">Katong Laksa</p>
         <p class="item-desc">Spicy coconut noodle soup with prawns</p>
         <p class="item-price">$6.00</p>
       </div>
@@ -109,6 +121,7 @@
       </div>
       <div class="grid-content">
         <h4 class="item-title">Char Kway Teow</h4>
+        <p class="item-loc">Old Airport Road FC</p>
         <p class="item-desc">Wok-fried noodles with cockles &amp; egg</p>
         <p class="item-price">$4.50</p>
       </div>
@@ -120,6 +133,7 @@
       </div>
       <div class="grid-content">
         <h4 class="item-title">Nasi Lemak</h4>
+        <p class="item-loc">Changi Village</p>
         <p class="item-desc">Coconut rice with sambal &amp; fried chicken</p>
         <p class="item-price">$5.00</p>
       </div>
@@ -131,6 +145,7 @@
       </div>
       <div class="grid-content">
         <h4 class="item-title">Bak Kut Teh</h4>
+        <p class="item-loc">Balestier</p>
         <p class="item-desc">Peppery pork rib soup with garlic</p>
         <p class="item-price">$7.00</p>
       </div>
@@ -142,6 +157,7 @@
       </div>
       <div class="grid-content">
         <h4 class="item-title">Satay</h4>
+        <p class="item-loc">Lau Pa Sat</p>
         <p class="item-desc">Grilled skewers with peanut sauce</p>
         <p class="item-price">$6.50</p>
       </div>
@@ -182,7 +198,7 @@
 
     <article class="grid-card" data-category="Snacks" data-price="6.00" data-popular="87">
       <div class="grid-image">
-        <img src="https://tse3.mm.bing.net/th/id/OIP.ra3ox_oI6KZFNlAuEGgJ8wHaFj?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Oyster Omelette">
+        <img src="https://hungrygowhere.com/wp-content/uploads/2023/08/05-ev-best-oyster-omelette-singapore-hougang-fried-oyster-and-kway-teow-hungrygowhere.jpg" alt="Oyster Omelette">
       </div>
       <div class="grid-content">
         <h4 class="item-title">Oyster Omelette</h4>
@@ -193,7 +209,7 @@
 
     <article class="grid-card" data-category="Dessert" data-price="3.50" data-popular="86">
       <div class="grid-image">
-        <img src="https://tse3.mm.bing.net/th/id/OIP.ra3ox_oI6KZFNlAuEGgJ8wHaFj?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Ice Kacang">
+        <img src="https://media.istockphoto.com/id/1255725094/photo/ice-kacang-malaysia-popular-cold-dessert.jpg?s=612x612&w=0&k=20&c=7SjvQiKHEE8HLiRyu6n1GfxW-ctSc1irBn3lIqB04mI=" alt="Ice Kacang">
       </div>
       <div class="grid-content">
         <h4 class="item-title">Ice Kacang</h4>
@@ -205,5 +221,8 @@
 </main>
 
 <script src="view-all.js"></script>
+<script src="../translate.js"></script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 </html>

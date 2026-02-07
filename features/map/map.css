@@ -1,15 +1,4 @@
-:root{
-  --bg:#fdfaf6;
-  --card:#ffffff;
-  --text:#1f2937;
-  --muted:#6b7280;
-  --line:#f3e8d9;
 
-  --primary:#ff6b35;
-  --primary-soft:#ffe8df;
-  --accent:#ffb703;
-  --soft:#fff3ea;
-}
 
 .page{
   max-width: 1200px;

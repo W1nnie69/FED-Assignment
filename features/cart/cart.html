@@ -32,8 +32,15 @@
     </ul>
   </nav>
 
-  <button class="lang">Us Eng</button>
-
+  <div class="lang-wrap">
+    <button class="lang" type="button" id="langBtn">EN</button>
+    <div class="lang-menu" id="langMenu">
+      <button type="button" data-lang="en">English</button>
+      <button type="button" data-lang="zh-CN">中文</button>
+      <button type="button" data-lang="ms">BM</button>
+      <button type="button" data-lang="ta">தமிழ்</button>
+    </div>
+  </div>
   <div class="actions">
     <div class="icon">
       <img src="https://cdn-icons-png.flaticon.com/128/1170/1170678.png" alt="Cart">
@@ -90,5 +97,6 @@
 </main>
 
 <script src="cart.js"></script>
+<script src="../translate.js"></script>
 </body>
 </html>

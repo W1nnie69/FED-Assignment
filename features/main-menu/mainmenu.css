@@ -331,6 +331,13 @@ nav a.active{
   line-height: 1.35;
   min-height: 32px;
 }
+.item-loc{
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--primary);
+}
+
 
 .item-price{
   margin: 0;
