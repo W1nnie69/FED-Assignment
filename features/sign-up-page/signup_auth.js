@@ -19,53 +19,64 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const auth = getAuth(app);
 
-const signupForm = document.getElementById('signupForm');
-const signuperrorMsg = document.getElementById('signuperrorMsg');
 const params = new URLSearchParams(window.location.search);
 const role = params.get("role");
 
-signupForm.addEventListener("submit", function(event) {
-event.preventDefault(); //stop form from submiting as there is no REAL backend...
+document.addEventListener("DOMContentLoaded", () => {
+    const signupForm = document.getElementById('signupForm');
+    const signuperrorMsg = document.getElementById('signuperrorMsg');
 
-const email = document.getElementById("email").value.trim();
-const password = document.getElementById("password").value.trim();
+    console.log("Attaching signup listener");
+    sessionStorage.clear("role");
+    sessionStorage.clear("userid");
 
-createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-        // SIGNED UP THRU FIREBASE AUTH
-        const user = userCredential.user;
-        console.log("Logging on as:", user, user.uid)
-        signuperrorMsg.style.color = 'green';
-        signuperrorMsg.textContent = "User creation successful!";
+    signupForm.addEventListener("submit", function(event) {
+        console.log("submit event fired");
+        event.preventDefault(); //stop form from submiting as there is no REAL backend...
 
-        // Create a user "object" in the db
-        // User role is assigned based on the selection during the signup
-        set(ref(db, 'users/' + user.uid), {
-            email: email,
-            role: role,
-        })
-        .then(() => {
-            alert("Success! You will be redirected to the login page in 5 seconds.");
+        try {
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
 
-            setTimeout(() => {
-            window.location.href = "../login-page/login.html" //redirect to login page
-            }, 5000);
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // SIGNED UP THRU FIREBASE AUTH
+                    const user = userCredential.user;
+                    console.log("Logging on as:", user, user.uid)
+                    signuperrorMsg.style.color = 'green';
+                    signuperrorMsg.textContent = "User creation successful!";
 
-        })
-        .catch((error) => {
-            console.error("Error writing to DB:", error);
-            alert("There was an error signing up. Please try again.");
-        })
-        
-    })
-    .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(`errorCode: ${errorCode}, errorMessage: ${errorMessage}`)
-        signuperrorMsg.style.color = 'red';
-        signuperrorMsg.textContent = "Something went wrong with signup thing.";
+                    // Create a user "object" in the db
+                    // User role is assigned based on the selection during the signup
+                    set(ref(db, 'users/' + user.uid), {
+                        email: email,
+                        role: role,
+                    })
+                    .then(() => {
+                        alert("Success! You will be redirected to the login page.");
+                
+                        window.parent.location.hash = "#/login" //redirect to login page
+                        
+
+                    })
+                    .catch((error) => {
+                        console.error("Error writing to DB:", error);
+                        alert("There was an error signing up. Please try again.");
+                    })
+                    
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(`errorCode: ${errorCode}, errorMessage: ${errorMessage}`)
+                    signuperrorMsg.style.color = 'red';
+                    signuperrorMsg.textContent = "Something went wrong with signup thing.";
+                });
+
+        } catch(err) {
+            console.log(err);
+        }
     });
 });
-
 
 
