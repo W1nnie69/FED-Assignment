@@ -38,7 +38,7 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
         const role = localStorage.getItem("role");
         if (location.hash === "#/login") {
-            window.parent.location.hash = `#/${role}_dash`;
+            window.parent.location.hash = `#/${role}_main`;
         }
     }
 });

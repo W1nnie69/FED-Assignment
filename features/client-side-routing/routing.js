@@ -14,7 +14,7 @@ const routes = {
         page: "sign-up-page/signup",
         requiresAuth: false
     },
-    operator_dash: {
+    operator_main: {
         page: "operator-dashboard/operator_dashboard",
         requiresAuth: true,
         roleRequired: "operator"
@@ -24,10 +24,15 @@ const routes = {
         requiresAuth: true,
         roleRequired: "operator"
     },
-    vendor_dash: {
+    vendor_main: {
         page: "vendor-pages/vendor-dashboard",
         requiresAuth: true,
         roleRequired: "vendor"  
+    },
+    patron_main: {
+        page: "main-menu/mainmenu",
+        requiresAuth: true,
+        roleRequired: "patron"
     }
 }
 
