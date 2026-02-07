@@ -29,10 +29,10 @@ const routes = {
         requiresAuth: true,
         roleRequired: "vendor"  
     },
-    patron_main: {
+    customer_main: {
         page: "main-menu/mainmenu",
         requiresAuth: true,
-        roleRequired: "patron"
+        roleRequired: "customer"
     },
     nea_main: {
         page: "nea/neaofficer-dashboard",
@@ -80,8 +80,14 @@ export function router() {
 
     if (!route) {
         if (currentUser) {
-            const role = localStorage.getItem("role");
-            location.hash = `#/${role}_dash`;
+            const role = sessionStorage.getItem("role");
+
+            if (role != null) {
+                location.hash = `#/${role}_main`;
+            } else {
+                location.hash = "#/login";
+            }
+            
         } else {
             location.hash = "#/login";
         }
@@ -98,10 +104,10 @@ export function router() {
 
     // role guard yes
     if (route.roleRequired) {
-        const userRole = localStorage.getItem("role");
+        const userRole = sessionStorage.getItem("role");
         if (userRole !== route.roleRequired) {
             console.log("Access Denied lil bro")
-            iframe.src = "../Role-based-access-control/access_denied.html";
+            iframe.src = "./features/Role-based-access-control/access_denied.html";
             return;
         }
     }
