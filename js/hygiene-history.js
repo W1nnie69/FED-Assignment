@@ -13,8 +13,7 @@ if (stallInfo) {
 }
 
 if (!history.length) {
-  tableBody.innerHTML =
-    `<tr><td colspan="7">No inspection records saved yet.</td></tr>`;
+  tableBody.innerHTML = `<tr><td colspan="7">No inspection records saved yet.</td></tr>`;
 } else {
   // Filter by hawker + stall (case-insensitive). If no params, show all.
   const filtered =
@@ -32,8 +31,7 @@ if (!history.length) {
   const list = filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   if (!list.length) {
-    tableBody.innerHTML =
-      `<tr><td colspan="7">No records found for this stall.</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="7">No records found for this stall.</td></tr>`;
   } else {
     tableBody.innerHTML = list
       .map(
@@ -47,10 +45,15 @@ if (!history.length) {
           <td class="grade grade-${r.grade || ""}">${r.grade || "-"}</td>
           <td>${r.remarks || "-"}</td>
         </tr>
-      `
+      `,
       )
       .join("");
   }
 }
+const backBtn = document.getElementById("backBtn");
 
-
+if (backBtn) {
+  backBtn.addEventListener("click", () => {
+    window.location.href = "/FED-Assignment/nea-officer-inspection.html";
+  });
+}

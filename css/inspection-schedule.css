@@ -92,3 +92,4 @@
     grid-template-columns: 1fr;
   }
 }
+.toast { display:none; margin-top:12px; }

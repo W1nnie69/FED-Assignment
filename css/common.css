@@ -1,8 +1,14 @@
 /* /FED-Assignment/css/common.css */
 
-/* =============== */
-/* Global defaults */
-/* =============== */
+/* ============================= */
+/* RESET */
+/* ============================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
   --bg: #f4f6f8;
   --card: #ffffff;
@@ -22,25 +28,172 @@
   --radius-md: 8px;
 
   --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+  --nav-h: 68px;
 }
 
-* {
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
-
+/* ============================= */
+/* BODY */
+/* ============================= */
 body {
   margin: 0;
+  font-family: "Inter", Arial, sans-serif;
   background-color: var(--bg);
-
-  /* good default for all pages */
+  color: var(--text);
   min-height: 100vh;
+}
+
+/* ============================= */
+/* NAVBAR (Responsive) */
+/* ============================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-h);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 28px;
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--border-soft);
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+  white-space: nowrap;
+}
+
+/* desktop links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  list-style: none;
+}
+
+/* pill link */
+.nav-links li a {
+  display: block;
+  padding: 8px 16px;
+  border-radius: 999px;
+
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  text-decoration: none;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.nav-links li a:hover {
+  background-color: #eef2ff;
+  color: #1d4ed8;
+}
+
+/* active page (set by JS: add .active to LI) */
+.nav-links li.active a {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+/* right side */
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.officer-id {
+  font-size: 13px;
+  padding: 6px 14px;
+  background-color: #f3f4f6;
+  border-radius: 999px;
+  color: #374151;
+  white-space: nowrap;
+}
+
+/* hamburger (only visible on small screens) */
+.menu-toggle {
+  display: none;
+  border: none;
+  background: #f3f4f6;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 18px;
+  cursor: pointer;
+  color: #374151;
+}
+
+/* responsive dropdown */
+@media (max-width: 900px) {
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: var(--nav-h);
+    left: 0;
+    width: 100%;
+    padding: 14px;
+
+    flex-direction: column;
+    gap: 10px;
+
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--border-soft);
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links li a {
+    width: 100%;
+    text-align: center;
+    padding: 12px 16px;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 16px;
+  }
+  .officer-id {
+    display: none;
+  }
+}
+
+/* ============================= */
+/* PAGE WRAPPERS (use these!) */
+/* ============================= */
+
+/* Use this to center page content below navbar */
+.page-wrap {
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  padding: 24px 16px;
+  margin-top: calc(var(--nav-h) + 20px); /* space under navbar */
+}
 
-  padding: 40px 16px;
-  color: var(--text);
+/* if you want a width-limited page */
+.page {
+  width: 100%;
+  max-width: 1100px;
 }
 
 /* ======================== */
@@ -55,14 +208,15 @@ body {
   box-shadow: var(--shadow);
 }
 
-/* Your project uses .form-container a lot */
+/* common container used across your pages */
 .form-container {
   padding: 40px 50px;
-  width: 350px;
-  max-width: 100%;
+  width: 100%;
 }
 
+/* ============================= */
 /* Headings */
+/* ============================= */
 h1,
 h2 {
   text-align: center;
@@ -70,7 +224,6 @@ h2 {
   margin: 0 0 20px;
 }
 
-/* optional subtitle */
 .subtitle,
 .contact-note,
 .hint {
@@ -113,7 +266,6 @@ textarea::placeholder {
   color: #9ca3af;
 }
 
-/* focus */
 input:focus,
 select:focus,
 textarea:focus {
@@ -127,7 +279,7 @@ textarea {
   min-height: 120px;
 }
 
-/* select placeholder behaviour (works with hidden default option) */
+/* select placeholder behaviour */
 select {
   color: #999999;
 }
@@ -155,7 +307,9 @@ button,
   font-size: 16px;
   border-radius: var(--radius-md);
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.05s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.05s ease;
 }
 
 button:hover,
@@ -170,7 +324,6 @@ button:active,
   transform: translateY(1px);
 }
 
-/* Disabled button style */
 button:disabled {
   background: #d1d5db;
   color: #6b7280;
@@ -204,7 +357,6 @@ th {
   font-weight: bold;
 }
 
-/* Sticky header (nice for long tables) */
 thead th {
   position: sticky;
   top: 0;
@@ -215,7 +367,7 @@ tr:last-child td {
   border-bottom: none;
 }
 
-/* Grade colours (reusable) */
+/* Grade colours */
 .grade-A {
   color: #15803d;
   font-weight: bold;
@@ -230,9 +382,7 @@ tr:last-child td {
   font-weight: bold;
 }
 
-/* ========================= */
-/* Simple divider (optional) */
-/* ========================= */
+/* Divider */
 .divider {
   height: 1px;
   background: var(--border-soft);
@@ -243,13 +393,12 @@ tr:last-child td {
 /* Responsive (shared)   */
 /* ===================== */
 @media (max-width: 480px) {
-  body {
-    padding: 24px 12px;
+  .page-wrap {
+    padding: 16px 12px;
   }
 
   .form-container {
     padding: 24px 18px;
-    width: 100%;
   }
 
   h1,
@@ -257,7 +406,6 @@ tr:last-child td {
     font-size: 20px;
   }
 
-  /* make buttons full width on phones */
   button,
   .submitbtn input[type="submit"],
   .submitbtn button {

@@ -9,6 +9,42 @@
   </head>
 
   <body>
+    <nav class="navbar">
+      <div class="logo">NEA Officer</div>
+
+      <ul class="nav-links" id="navLinks">
+        <li class="active">
+          <a href="/FED-Assignment/neaofficer-dashboard.html">Dashboard</a>
+        </li>
+        <li>
+          <a href="/FED-Assignment/nea-officer-inspection.html"
+            >Inspection Form</a
+          >
+        </li>
+        <li>
+          <a href="/FED-Assignment/hygiene-history.html">Hygiene History</a>
+        </li>
+        <li>
+          <a href="/FED-Assignment/inspection-schedule.html"
+            >Inspection Scheduling</a
+          >
+        </li>
+        <li>
+          <a href="/FED-Assignment/complaint.html">Complaints</a>
+        </li>
+        <li>
+          <a href="/FED-Assignment/feedback-review.html">Feedback</a>
+        </li>
+      </ul>
+
+      <div class="right-section">
+        <div class="officer-id" id="officerPill">Officer ID: -</div>
+        <button class="menu-toggle" type="button" onclick="toggleMenu()">
+          ☰
+        </button>
+      </div>
+    </nav>
+
     <div class="form-container">
       <h2>Inspection Form</h2>
 
@@ -105,7 +141,7 @@
         </div>
       </form>
     </div>
-
+    <script src="/FED-Assignment/js/navbar.js"></script>
     <script src="/FED-Assignment/js/inspection.js"></script>
   </body>
 </html>

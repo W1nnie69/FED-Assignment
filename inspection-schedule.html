@@ -9,30 +9,61 @@
   </head>
 
   <body>
-    <div class="form-container schedule-container">
-      <div class="modal-header">
-        <h2>Schedule New Inspection</h2>
-        <button type="button" class="icon-btn" id="closeBtn" aria-label="Close">×</button>
+    <nav class="navbar">
+      <div class="logo">NEA Officer</div>
+
+      <ul class="nav-links" id="navLinks">
+        <li class="active">
+          <a href="/FED-Assignment/neaofficer-dashboard.html">Dashboard</a>
+        </li>
+        <li>
+          <a href="/FED-Assignment/nea-officer-inspection.html"
+            >Inspection Form</a
+          >
+        </li>
+        <li>
+          <a href="/FED-Assignment/hygiene-history.html">Hygiene History</a>
+        </li>
+        <li>
+          <a href="/FED-Assignment/inspection-schedule.html"
+            >Inspection Scheduling</a
+          >
+        </li>
+        <li>
+          <a href="/FED-Assignment/complaint.html">Complaints</a>
+        </li>
+        <li>
+          <a href="/FED-Assignment/feedback-review.html">Feedback</a>
+        </li>
+      </ul>
+
+      <div class="right-section">
+        <div class="officer-id" id="officerPill">Officer ID: -</div>
+        <button class="menu-toggle" type="button" onclick="toggleMenu()">
+          ☰
+        </button>
       </div>
+    </nav>
 
-      <form id="scheduleForm">
-        <div class="input-group">
-          <label for="hawkerCentre">Enter Hawker Center<span class="req">*</span></label>
-          <input
-            id="hawkerCentre"
-            name="hawkerCentre"
-            type="text"
-            placeholder="Enter Hawker Center"
-            required
-          />
-        </div>
+    <div class="page-wrap">
+      <div class="form-container" style="width: 95%; max-width: 900px">
+        <h2>Inspection Scheduling</h2>
 
-        <div class="grid-2">
+        <form id="scheduleForm">
           <div class="input-group">
-            <label for="stallName">Enter Stall Name<span class="req">*</span></label>
+            <label for="schedHawker">Enter Hawker Center</label>
             <input
-              id="stallName"
-              name="stallName"
+              id="schedHawker"
+              type="text"
+              placeholder="Enter Hawker Center"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="schedStall">Enter Stall Name</label>
+            <input
+              id="schedStall"
               type="text"
               placeholder="Enter Stall Name"
               required
@@ -40,71 +71,42 @@
           </div>
 
           <div class="input-group">
-            <label for="priority">Priority<span class="req">*</span></label>
-            <select id="priority" name="priority" required>
-              <option value="" disabled selected>Select Priority</option>
-              <option>Low</option>
-              <option>Medium</option>
-              <option>High</option>
-              <option>Urgent</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="input-group">
-          <label for="address">Address<span class="req">*</span></label>
-          <input
-            id="address"
-            name="address"
-            type="text"
-            placeholder="Enter Address"
-            required
-          />
-        </div>
-
-        <div class="grid-2">
-          <div class="input-group">
-            <label for="date">Date<span class="req">*</span></label>
-            <input id="date" name="date" type="date" required />
+            <label for="schedDate">Inspection Date</label>
+            <input id="schedDate" type="date" required />
           </div>
 
           <div class="input-group">
-            <label for="time">Time<span class="req">*</span></label>
-            <input id="time" name="time" type="time" required />
+            <label for="schedTime">Inspection Time</label>
+            <input id="schedTime" type="time" required />
           </div>
-        </div>
 
-        <div class="input-group">
-          <label for="officerId">Assigned Officer ID<span class="req">*</span></label>
-          <input
-            id="officerId"
-            name="officerId"
-            type="text"
-            placeholder="Enter Officer ID"
-            required
-          />
-        </div>
+          <div class="submitbtn">
+            <button type="submit">Submit</button>
+          </div>
 
-        <div class="input-group">
-          <label for="notes">Notes</label>
-          <textarea
-            id="notes"
-            name="notes"
-            placeholder="Enter Notes (optional)"
-          ></textarea>
-        </div>
+          <div class="toast" id="schedToast">✅ Scheduled successfully!</div>
+        </form>
 
         <div class="divider"></div>
 
-        <div class="actions">
-          <button type="button" class="btn-outline" id="cancelBtn">Cancel</button>
-          <button type="submit" class="btn-primary">Schedule</button>
+        <h3 class="section">Upcoming Schedules</h3>
+
+        <div style="overflow-x: auto">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Hawker Center</th>
+                <th>Stall Name</th>
+              </tr>
+            </thead>
+            <tbody id="scheduleTable"></tbody>
+          </table>
         </div>
-
-        <div class="toast" id="toast">✅ Inspection scheduled successfully!</div>
-      </form>
+      </div>
     </div>
-
-    <script src="/FED-Assignment/js/inspection-schedule.js"></script>
+    <script src="/FED-Assignment/js/navbar.js"></script>
+    <script src="/FED-Assignment/js/inspection-scheduling.js"></script>
   </body>
 </html>

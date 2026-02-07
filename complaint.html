@@ -9,13 +9,41 @@
   </head>
 
   <body>
+    <nav class="navbar">
+      <div class="logo">NEA Officer</div>
+
+      <ul class="nav-links">
+        <li class="active">
+          <a href="/FED-Assignment/neaofficer-dashboard.html">Dashboard</a>
+        </li>
+        <li>
+          <a href="/FED-Assignment/nea-officer-inspection.html"
+            >Inspection Form</a
+          >
+        </li>
+        <li>
+          <a href="/FED-Assignment/hygiene-history.html">Hygiene History</a>
+        </li>
+        <li>
+          <a href="/FED-Assignment/inspection-schedule.html"
+            >Inspection Scheduling</a
+          >
+        </li>
+        <li>
+          <a href="/FED-Assignment/complaint.html">Complaints</a>
+        </li>
+        <li>
+          <a href="/FED-Assignment/feedback-review.html">Feedback</a>
+        </li>
+      </ul>
+
+      <div class="officer-id">Officer ID: -</div>
+    </nav>
+
     <main class="page">
       <h1 class="title">File a Complaint</h1>
-      <p class="subtitle">
-        Report food safety concerns to help protect public health.
-      </p>
 
-      <section class="form-card">
+      <section class="form-inner">
         <form id="complaintForm">
           <h3 class="section">Complaint Details</h3>
 
@@ -24,7 +52,7 @@
             id="hawker"
             name="hawker"
             type="text"
-            placeholder="e.g., Jurong West Hawker Centre"
+            placeholder="Enter Hawker Centre"
             required
           />
 
@@ -33,7 +61,7 @@
             id="stall"
             name="stall"
             type="text"
-            placeholder="e.g., Ah Huat Chicken Rice"
+            placeholder="Enter Stall Name"
             required
           />
 
@@ -81,18 +109,9 @@
             required
           ></textarea>
 
-          <p class="hint">
-            Include specific details such as what you observed, when it
-            occurred, and any other relevant information.
-          </p>
-
           <div class="divider"></div>
 
           <h3 class="section">Your Contact Information</h3>
-          <p class="contact-note">
-            This information will be kept confidential and used only for
-            follow-up if needed.
-          </p>
 
           <label for="name">Your Name</label>
           <input
@@ -159,16 +178,11 @@
             <div class="toast" id="toast">
               ✅ Complaint submitted successfully!
             </div>
-
-            <div class="footer-note">
-              All complaints are taken seriously and will be investigated by the
-              food safety authorities.
-            </div>
           </div>
         </form>
       </section>
     </main>
-
+    <script src="/FED-Assignment/js/navbar.js"></script>
     <script src="/FED-Assignment/js/complaint.js"></script>
   </body>
 </html>
