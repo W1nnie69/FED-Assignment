@@ -33,6 +33,11 @@ const routes = {
         page: "main-menu/mainmenu",
         requiresAuth: true,
         roleRequired: "patron"
+    },
+    nea_main: {
+        page: "nea/neaofficer-dashboard",
+        requiresAuth: true,
+        roleRequired: "nea"
     }
 }
 
