@@ -19,6 +19,11 @@ const routes = {
         requiresAuth: true,
         roleRequired: "operator"
     },
+    operator_stalls: {
+        page: "operator-dashboard/stalls",
+        requiresAuth: true,
+        roleRequired: "operator"
+    },
     vendor_dash: {
         page: "vendor-pages/vendor-dashboard",
         requiresAuth: true,
