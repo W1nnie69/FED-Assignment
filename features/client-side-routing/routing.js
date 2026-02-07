@@ -1,7 +1,7 @@
 // i regret picking this feature!!!!!
 // now i have to modify everyone's html !!!! 
 // kill me
-import { currentUser, onAuthReady }  from "../Role-based-access-control/auth_guard.js";
+import { currentUser, onAuthReady }  from "../Role-based-access-control/auth.js";
 
 let authInitialized = false;
 
@@ -16,6 +16,11 @@ const routes = {
     },
     operator_dash: {
         page: "operator-dashboard/operator_dashboard",
+        requiresAuth: true,
+        roleRequired: "operator"
+    },
+    operator_stalls: {
+        page: "operator-dashboard/stalls",
         requiresAuth: true,
         roleRequired: "operator"
     },
@@ -76,6 +81,7 @@ export function router() {
     // auth
     if (route.requiresAuth && !currentUser) {
         console.log("User not logged in")
+        alert("User is not logged in")
         location.hash = "#/login";
         return;
     }
