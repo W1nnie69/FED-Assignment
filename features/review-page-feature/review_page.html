@@ -7,28 +7,44 @@
     <link rel="stylesheet" href="review.css">
 </head>
 <body>
-    <h1>Reviews & Ratings</h1>
+    <header>
+        <h1>Reviews & Ratings</h1>
+        <p>Please rate your experience</p>
+    </header>
 
-    <p>Please rate your experience</p>
-    <p class="stars">
-        <span>★</span>
-        <span>★</span>
-        <span>★</span>
-        <span>★</span>
-        <span>★</span>
-    </p>
-    
-    <label for="review">Your Review:</label>
+    <main>
+        <section>
+            <form>
+            <p class="stars">
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+            </p>
+            
+            <label for="review">Your Review:</label>
 
-    <br><br>
 
-    <textarea id="review" rows="5" cols="40"
-    placeholder="Write your review here..."></textarea>
+            <textarea id="review" rows="5" cols="40"
+            placeholder="Write your review here..."></textarea>
 
-    <br><br>
-    
-    <button>Submit Review</button>
-    <div id="thankyou" class="hidden"></div>
+            <br><br>
+            
+            <button>Submit Review</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Previous Reviews</h2>
+            <div id="reviews-container">
+                <p>No reviews yet.</p>
+            </div>
+        </section>
+
+        <aside id="thankyou" class="hidden"></aside>
+        
+    </main>
     
     <script src="review.js"></script>
   
