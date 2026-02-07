@@ -1,5 +1,5 @@
 const stars = document.querySelectorAll(".stars span");
-const submitbtn = document.querySelector("button");
+const submitbtn = document.getElementById("submitReview");
 const reviewtxt = document.getElementById("review");
 const thankyou = document.getElementById("thankyou");
 const reviews = document.getElementById("reviews-container")
