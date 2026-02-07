@@ -11,25 +11,28 @@ function getRandomMin(min, max)
 // Initialize wait time with a random value between 2 and 10
 let newWaitTime = getRandomMin(2, 10)
 waitTime.textContent = newWaitTime
+queueFill.style.width = ((10-newWaitTime)/10*100) + "%";
 
 // Decrease wait time over time
 const interval = setInterval(() =>
 {
     newWaitTime = Math.max(0, newWaitTime - 1);
     waitTime.textContent = newWaitTime;
+    queueFill.style.width = ((10-newWaitTime)/10*100) + "%";
 
     if (newWaitTime === 0) {
-        let message = "Order Ready!";
 
-        orderready.textContent = message;
+        orderready.textContent = "Order Ready!";
         orderready.classList.add("show");
 
         setTimeout(() => 
         {
             orderready.classList.remove("show");
         }, 3000);
+
+        clearInterval(interval);
     }
-}, 6000);
+}, 600);
 
 
 
