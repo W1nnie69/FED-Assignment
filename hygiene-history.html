@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hygiene History</title>
+    <link rel="stylesheet" href="/FED-Assignment/css/hygiene-history.css" />
+  </head>
+
+  <body>
+    <div class="form-container">
+      <h2>Hygiene Inspection History</h2>
+      <p
+        id="stallInfo"
+        style="text-align: center; color: #666; margin-top: -10px"
+      ></p>
+
+      <div style="overflow-x: auto">
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Hawker Centre</th>
+              <th>Stall Name</th>
+              <th>Officer ID</th>
+              <th>Score</th>
+              <th>Grade</th>
+              <th>Remarks</th>
+            </tr>
+          </thead>
+          <tbody id="historyTable"></tbody>
+        </table>
+      </div>
+
+      <div class="submitbtn" style="margin-top: 14px">
+        <button type="button" onclick="window.history.back()">Back</button>
+      </div>
+    </div>
+
+    <script src="/FED-Assignment/js/hygiene-history.js"></script>
+  </body>
+</html>

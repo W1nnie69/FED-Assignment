@@ -59,7 +59,7 @@ h2 {
 }
 
 .input-group select:focus {
-  border-color: #4caf50;
+  border-color: #1e90ff;
   outline: none;
   box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
 }
@@ -90,4 +90,31 @@ select:valid {
 
 .submitbtn input[type="submit"]:hover {
   background-color: #1e90ff;
+}
+/* Make the View Hygiene History button match Submit button */
+.submitbtn button {
+  background-color: grey;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* Hover same as submit */
+.submitbtn button:hover {
+  background-color: #1e90ff;
+}
+
+/* Optional: focus like your inputs (nice for accessibility) */
+.submitbtn button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+/* Optional: press effect */
+.submitbtn button:active {
+  transform: translateY(1px);
 }

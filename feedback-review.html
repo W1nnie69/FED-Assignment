@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Share Your Feedback</title>
+    <link rel="stylesheet" href="/FED-Assignment/css/feedback-review.css" />
+  </head>
+
+  <body>
+    <main class="page">
+      <h1 class="title">Share Your Feedback</h1>
+      <p class="subtitle">
+        Help us improve food safety standards by sharing your experience.
+      </p>
+
+      <section class="form-card">
+        <form id="feedbackForm">
+          <label for="estName">Hawker Center<span class="req">*</span></label>
+          <input
+            id="estName"
+            name="estName"
+            type="text"
+            placeholder="Enter hawker center"
+            required
+          />
+          <label for="estName">Stall Name<span class="req">*</span></label>
+          <input
+            id="eststallName"
+            name="eststallName"
+            type="text"
+            placeholder="Enter Stall Name"
+            required
+          />
+
+          <label>Your Rating<span class="req">*</span></label>
+          <div class="rating" role="radiogroup" aria-label="Star rating">
+            <!-- hidden input to store the value -->
+            <input
+              type="hidden"
+              id="ratingValue"
+              name="ratingValue"
+              value="0"
+              required
+            />
+
+            <button
+              type="button"
+              class="star"
+              data-value="1"
+              aria-label="1 star"
+            >
+              ☆
+            </button>
+            <button
+              type="button"
+              class="star"
+              data-value="2"
+              aria-label="2 stars"
+            >
+              ☆
+            </button>
+            <button
+              type="button"
+              class="star"
+              data-value="3"
+              aria-label="3 stars"
+            >
+              ☆
+            </button>
+            <button
+              type="button"
+              class="star"
+              data-value="4"
+              aria-label="4 stars"
+            >
+              ☆
+            </button>
+            <button
+              type="button"
+              class="star"
+              data-value="5"
+              aria-label="5 stars"
+            >
+              ☆
+            </button>
+
+            <span class="rating-text" id="ratingText">Select a rating</span>
+          </div>
+
+          <label for="category"
+            >Feedback Category<span class="req">*</span></label
+          >
+          <select id="category" name="category" required>
+            <option value="" disabled selected>Select category</option>
+            <option>Cleanliness</option>
+            <option>Food Quality</option>
+            <option>Service</option>
+            <option>Hygiene Practices</option>
+            <option>Pricing / Value</option>
+            <option>Other</option>
+          </select>
+
+          <label for="comments">Your Comments<span class="req">*</span></label>
+          <textarea
+            id="comments"
+            name="comments"
+            placeholder="Share your experience about the food safety and hygiene standards..."
+            required
+          ></textarea>
+
+          <div class="divider"></div>
+
+          <h3 class="section">Contact Information (Optional)</h3>
+
+          <div class="grid-2">
+            <div>
+              <label for="name">Your Name</label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Your name or 'Anonymous'"
+              />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="your.email@example.com"
+              />
+            </div>
+          </div>
+
+          <label for="phone">Phone Number</label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            placeholder="+65 1234 5678"
+          />
+
+          <div class="submit-wrap">
+            <button id="submitBtn" type="submit" class="btn-disabled">
+              <span class="plane">✈</span>
+              Submit Feedback
+            </button>
+
+            <div class="toast" id="toast">
+              ✅ Feedback submitted successfully!
+            </div>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <script src="/FED-Assignment/js/feedback-review.js"></script>
+  </body>
+</html>

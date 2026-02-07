@@ -6,10 +6,13 @@
     <title>Inspection Form</title>
     <link rel="stylesheet" href="/FED-Assignment/css/style_inspection.css" />
   </head>
+
   <body>
     <div class="form-container">
       <h2>Inspection Form</h2>
-      <form>
+
+      <!-- add id so JS can catch submit -->
+      <form id="inspectionForm">
         <div class="input-group">
           <label for="hcname">Enter Hawker Center</label>
           <input
@@ -21,12 +24,24 @@
           />
         </div>
 
+        <!-- NEW: Stall Name -->
         <div class="input-group">
-          <label for="hcstall">Enter Officer ID</label>
+          <label for="stallName">Enter Stall Name</label>
           <input
             type="text"
-            id="hcstall"
-            name="hcstall"
+            id="stallName"
+            name="stallName"
+            placeholder="Enter Stall Name"
+            required
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="officerId">Enter Officer ID</label>
+          <input
+            type="text"
+            id="officerId"
+            name="officerId"
             placeholder="Enter Officer ID"
             required
           />
@@ -43,12 +58,14 @@
         </div>
 
         <div class="input-group">
-          <label for="score">Enter Score( 0-100 )</label>
+          <label for="score">Enter Score (0-100)</label>
           <input
             type="number"
             id="score"
             name="score"
             placeholder="Enter Score"
+            min="0"
+            max="100"
             required
           />
         </div>
@@ -80,7 +97,14 @@
         <div class="submitbtn">
           <input type="submit" value="Submit" />
         </div>
+        <div class="submitbtn" style="margin-top: 10px">
+          <button type="button" id="viewHistoryBtn">
+            View Hygiene History
+          </button>
+        </div>
       </form>
     </div>
+
+    <script src="/FED-Assignment/js/inspection.js"></script>
   </body>
 </html>

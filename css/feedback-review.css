@@ -5,10 +5,13 @@
   --muted: #6b7280;
   --border: #e5e7eb;
   --focus: #4caf50;
-  --danger: #e11d2a;
-  --danger-dark: #b9141f;
   --shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
   --radius: 12px;
+
+  --btn-disabled: #d1d5db;
+  --btn-disabled-text: #6b7280;
+  --btn: #111827;
+  --btn-text: #ffffff;
 }
 
 * {
@@ -59,9 +62,9 @@ body {
   background: #fff;
 }
 
-h3.section {
-  margin: 0 0 12px;
-  font-size: 13px;
+.section {
+  margin: 0 0 10px;
+  font-size: 12px;
   color: var(--text);
   font-weight: 800;
 }
@@ -81,7 +84,7 @@ label {
 }
 
 .req {
-  color: var(--danger);
+  color: #ef4444;
   margin-left: 2px;
 }
 
@@ -112,7 +115,7 @@ textarea:focus {
 }
 
 textarea {
-  min-height: 130px;
+  min-height: 120px;
   resize: vertical;
 }
 
@@ -122,21 +125,40 @@ textarea {
   gap: 12px;
 }
 
-.hint {
-  margin-top: 8px;
-  color: var(--muted);
-  font-size: 11px;
-  line-height: 1.4;
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
 }
 
-.contact-note {
-  font-size: 11px;
+.star {
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  color: #cbd5e1; /* grey */
+  transition: transform 0.05s ease;
+}
+
+.star:active {
+  transform: translateY(1px);
+}
+
+.star.filled {
+  color: #94a3b8; /* a bit darker grey like the screenshot */
+}
+
+.rating-text {
+  margin-left: 8px;
+  font-size: 12px;
   color: var(--muted);
-  margin-top: 2px;
 }
 
 .submit-wrap {
-  margin-top: 18px;
+  margin-top: 14px;
 }
 
 button {
@@ -144,8 +166,6 @@ button {
   border: none;
   border-radius: 10px;
   padding: 12px 14px;
-  background: var(--danger);
-  color: #fff;
   font-weight: 800;
   font-size: 13px;
   cursor: pointer;
@@ -156,19 +176,24 @@ button {
   transition: background 0.15s ease, transform 0.05s ease;
 }
 
-button:hover {
-  background: var(--danger-dark);
-}
-
 button:active {
   transform: translateY(1px);
 }
 
-.footer-note {
-  text-align: center;
-  color: var(--muted);
-  font-size: 11px;
-  margin-top: 12px;
+.btn-disabled {
+  background: var(--btn-disabled);
+  color: var(--btn-disabled-text);
+  cursor: not-allowed;
+}
+
+.btn-enabled {
+  background: var(--btn);
+  color: var(--btn-text);
+  cursor: pointer;
+}
+
+.plane {
+  font-size: 14px;
 }
 
 .toast {
