@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hygiene History</title>
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/hygiene-history.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="logo">NEA Officer</div>
+
+      <ul class="nav-links" id="navLinks">
+        <li class="active">
+          <a href="/FED-Assignment/neaofficer-dashboard.html">Dashboard</a>
+        </li>
+        <li>
+          <a href="/FED-Assignment/nea-officer-inspection.html"
+            >Inspection Form</a
+          >
+        </li>
+        <li>
+          <a href="/FED-Assignment/hygiene-history.html">Hygiene History</a>
+        </li>
+        <li>
+          <a href="/FED-Assignment/inspection-schedule.html"
+            >Inspection Scheduling</a
+          >
+        </li>
+        <li>
+          <a href="/FED-Assignment/complaint.html">Complaints</a>
+        </li>
+        <li>
+          <a href="/FED-Assignment/feedback-review.html">Feedback</a>
+        </li>
+      </ul>
+
+      <div class="right-section">
+        <div class="officer-id" id="officerPill">Officer ID: -</div>
+        <button class="menu-toggle" type="button" onclick="toggleMenu()">
+          ☰
+        </button>
+      </div>
+    </nav>
+
+    <div class="form-container">
+      <h2>Hygiene Inspection History</h2>
+      <p
+        id="stallInfo"
+        style="text-align: center; color: #666; margin-top: -10px"
+      ></p>
+
+      <div style="overflow-x: auto">
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Hawker Center</th>
+              <th>Stall Name</th>
+              <th>Officer ID</th>
+              <th>Score</th>
+              <th>Grade</th>
+              <th>Remarks</th>
+            </tr>
+          </thead>
+          <tbody id="historyTable"></tbody>
+        </table>
+      </div>
+
+      <div class="submitbtn" style="margin-top: 14px">
+        <button type="button" id="backBtn">Back</button>
+      </div>
+    </div>
+    <script src="./js/navbar.js"></script>
+    <script src="./js/hygiene-history.js"></script>
+  </body>
+</html>

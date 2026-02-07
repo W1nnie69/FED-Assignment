@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File a Complaint</title>
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/complaint.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="logo">NEA Officer</div>
+
+      <ul class="nav-links">
+        <li class="active">
+          <a href="/FED-Assignment/neaofficer-dashboard.html">Dashboard</a>
+        </li>
+        <li>
+          <a href="/FED-Assignment/nea-officer-inspection.html"
+            >Inspection Form</a
+          >
+        </li>
+        <li>
+          <a href="/FED-Assignment/hygiene-history.html">Hygiene History</a>
+        </li>
+        <li>
+          <a href="/FED-Assignment/inspection-schedule.html"
+            >Inspection Scheduling</a
+          >
+        </li>
+        <li>
+          <a href="/FED-Assignment/complaint.html">Complaints</a>
+        </li>
+        <li>
+          <a href="/FED-Assignment/feedback-review.html">Feedback</a>
+        </li>
+      </ul>
+
+      <div class="officer-id">Officer ID: -</div>
+    </nav>
+
+    <main class="page">
+      <h1 class="title">File a Complaint</h1>
+
+      <section class="form-inner">
+        <form id="complaintForm">
+          <h3 class="section">Complaint Details</h3>
+
+          <label for="hawker">Hawker Centre<span class="req">*</span></label>
+          <input
+            id="hawker"
+            name="hawker"
+            type="text"
+            placeholder="Enter Hawker Centre"
+            required
+          />
+
+          <label for="stall">Stall Name<span class="req">*</span></label>
+          <input
+            id="stall"
+            name="stall"
+            type="text"
+            placeholder="Enter Stall Name"
+            required
+          />
+
+          <div class="divider"></div>
+
+          <h3 class="section">Incident Details</h3>
+
+          <label for="date">Date of Incident<span class="req">*</span></label>
+          <input id="date" name="date" type="date" required />
+
+          <div class="grid-2">
+            <div>
+              <label for="category">Category<span class="req">*</span></label>
+              <select id="category" name="category" required>
+                <option value="" disabled selected>Select category</option>
+                <option>Food Contamination</option>
+                <option>Poor Hygiene / Cleanliness</option>
+                <option>Pests (Rodents / Insects)</option>
+                <option>Improper Food Handling</option>
+                <option>Expired / Spoiled Food</option>
+                <option>Allergy / Labeling Issue</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="severity">Severity<span class="req">*</span></label>
+              <select id="severity" name="severity" required>
+                <option value="" disabled selected>Select severity</option>
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+                <option>Critical</option>
+              </select>
+            </div>
+          </div>
+
+          <label for="details"
+            >Detailed Description<span class="req">*</span></label
+          >
+          <textarea
+            id="details"
+            name="details"
+            placeholder="Please provide as much detail as possible about the food safety issue you observed..."
+            required
+          ></textarea>
+
+          <div class="divider"></div>
+
+          <h3 class="section">Your Contact Information</h3>
+
+          <label for="name">Your Name</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            placeholder="Your name or 'Anonymous'"
+          />
+
+          <div class="grid-2">
+            <div>
+              <label for="email">Email<span class="req">*</span></label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="your.email@example.com"
+                required
+              />
+            </div>
+
+            <div>
+              <label for="phone">Phone Number<span class="req">*</span></label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                placeholder="+65 1234 5678"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="submit-wrap">
+            <button type="submit" aria-label="Submit Complaint">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M12 16v-5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M12 8h.01"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                />
+              </svg>
+              Submit Complaint
+            </button>
+
+            <div class="toast" id="toast">
+              ✅ Complaint submitted successfully!
+            </div>
+          </div>
+        </form>
+      </section>
+    </main>
+    <script src="./js/navbar.js"></script>
+    <script src="./js/complaint.js"></script>
+  </body>
+</html>
