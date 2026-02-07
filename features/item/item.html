@@ -13,25 +13,26 @@
 
 <body>
 
-<header>
+<header> 
   <div class="logo">
     <img src="images/foodhub_logo.jpg" alt="Hawker Logo">
   </div>
 
   <nav aria-label="Main navigation">
     <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="#">Locations</a></li>
-      <li><a href="#">Order History</a></li>
+      <li><a href="../main-menu/mainmenu.html">Home</a></li>
+      <li><a href="../location/location.html">Locations</a></li>
+      <li><a href="../order-history/order-history.html">Order History</a></li>
     </ul>
   </nav>
 
   <button class="lang" type="button">Us Eng</button>
 
   <div class="actions">
-    <div class="icon">
+    <a href="../cart/cart.html" class="icon">
       <img src="https://cdn-icons-png.flaticon.com/128/1170/1170678.png" alt="Cart">
-    </div>
+    </a>
+
 
     <div class="icon">
       <img src="https://cdn-icons-png.flaticon.com/128/3602/3602145.png" alt="Notifications">
@@ -46,7 +47,7 @@
 </header>
 
 <main class="page">
-  <a class="back" href="viewall.html">← Back</a>
+  <a class="back" href="../main-menu/mainmenu.html">← Back</a>
 
   <h2 class="item-page-title">Hainanese Chicken Rice</h2>
 
@@ -119,24 +120,25 @@
 
     <div class="nutrition-row">
       <div class="nutri-box">
-        <p class="nutri-num">520</p>
+        <p class="nutri-num calories">520</p>
         <p class="nutri-label">Calories</p>
       </div>
       <div class="nutri-box">
-        <p class="nutri-num">28g</p>
+        <p class="nutri-num protein">28g</p>
         <p class="nutri-label">Protein</p>
       </div>
       <div class="nutri-box">
-        <p class="nutri-num">42g</p>
+        <p class="nutri-num carbs">42g</p>
         <p class="nutri-label">Carbs</p>
       </div>
       <div class="nutri-box">
-        <p class="nutri-num">24g</p>
+        <p class="nutri-num fat">24g</p>
         <p class="nutri-label">Fat</p>
       </div>
     </div>
   </section>
 </main>
+<script src="item.js"></script>
 
 </body>
 </html>

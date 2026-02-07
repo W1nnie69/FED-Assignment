@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Dishes</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="view-all.css" />
-  <title>All Dishes</title>
 </head>
 
 <body>
 
 <header>
   <div class="logo">
-    <img src="images/foodhub_logo.jpg" alt="Hawker Logo">
+    <!-- FIXED PATH: usually view-all folder -> ../images -->
+    <img src="../images/foodhub_logo.jpg" alt="Hawker Logo">
   </div>
 
   <nav aria-label="Main navigation">
     <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="#">Locations</a></li>
-      <li><a href="#">Order History</a></li>
+      <li><a href="../main-menu/mainmenu.html">Home</a></li>
+      <li><a href="../location/location.html">Locations</a></li>
+      <li><a href="../order-history/order-history.html">Order History</a></li>
     </ul>
   </nav>
 
+  <!-- keep simple lang button for now -->
   <button class="lang" type="button">Us Eng</button>
 
   <div class="actions">
-    <div class="icon">
+    <a href="../cart/cart.html" class="icon">
       <img src="https://cdn-icons-png.flaticon.com/128/1170/1170678.png" alt="Cart">
-    </div>
+    </a>
 
     <div class="icon">
       <img src="https://cdn-icons-png.flaticon.com/128/3602/3602145.png" alt="Notifications">
@@ -45,7 +48,6 @@
   </div>
 </header>
 
-
 <main class="page">
   <!-- Top Bar -->
   <section class="page-head">
@@ -55,8 +57,8 @@
     </div>
 
     <div class="page-controls">
-      <input class="search" type="search" placeholder="Search dishes..." />
-      <select class="sort">
+      <input id="searchInput" class="search" type="search" placeholder="Search dishes..." />
+      <select id="sortSelect" class="sort">
         <option value="popular">Sort: Popular</option>
         <option value="low">Price: Low to High</option>
         <option value="high">Price: High to Low</option>
@@ -65,20 +67,21 @@
   </section>
 
   <!-- Category chips -->
-  <section class="chips">
-    <button class="chip active" type="button">All</button>
-    <button class="chip" type="button">Rice</button>
-    <button class="chip" type="button">Noodles</button>
-    <button class="chip" type="button">Soup</button>
-    <button class="chip" type="button">Snacks</button>
-    <button class="chip" type="button">Drinks</button>
-    <button class="chip" type="button">Dessert</button>
+  <section class="chips" id="chips">
+    <button class="chip active" type="button" data-category="All">All</button>
+    <button class="chip" type="button" data-category="Rice">Rice</button>
+    <button class="chip" type="button" data-category="Noodles">Noodles</button>
+    <button class="chip" type="button" data-category="Soup">Soup</button>
+    <button class="chip" type="button" data-category="Snacks">Snacks</button>
+    <button class="chip" type="button" data-category="Drinks">Drinks</button>
+    <button class="chip" type="button" data-category="Dessert">Dessert</button>
   </section>
 
   <!-- Grid -->
-  <section class="grid">
-    <!-- Card -->
-    <article class="grid-card">
+  <section class="grid" id="dishGrid">
+    <!-- ✅ Each card now has: data-category, data-price, data-popular -->
+
+    <article class="grid-card" data-category="Rice" data-price="5.50" data-popular="98">
       <div class="grid-image">
         <img src="https://th.bing.com/th/id/OIP.nedEqmFVvzaihJYIyAjVSQHaE6?w=271&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Hainanese Chicken Rice">
       </div>
@@ -89,7 +92,7 @@
       </div>
     </article>
 
-    <article class="grid-card">
+    <article class="grid-card" data-category="Noodles" data-price="6.00" data-popular="96">
       <div class="grid-image">
         <img src="https://tse3.mm.bing.net/th/id/OIP.rReww2qRLgb-c7QJptviygHaFS?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Laksa">
       </div>
@@ -100,7 +103,7 @@
       </div>
     </article>
 
-    <article class="grid-card">
+    <article class="grid-card" data-category="Noodles" data-price="4.50" data-popular="92">
       <div class="grid-image">
         <img src="https://th.bing.com/th/id/OIP.4lLBqUSgcVRLElyz3USElgHaE9?w=295&h=197&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Char Kway Teow">
       </div>
@@ -111,7 +114,7 @@
       </div>
     </article>
 
-    <article class="grid-card">
+    <article class="grid-card" data-category="Rice" data-price="5.00" data-popular="94">
       <div class="grid-image">
         <img src="https://tse4.mm.bing.net/th/id/OIP.hJ5Tf61PsjtHaYTB2mEDUQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Nasi Lemak">
       </div>
@@ -122,7 +125,7 @@
       </div>
     </article>
 
-    <article class="grid-card">
+    <article class="grid-card" data-category="Soup" data-price="7.00" data-popular="90">
       <div class="grid-image">
         <img src="https://sethlui.com/wp-content/uploads/2021/10/Best-BKT-Tuan-Yuan-BKT-Featured.jpg" alt="Bak Kut Teh">
       </div>
@@ -133,7 +136,7 @@
       </div>
     </article>
 
-    <article class="grid-card">
+    <article class="grid-card" data-category="Snacks" data-price="6.50" data-popular="93">
       <div class="grid-image">
         <img src="https://hungrygowhere.com/wp-content/uploads/2025/03/09-sy-Satay-Singapore-Satay-Street-HungryGoWhere.png" alt="Satay">
       </div>
@@ -144,7 +147,7 @@
       </div>
     </article>
 
-    <article class="grid-card">
+    <article class="grid-card" data-category="Snacks" data-price="2.00" data-popular="91">
       <div class="grid-image">
         <img src="https://th.bing.com/th/id/OIP.3YrOYyKsNcVLB5JVlcCobQHaE6?w=264&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Roti Prata">
       </div>
@@ -155,7 +158,7 @@
       </div>
     </article>
 
-    <article class="grid-card">
+    <article class="grid-card" data-category="Snacks" data-price="4.00" data-popular="89">
       <div class="grid-image">
         <img src="https://tse3.mm.bing.net/th/id/OIP.ra3ox_oI6KZFNlAuEGgJ8wHaFj?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Carrot Cake">
       </div>
@@ -166,7 +169,7 @@
       </div>
     </article>
 
-    <article class="grid-card">
+    <article class="grid-card" data-category="Noodles" data-price="5.50" data-popular="88">
       <div class="grid-image">
         <img src="https://tse4.mm.bing.net/th/id/OIP.QqZRNQxRPiaD_E6CUK5PUAHaDO?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Mee Goreng">
       </div>
@@ -177,7 +180,7 @@
       </div>
     </article>
 
-    <article class="grid-card">
+    <article class="grid-card" data-category="Snacks" data-price="6.00" data-popular="87">
       <div class="grid-image">
         <img src="https://tse3.mm.bing.net/th/id/OIP.ra3ox_oI6KZFNlAuEGgJ8wHaFj?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Oyster Omelette">
       </div>
@@ -188,7 +191,7 @@
       </div>
     </article>
 
-    <article class="grid-card">
+    <article class="grid-card" data-category="Dessert" data-price="3.50" data-popular="86">
       <div class="grid-image">
         <img src="https://tse3.mm.bing.net/th/id/OIP.ra3ox_oI6KZFNlAuEGgJ8wHaFj?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Ice Kacang">
       </div>
@@ -201,5 +204,6 @@
   </section>
 </main>
 
+<script src="view-all.js"></script>
 </body>
 </html>

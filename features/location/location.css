@@ -1,55 +1,136 @@
-.page {
+/* ===== Locations page styling (matches main menu vibe) ===== */
+
+:root{
+  --bg: #fdfaf6;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --line: #f3e8d9;
+
+  --primary: #ff6b35;
+  --primary-soft: #ffe8df;
+  --accent: #ffb703;
+  --soft: #fff3ea;
+}
+
+
+body{
+  background:
+    radial-gradient(1000px 420px at 10% -10%, rgba(255,107,53,0.15), transparent 60%),
+    radial-gradient(900px 420px at 90% 0%, rgba(255,183,3,0.18), transparent 60%),
+    var(--bg);
+}
+
+/* Page wrapper already exists in mainmenu.css but we can adjust spacing */
+.page{
   padding: 22px;
-  margin-top: 90px;
 }
 
-.page-title {
-  margin: 0 0 20px;
-  font-size: 18px;
-  font-weight: 700;
-}
+/* Title */
+.page-title{
+  margin: 18px 0 14px;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0.2px;
+  color: #111827;
 
-
-.loc-row {
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
 }
 
-.loc-card {
-  width: 18%;                  
-  background: #e6e6e6;
-  border-radius: 20px;
+.page-title::before{
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 10px 18px rgba(255,183,3,0.20);
+}
+
+/* Grid */
+.loc-row{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  padding-bottom: 22px;
+}
+
+/* Card */
+.loc-card{
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
   overflow: hidden;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+}
+
+.loc-card:hover{
+  transform: scale(1.02);
+  border-color: rgba(255,107,53,0.25);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
 }
 
 
-.loc-img {
-  height: 140px;               
-  background: #ccc;
+.loc-img{
+  height: 120px;
+  background:
+  linear-gradient(135deg, var(--primary-soft), rgba(255,183,3,0.12));
+  background-size: cover;
+  background-position: center;
+  border-bottom: 1px solid var(--line);
 }
 
-/* MATCH TEXT PADDING */
-.loc-content {
+/* Content */
+.loc-content{
   padding: 14px;
 }
 
-.loc-name {
+.loc-name{
   margin: 0 0 6px;
   font-size: 14px;
-  font-weight: 700;
-  color: #222;
+  font-weight: 900;
+  color: #111827;
 }
 
-.loc-desc {
-  margin: 0 0 4px;
+.loc-desc{
+  margin: 0 0 10px;
   font-size: 12px;
-  color: #666;
+  color: var(--muted);
+  line-height: 1.3;
 }
 
-.loc-time {
+.loc-time{
   margin: 0;
   font-size: 12px;
-  color: #444;
+  font-weight: 800;
+  color: #111827;
+  background: linear-gradient(90deg, var(--primary-soft), white);
+  border: 1px solid rgba(255,107,53,0.18);
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+
+/* Optional: small “tap” hint on mobile */
+@media (max-width: 520px){
+  .loc-time{
+    width: fit-content;
+  }
+}
+
+/* Responsive */
+@media (max-width: 1100px){
+  .loc-row{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 900px){
+  .loc-row{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .page{ padding: 16px; }
+}
+
+@media (max-width: 520px){
+  .loc-row{ grid-template-columns: 1fr; }
 }
