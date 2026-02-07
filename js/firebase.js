@@ -1,85 +1,139 @@
-/* ================================
-   1. Import Firebase modules
-================================ */
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
+
 import {
-    getDatabase,
-    ref,
-    push,
-    set,
-    get,
-    update,
-    remove,
-    child,
-    onValue
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+  getDatabase,
+  ref,
+  push,
+  set,
+  update,
+  remove,
+  onValue
+} from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
+
+import { getAuth } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 
 import { firebaseConfig } from "./config.js";
 
-/* ================================
-   Initialize Firebase
-================================ */
 const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
+
+export const db = getDatabase(app);
+export const auth = getAuth(app);
 
 /* ================================
-   Helper: Log output
+   VENDOR MENU FUNCTIONS
+   Path: vendors/{vendorId}/menuItems
 ================================ */
-// const log = document.getElementById("log");
 
-// function writeLog(message) {
-//     log.textContent += message + "\n";
-//     log.scrollTop = log.scrollHeight;
-// }
-console.log("Checking db:")
-console.log(db)
+/**
+ * Listen to menu items (LIVE updates)
+ */
+export function listenMenuItems(vendorId, callback) {
+  const menuRef = ref(db, "vendors/" + vendorId + "/menuItems");
 
-//test
-function writeTestData(userID, name, password) {
-    set(ref(db, 'users/' + userID), {
-        username: name,
-        password: password
-    });
+  onValue(menuRef, function (snapshot) {
+    const data = snapshot.val() || {};
+    const items = [];
+
+    for (const key in data) {
+      items.push({
+        id: key,
+        name: data[key].name || "",
+        description: data[key].description || "",
+        price: data[key].price || 0,
+        category: data[key].category || "",
+        cuisine: data[key].cuisine || "", 
+        available: data[key].available ?? true
+      });
+    }
+
+    callback(items);
+  });
 }
 
-//testing
-function getUserData(userType, un) {
-   userType = userType.toLowerCase();
-   let dbpath = "";
+/**
+ * Add new menu item
+ */
+export function addMenuItem(vendorId, itemData) {
+  const menuRef = ref(db, "vendors/" + vendorId + "/menuItems");
+  const newItemRef = push(menuRef);
 
-   if (userType == "patrons") {
-      dbpath = 'users/patrons';
-   }
-   else if (userType == "vendors") {
-      dbpath = 'users/vendors';
-   }
-   else if (userType == "operator") {
-      dbpath = 'users/operator';
-   }  
-   else {
-      console.log("Invalid userType!");
-      return;
-   }
-
-   const userData = ref(db, dbpath);
-   onValue(userData, (snapshot) => {
-      const users = snapshot.val();
-      console.log(users);
-
-      for (const userId in users) {
-         if (users[userId].username === un)  {
-            console.log("user exists");
-            return;
-         }
-         else {
-            console.log("User does not exist")
-            return;
-         }
-      }
-   });
-
-   
+  return set(newItemRef, itemData);
 }
 
-getUserData("patrons", "dani")
+/**
+ * Update existing menu item
+ */
+export function updateMenuItem(vendorId, itemId, itemData) {
+  const itemRef = ref(db, "vendors/" + vendorId + "/menuItems/" + itemId);
+  return update(itemRef, itemData);
+}
+
+/**
+ * Delete menu item
+ */
+export function deleteMenuItem(vendorId, itemId) {
+  const itemRef = ref(db, "vendors/" + vendorId + "/menuItems/" + itemId);
+  return remove(itemRef);
+}
+
+
+
+
+/* ================================
+   VENDOR ORDERS FUNCTIONS
+   Path: vendors/{vendorId}/orders
+================================ */
+
+/**
+ * Listen to orders (LIVE)
+ */
+export function listenOrders(vendorId, callback) {
+  const ordersRef = ref(db, "vendors/" + vendorId + "/orders");
+
+  onValue(ordersRef, function (snapshot) {
+    const data = snapshot.val() || {};
+    const orders = [];
+
+    for (const key in data) {
+      orders.push({
+        id: key,
+        ...data[key]
+      });
+    }
+
+    callback(orders);
+  });
+}
+
+/**
+ * Update order status
+ */
+export function updateOrderStatus(vendorId, orderId, status) {
+  const orderRef = ref(db, "vendors/" + vendorId + "/orders/" + orderId);
+  return update(orderRef, { status: status });
+}
+
+
+
+
+/* ================================
+   VENDOR PROFILE FUNCTIONS
+   Path: vendors/{vendorId}/profile
+================================ */
+
+export function getVendorProfile(vendorId, callback) {
+  const profileRef = ref(db, "vendors/" + vendorId + "/profile");
+
+  onValue(profileRef, function (snapshot) {
+    callback(snapshot.val());
+  });
+}
+
+export function updateVendorProfile(vendorId, profileData) {
+  const profileRef = ref(db, "vendors/" + vendorId + "/profile");
+  return update(profileRef, profileData);
+}
+
+
+
 

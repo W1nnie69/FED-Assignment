@@ -56,73 +56,6 @@
             gap: 2rem;
         }
 
-        .activity-card, .alerts-card {
-            background: var(--bg-secondary);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border);
-        }
-
-        .activity-item {
-            display: flex;
-            gap: 1rem;
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .activity-item:last-child {
-            border-bottom: none;
-        }
-
-        .activity-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .activity-content {
-            flex: 1;
-        }
-
-        .activity-title {
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.25rem;
-        }
-
-        .activity-time {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .alert-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            padding: 1rem;
-            background: var(--bg-primary);
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            border-left: 4px solid var(--warning);
-        }
-
-        .alert-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .alert-item.critical {
-            border-left-color: var(--danger);
-        }
-
-        .alert-item.info {
-            border-left-color: var(--secondary);
-        }
-
         @media (max-width: 1024px) {
             .content-grid {
                 grid-template-columns: 1fr;
@@ -209,16 +142,10 @@
             <header class="header">
                 <h1 class="page-title">Dashboard</h1>
                 <div class="user-menu">
-                    <div class="notification-bell">
-                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-                        </svg>
-                        <span class="notification-badge">3</span>
-                    </div>
                     <div class="user-profile">
-                        <div class="user-avatar">JD</div>
+                        <div class="user-avatar" id="dashAvatar">JD</div>
                         <div class="user-info">
-                            <div class="user-name">Joe's Diner</div>
+                            <div class="user-name" id="dashBusinessName">Joe's Diner</div>
                             <div class="user-role">Vendor</div>
                         </div>
                     </div>
@@ -233,7 +160,7 @@
                         <div class="stat-trend up">↑ 12.5%</div>
                     </div>
                     <div class="stat-label">Today's Revenue</div>
-                    <div class="stat-value">$1,248</div>
+                    <div class="stat-value" id="dashTodayRevenue">$0</div>
                 </div>
 
                 <div class="stat-card">
@@ -242,7 +169,7 @@
                         <div class="stat-trend up">↑ 8.2%</div>
                     </div>
                     <div class="stat-label">Total Orders</div>
-                    <div class="stat-value">47</div>
+                    <div class="stat-value" id="dashTotalOrders">0</div>
                 </div>
 
                 <div class="stat-card">
@@ -251,7 +178,7 @@
                         <div class="stat-trend up">↑ 0.2</div>
                     </div>
                     <div class="stat-label">Average Rating</div>
-                    <div class="stat-value">4.7</div>
+                    <div class="stat-value" id="dashAvgRating">0</div>
                 </div>
 
                 <div class="stat-card">
@@ -260,7 +187,7 @@
                         <div class="stat-trend down">↓ 2</div>
                     </div>
                     <div class="stat-label">Active Menu Items</div>
-                    <div class="stat-value">28</div>
+                    <div class="stat-value" id="dashActiveMenuItems">0</div>
                 </div>
             </div>
 
@@ -295,67 +222,10 @@
                     </a>
                 </div>
             </section>
-
-            <!-- Recent Activity & Alerts -->
-            <div class="content-grid">
-                <div class="activity-card">
-                    <h2 class="section-title">Recent Activity</h2>
-                    <div class="activity-item">
-                        <div class="activity-icon success" style="background: rgba(6, 214, 160, 0.1); color: var(--success);">✓</div>
-                        <div class="activity-content">
-                            <div class="activity-title">Order #2847 completed</div>
-                            <div class="activity-time">5 minutes ago</div>
-                        </div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon primary" style="background: rgba(255, 107, 53, 0.1); color: var(--primary);">🔔</div>
-                        <div class="activity-content">
-                            <div class="activity-title">New order received - Order #2848</div>
-                            <div class="activity-time">12 minutes ago</div>
-                        </div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon warning" style="background: rgba(244, 162, 97, 0.1); color: var(--warning);">📝</div>
-                        <div class="activity-content">
-                            <div class="activity-title">Menu item "Spicy Burger" marked as sold out</div>
-                            <div class="activity-time">1 hour ago</div>
-                        </div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon secondary" style="background: rgba(0, 78, 137, 0.1); color: var(--secondary);">⭐</div>
-                        <div class="activity-content">
-                            <div class="activity-title">New review received - 5 stars</div>
-                            <div class="activity-time">2 hours ago</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="alerts-card">
-                    <h2 class="section-title">Alerts</h2>
-                    <div class="alert-item critical">
-                        <div>⚠️</div>
-                        <div>
-                            <div class="activity-title">Rental payment due in 3 days</div>
-                            <div class="activity-time">High Priority</div>
-                        </div>
-                    </div>
-                    <div class="alert-item">
-                        <div>📋</div>
-                        <div>
-                            <div class="activity-title">Inspection scheduled for Feb 5</div>
-                            <div class="activity-time">Upcoming</div>
-                        </div>
-                    </div>
-                    <div class="alert-item info">
-                        <div>💡</div>
-                        <div>
-                            <div class="activity-title">3 items low on availability</div>
-                            <div class="activity-time">Reminder</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </main>
     </div>
 </body>
+
+<script type="module" src="./js/vendor-dashboard.js"></script>
+
 </html>

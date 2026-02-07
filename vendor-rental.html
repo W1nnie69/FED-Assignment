@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rental & Compliance - Food Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/vendor-styles.css">
+    <style>
+        /* Rental page specific styles */
+        .alert-banner {
+            background: linear-gradient(135deg, var(--danger), #d63850);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .alert-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .alert-content {
+            flex: 1;
+        }
+
+        .alert-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .alert-message {
+            opacity: 0.95;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .rental-details {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .detail-row {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .detail-value {
+            color: var(--text-primary);
+        }
+
+        .payment-schedule {
+            background: var(--bg-primary);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+        }
+
+        .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            border-left: 4px solid var(--border);
+        }
+
+        .schedule-item.upcoming {
+            border-left-color: var(--warning);
+        }
+
+        .schedule-item.overdue {
+            border-left-color: var(--danger);
+        }
+
+        .schedule-item.paid {
+            border-left-color: var(--success);
+            opacity: 0.6;
+        }
+
+        .schedule-info {
+            flex: 1;
+        }
+
+        .schedule-period {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .schedule-due {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .schedule-amount {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .schedule-status {
+            padding: 0.375rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-upcoming {
+            background: rgba(244, 162, 97, 0.15);
+            color: var(--warning);
+        }
+
+        .status-paid {
+            background: rgba(6, 214, 160, 0.15);
+            color: var(--success);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -1.7rem;
+            width: 18px;
+            height: 18px;
+            background: var(--bg-secondary);
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+        }
+
+        .timeline-content {
+            background: var(--bg-primary);
+            padding: 1.25rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .compliance-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .inspection-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .inspection-card {
+            background: var(--bg-primary);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            transition: all 0.2s;
+        }
+
+        .inspection-card:hover {
+            border-color: var(--primary);
+        }
+
+        .inspection-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .inspection-date {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .grade-badge {
+            width: 60px;
+            height: 60px;
+            background: var(--success);
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .grade-badge.B {
+            background: var(--warning);
+        }
+
+        .grade-badge.C {
+            background: var(--danger);
+        }
+
+        .inspection-details {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .inspection-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .check-icon {
+            color: var(--success);
+        }
+
+        .warning-icon {
+            color: var(--warning);
+        }
+
+        .documents-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .document-card {
+            background: var(--bg-primary);
+            padding: 1.25rem;
+            border-radius: 10px;
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .document-card:hover {
+            border-color: var(--primary);
+            transform: translateX(4px);
+        }
+
+        .document-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .document-info {
+            flex: 1;
+        }
+
+        .document-name {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .document-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .upload-area {
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            background: var(--bg-primary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary);
+            background: var(--bg-secondary);
+        }
+
+        .upload-area input {
+            display: none;
+        }
+
+        @media (max-width: 1024px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="layout-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-logo">
+                Food<span>Hub</span>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-section-title">Main</div>
+                <a href="vendor-dashboard.html" class="nav-link">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="vendor-orders.html" class="nav-link">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                    </svg>
+                    Orders
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Business</div>
+                <a href="vendor-menu.html" class="nav-link">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                    </svg>
+                    Menu Management
+                </a>
+                <a href="vendor-profile.html" class="nav-link">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                    </svg>
+                    Business Profile
+                </a>
+                <a href="vendor-analytics.html" class="nav-link">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                    Analytics
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Compliance</div>
+                <a href="vendor-rental.html" class="nav-link active">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                    Rental & Compliance
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Account</div>
+                <a href="vendor-settings.html" class="nav-link">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    Settings
+                </a>
+                <a href="vendor-login.html" class="nav-link">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                    </svg>
+                    Logout
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <h1 class="page-title">Rental & Compliance</h1>
+            </header>
+
+            <!-- Alert Banner -->
+            <div class="alert-banner">
+                <div class="alert-icon">⚠️</div>
+                <div class="alert-content">
+                    <div class="alert-title">Payment Due Soon</div>
+                    <div class="alert-message">Your rental payment of $1,500 is due in 3 days (January 2026)</div>
+                </div>
+                <button class="btn btn-primary" style="background: white; color: var(--danger); padding: 0.75rem 1.5rem;" onclick="alert('Redirecting to payment portal...')">Make Payment</button>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="content-grid">
+                <!-- Rental Information -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <h2 class="section-title">Current Rental Agreement</h2>
+                        <button class="btn-action" onclick="alert('Viewing full contract...')">View Contract</button>
+                    </div>
+
+                    <div class="rental-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Contract Status</span>
+                            <span class="detail-value">
+                                <span class="status-badge status-active">
+                                    <span class="status-dot"></span>
+                                    Active
+                                </span>
+                            </span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Location</span>
+                            <span class="detail-value">Downtown Food Hub - Stall #12</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Contract Period</span>
+                            <span class="detail-value">January 1, 2025 - December 31, 2026</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Monthly Rent</span>
+                            <span class="detail-value" style="font-weight: 700; color: var(--primary);">$1,500.00</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Security Deposit</span>
+                            <span class="detail-value">$3,000.00 (Paid)</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Renewal Date</span>
+                            <span class="detail-value">December 1, 2026</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Landlord Contact</span>
+                            <span class="detail-value">Downtown Food Hub Management<br>
+                                <a href="mailto:management@foodhub.com" style="color: var(--primary);">management@foodhub.com</a><br>
+                                +1 (555) 999-0000
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Payment Schedule -->
+                    <h3 class="section-title" style="margin-top: 2rem; margin-bottom: 1rem;">Payment Schedule</h3>
+                    <div class="payment-schedule">
+                        <div class="schedule-item upcoming">
+                            <div class="schedule-info">
+                                <div class="schedule-period">January 2026</div>
+                                <div class="schedule-due">Due in 3 days</div>
+                            </div>
+                            <div class="schedule-amount">$1,500</div>
+                            <div class="schedule-status status-upcoming">Upcoming</div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-info">
+                                <div class="schedule-period">February 2026</div>
+                                <div class="schedule-due">Due: Feb 1, 2026</div>
+                            </div>
+                            <div class="schedule-amount">$1,500</div>
+                        </div>
+                        <div class="schedule-item paid">
+                            <div class="schedule-info">
+                                <div class="schedule-period">December 2025</div>
+                                <div class="schedule-due">Paid: Dec 1, 2025</div>
+                            </div>
+                            <div class="schedule-amount">$1,500</div>
+                            <div class="schedule-status status-paid">Paid ✓</div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                        <button class="btn-action" onclick="alert('Redirecting to payment portal...')">Make Payment</button>
+                        <button class="btn-action" style="background: var(--secondary);" onclick="alert('Generating invoice...')">Request Invoice</button>
+                        <button class="btn-action" style="background: var(--accent); color: var(--text-primary);" onclick="alert('Opening scheduler...')">Schedule Inspection</button>
+                    </div>
+                </div>
+
+                <!-- Compliance Sidebar -->
+                <aside class="compliance-sidebar">
+                    <div class="section-card">
+                        <h2 class="section-title">Compliance Overview</h2>
+                        <div style="text-align: center; padding: 1.5rem 0;">
+                            <div class="grade-badge" style="width: 100px; height: 100px; font-size: 3rem; margin: 0 auto 1rem;">A</div>
+                            <div style="font-family: 'Syne', sans-serif; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">Latest Hygiene Grade</div>
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">Inspection Date: Dec 15, 2025</div>
+                        </div>
+                        <div class="rental-details">
+                            <div class="detail-row">
+                                <span class="detail-label">Total Inspections</span>
+                                <span class="detail-value">12</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Next Inspection</span>
+                                <span class="detail-value">February 5, 2026</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">License Status</span>
+                                <span class="detail-value">
+                                    <span class="status-badge status-active">
+                                        <span class="status-dot"></span>
+                                        Valid
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">License Expires</span>
+                                <span class="detail-value">August 31, 2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- Rental History -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h2 class="section-title">Rental History</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">January 1, 2025</div>
+                            <div class="timeline-title">Contract Renewed</div>
+                            <div class="timeline-description">24-month lease agreement for Stall #12 at Downtown Food Hub. Monthly rent: $1,500</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">December 31, 2024</div>
+                            <div class="timeline-title">Previous Contract Completed</div>
+                            <div class="timeline-description">Successfully completed 12-month initial lease period. Security deposit returned.</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">January 1, 2024</div>
+                            <div class="timeline-title">Initial Contract Signed</div>
+                            <div class="timeline-description">12-month lease agreement initiated. Security deposit of $3,000 paid.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inspection Records -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h2 class="section-title">Recent Inspections</h2>
+                </div>
+                <div class="inspection-grid">
+                    <div class="inspection-card">
+                        <div class="inspection-header">
+                            <div>
+                                <div class="inspection-date">December 15, 2025</div>
+                                <div style="color: var(--text-muted); font-size: 0.85rem;">Health & Safety Inspection</div>
+                            </div>
+                            <div class="grade-badge">A</div>
+                        </div>
+                        <div class="inspection-details">
+                            <div class="inspection-item">
+                                <span class="check-icon">✓</span>
+                                <span>Food storage and handling: Excellent</span>
+                            </div>
+                            <div class="inspection-item">
+                                <span class="check-icon">✓</span>
+                                <span>Cleanliness and sanitation: Excellent</span>
+                            </div>
+                            <div class="inspection-item">
+                                <span class="check-icon">✓</span>
+                                <span>Staff hygiene practices: Excellent</span>
+                            </div>
+                            <div class="inspection-item">
+                                <span class="check-icon">✓</span>
+                                <span>Equipment maintenance: Good</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="inspection-card">
+                        <div class="inspection-header">
+                            <div>
+                                <div class="inspection-date">September 10, 2025</div>
+                                <div style="color: var(--text-muted); font-size: 0.85rem;">Routine Inspection</div>
+                            </div>
+                            <div class="grade-badge B">B</div>
+                        </div>
+                        <div class="inspection-details">
+                            <div class="inspection-item">
+                                <span class="check-icon">✓</span>
+                                <span>Food storage and handling: Good</span>
+                            </div>
+                            <div class="inspection-item">
+                                <span class="warning-icon">⚠</span>
+                                <span>Minor cleaning improvement needed</span>
+                            </div>
+                            <div class="inspection-item">
+                                <span class="check-icon">✓</span>
+                                <span>Staff hygiene practices: Good</span>
+                            </div>
+                            <div class="inspection-item">
+                                <span class="check-icon">✓</span>
+                                <span>Equipment maintenance: Good</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="inspection-card">
+                        <div class="inspection-header">
+                            <div>
+                                <div class="inspection-date">June 3, 2025</div>
+                                <div style="color: var(--text-muted); font-size: 0.85rem;">Health & Safety Inspection</div>
+                            </div>
+                            <div class="grade-badge">A</div>
+                        </div>
+                        <div class="inspection-details">
+                            <div class="inspection-item">
+                                <span class="check-icon">✓</span>
+                                <span>Food storage and handling: Excellent</span>
+                            </div>
+                            <div class="inspection-item">
+                                <span class="check-icon">✓</span>
+                                <span>Cleanliness and sanitation: Excellent</span>
+                            </div>
+                            <div class="inspection-item">
+                                <span class="check-icon">✓</span>
+                                <span>Staff hygiene practices: Excellent</span>
+                            </div>
+                            <div class="inspection-item">
+                                <span class="check-icon">✓</span>
+                                <span>Equipment maintenance: Excellent</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documents -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h2 class="section-title">Documents</h2>
+                </div>
+                <div class="documents-grid">
+                    <div class="document-card">
+                        <div class="document-icon">📄</div>
+                        <div class="document-info">
+                            <div class="document-name">Rental Agreement 2025-2026</div>
+                            <div class="document-meta">PDF • 2.3 MB • Signed Jan 1, 2025</div>
+                        </div>
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                        </svg>
+                    </div>
+                    <div class="document-card">
+                        <div class="document-icon">📋</div>
+                        <div class="document-info">
+                            <div class="document-name">Latest Inspection Report</div>
+                            <div class="document-meta">PDF • 1.1 MB • Dec 15, 2025</div>
+                        </div>
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                        </svg>
+                    </div>
+                    <div class="document-card">
+                        <div class="document-icon">🏢</div>
+                        <div class="document-info">
+                            <div class="document-name">Business License</div>
+                            <div class="document-meta">PDF • 856 KB • Valid until Aug 31, 2026</div>
+                        </div>
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                        </svg>
+                    </div>
+                    <div class="document-card">
+                        <div class="document-icon">🛡️</div>
+                        <div class="document-info">
+                            <div class="document-name">Insurance Certificate</div>
+                            <div class="document-meta">PDF • 1.5 MB • Valid until Dec 31, 2026</div>
+                        </div>
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Upload Area -->
+                <label class="upload-area" style="margin-top: 1.5rem;">
+                    <input type="file" multiple>
+                    <svg width="48" height="48" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin: 0 auto 1rem;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                    </svg>
+                    <div style="font-weight: 600; margin-bottom: 0.5rem;">Upload Documents</div>
+                    <div style="font-size: 0.85rem; color: var(--text-muted);">Click to browse or drag and drop files here</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">Supported: PDF, DOC, DOCX, JPG, PNG (Max 10MB)</div>
+                </label>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.querySelector('.upload-area input').addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            if (files.length > 0) {
+                alert(`${files.length} file(s) selected for upload:\n${files.map(f => f.name).join('\n')}`);
+            }
+        });
+
+        document.querySelectorAll('.btn-action').forEach(btn => {
+            if (btn.textContent.includes('Payment')) {
+                btn.addEventListener('click', () => {
+                    alert('Redirecting to secure payment portal...');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
