@@ -20,19 +20,6 @@ const app = initializeApp(firebaseConfig);
 const dbRef = ref(getDatabase());
 const auth = getAuth(app);
 
-// login page init, to set up listeners for clicking
-// export function initLoginPage() {
-//     document.getElementById("showpopup")?.addEventListener("click", () => {
-//         document.getElementById("popup").style.display = "flex";
-//     });
-
-//     document.querySelector("#popup .buttons button")?.addEventListener("click", () => {
-//         document.getElementById("popup").style.display = "none";
-//     });
-
-    
-// }
-
 const loginForm = document.getElementById('loginForm');
 const loginerrorMsg = document.getElementById('loginerrorMsg');
 
@@ -52,8 +39,6 @@ loginForm.addEventListener("submit", function(event) {
             const user = userCredential.user;
             console.log("Logging on as:", user.uid)
             
-            // const userRef = ref(db, "users/" + user.uid);
-            
             // queries the db for user's role
             get(child(dbRef, `users/${user.uid}`)).then((snapshot) => {
                 if (snapshot.exists()) {
@@ -61,14 +46,12 @@ loginForm.addEventListener("submit", function(event) {
                     console.log("user data", userData);
                     const userRole = userData.role;
                     console.log("User role:", userRole);
-                    loginerrorMsg.style.color = 'green';
-                    loginerrorMsg.textContent = "Login successful!";
+                    loginsuccessMsg.textContent = "Login successful!";
 
                     // cache user's role in localstorage
+                    // cache user's id in sessionstorage
                     localStorage.setItem("role", userRole);
-
-                    // window.location.href = "vendor_dashboard.html"
-                    // window.parent.location.hash = `#/${userRole}_dash` //redirect to dashboard appropriate dashboard
+                    sessionStorage.setItem("userid", user.uid);
                     
                 } else {
                     console.log("No user data found in db (u messed up)");
