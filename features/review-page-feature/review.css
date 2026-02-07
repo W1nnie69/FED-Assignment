@@ -263,13 +263,13 @@ button#submitReview:hover {
 /* Thank you popup */
 #thankyou {
     position: fixed;
-    bottom: 20px; /* appears below page */
+    bottom: 20px;
     right: 20px;
-    background-color: var(--primary);
+    background: linear-gradient(90deg, var(--primary), var(--accent));
     color: white;
-    padding: 15px 20px;
+    padding: 15px 25px;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     opacity: 0;
     transition: opacity 0.5s;
     z-index: 1000;
