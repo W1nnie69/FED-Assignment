@@ -8,11 +8,50 @@
 </head>
 <body>
 
+    <!-- ===== HEADER ===== -->
     <header>
-        <h1>Current Promotions</h1>
+        <div class="logo">
+            <img src="images/foodhub_logo.jpg" alt="Hawker Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../mainmenu/mainmenu.html">Home</a></li>
+                <li><a href="../location/location.html">Locations</a></li>
+                <li><a href="../order-history/order-history.html" class="active">Order History</a></li>
+            </ul>
+        </nav>
+
+        <div class="lang-wrap">
+            <button class="lang" type="button" id="langBtn">EN</button>
+            <div class="lang-menu" id="langMenu">
+                <button type="button" data-lang="en">English</button>
+                <button type="button" data-lang="zh-CN">中文</button>
+                <button type="button" data-lang="ms">BM</button>
+                <button type="button" data-lang="ta">தமிழ்</button>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="../cart/cart.html" class="icon">
+                <img src="https://cdn-icons-png.flaticon.com/128/1170/1170678.png" alt="Cart">
+            </a>
+
+            <div class="icon">
+                <img src="https://cdn-icons-png.flaticon.com/128/3602/3602145.png" alt="Notifications">
+            </div>
+
+            <button class="logout">Logout</button>
+
+            <div class="profile">
+                <img src="https://cdn-icons-png.flaticon.com/128/848/848043.png" alt="User profile">
+            </div>
+        </div>
     </header>
 
-    <main>
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="page">
+        <h1>Current Promotions</h1>
+
         <section class="promotion">
             
             <article class="promo-card">
@@ -22,22 +61,23 @@
             </article>
 
             <article class="promo-card">
-                    <h2>Off-Peak Special</h2>
-                    <p>10% off from 2PM – 5PM every weekday</p>
-                    <button class="claim-btn">Claim</button>
-                </article>
+                <h2>Off-Peak Special</h2>
+                <p>10% off from 2PM – 5PM every weekday</p>
+                <button class="claim-btn">Claim</button>
+            </article>
 
             <article class="promo-card">
-                    <h2>Flash Sale!</h2>
-                    <p>Limited-time 15% discount on desserts</p>
-                    <button class="claim-btn">Claim</button>
-                </article>
+                <h2>Flash Sale!</h2>
+                <p>Limited-time 15% discount on desserts</p>
+                <button class="claim-btn">Claim</button>
+            </article>
 
         </section>
+
+        <!-- Popup for claimed promotion -->
+        <aside id="promo-popup" class="hidden"></aside>
     </main>
 
-    <aside id="promo-popup" class="hidden"></aside>
     <script src="promotion.js"></script>
-    
 </body>
 </html>

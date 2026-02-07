@@ -17,8 +17,6 @@ claimButtons.forEach(button =>
 
         // Disable the button so it can't be clicked again
         button.disabled = true;
-        button.style.backgroundColor = "#888";
-        button.style.cursor = "not-allowed";
         button.textContent = "Claimed";
     });
 });
