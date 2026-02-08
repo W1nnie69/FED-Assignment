@@ -51,7 +51,15 @@
     </ul>
   </nav>
 
-  <button class="lang">Us Eng</button>
+  <div class="lang-wrap">
+    <button class="lang" type="button" id="langBtn">EN</button>
+    <div class="lang-menu" id="langMenu">
+      <button type="button" data-lang="en">English</button>
+      <button type="button" data-lang="zh-CN">中文</button>
+      <button type="button" data-lang="ms">BM</button>
+      <button type="button" data-lang="ta">தமிழ்</button>
+    </div>
+  </div>
 
   <div class="actions">
     <a href="../cart/cart.html" class="icon" aria-label="Cart">
@@ -81,21 +89,9 @@
   <a id="openMaps" class="open-btn" target="_blank" rel="noopener">Open in Google Maps</a>
 </main>
 
-<script>
-  const params = new URLSearchParams(window.location.search);
-  const place = params.get("place") || "Lau Pa Sat Singapore";
-
-  document.getElementById("placeTitle").textContent = place;
-
-  // ✅ EMBED URL (more reliable than /maps/dir inside iframe)
-  // This shows a map centered on destination. (Directions inside iframe is often blocked without API key)
-  document.getElementById("mapFrame").src =
-    "https://www.google.com/maps?q=" + encodeURIComponent(place) + "&output=embed";
-
-  // ✅ Button opens REAL directions from current location
-  document.getElementById("openMaps").href =
-    "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(place);
-</script>
+<script src="map.js"></script>
+<script src="../translate.js"></script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>

@@ -104,6 +104,8 @@
   .loc-time{
     width: fit-content;
   }
+   .loc-row{ grid-template-columns: 1fr; }
+
 }
 
 /* Responsive */
@@ -116,6 +118,3 @@
   .page{ padding: 16px; }
 }
 
-@media (max-width: 520px){
-  .loc-row{ grid-template-columns: 1fr; }
-}

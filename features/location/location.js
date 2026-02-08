@@ -37,3 +37,19 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+
+
+function goToMap(place) {
+    window.location.href =
+      "../map/map.html?place=" + encodeURIComponent(place);
+  }
+
+  // make other buttons interactive
+  document.getElementById("notifIcon").onclick = () =>
+    alert("Notifications clicked");
+
+  document.getElementById("profileIcon").onclick = () =>
+    alert("Profile clicked");
+
+  document.getElementById("logoutBtn").onclick = () =>
+    alert("Logged out");

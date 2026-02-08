@@ -1,76 +1,33 @@
-// map.js
+// ==============================
+// SIMPLE EMBED MAP VERSION
+// ==============================
 
-let map;
-let marker;
-
-function getParam(name) {
-  return new URLSearchParams(window.location.search).get(name);
-}
-
-// This function is called by Google Maps API callback=initMap
-function initMap() {
-  const place = getParam("place") || "Singapore";
-  const address = getParam("address") || "";
-  const hours = getParam("hours") || "";
-
-  // Put text at top
-  document.getElementById("placeTitle").textContent = place;
-  document.getElementById("placeAddress").textContent = address || "Singapore";
-  document.getElementById("placeHours").textContent = hours || "";
-
-  // Default center (SG)
-  const defaultCenter = { lat: 1.3521, lng: 103.8198 };
-
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: defaultCenter,
-    zoom: 12,
-    mapTypeControl: false,
-    streetViewControl: false,
-    fullscreenControl: true,
-  });
-
-  marker = new google.maps.Marker({
-    map,
-    position: defaultCenter,
-    title: place,
-  });
-
-  // Use Places service to find location
-  const service = new google.maps.places.PlacesService(map);
-
-  const queryText = address ? `${place}, ${address}, Singapore` : `${place}, Singapore`;
-
-  service.textSearch({ query: queryText }, (results, status) => {
-    if (status === google.maps.places.PlacesServiceStatus.OK && results[0]) {
-      const loc = results[0].geometry.location;
-
-      map.setCenter(loc);
-      map.setZoom(14);
-
-      marker.setPosition(loc);
-      marker.setTitle(place);
-
-      // optional: info window
-      const info = new google.maps.InfoWindow({
-        content: `<strong>${place}</strong><br>${address || results[0].formatted_address}`
-      });
-
-      marker.addListener("click", () => info.open(map, marker));
-    }
-  });
-}
-
-// small header actions
+// Wait for page to load
 document.addEventListener("DOMContentLoaded", () => {
-  const notif = document.querySelector(".notif");
-  notif?.addEventListener("click", () => alert("Notifications clicked"));
 
-  document.querySelector(".logout")?.addEventListener("click", () => {
-    alert("Logged out");
-    window.location.href = "../login-page/login.html";
-  });
+  // Get place from URL
+  const params = new URLSearchParams(window.location.search);
+  const place = params.get("place") || "Singapore";
 
-  document.querySelector(".profile")?.addEventListener("click", () => {
-    alert("Profile page coming soon");
-  });
+  // Set title text
+  const titleEl = document.getElementById("placeTitle");
+  if (titleEl) titleEl.textContent = place;
+
+  // Set iframe source (Google Maps embed)
+  const mapFrame = document.getElementById("mapFrame");
+  if (mapFrame) {
+    mapFrame.src =
+      "https://www.google.com/maps?q=" +
+      encodeURIComponent(place) +
+      "&output=embed";
+  }
+
+  // Set "Open in Google Maps" button link
+  const openBtn = document.getElementById("openMaps");
+  if (openBtn) {
+    openBtn.href =
+      "https://www.google.com/maps/dir/?api=1&destination=" +
+      encodeURIComponent(place);
+  }
+
 });
