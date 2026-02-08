@@ -31,6 +31,8 @@ const interval = setInterval(() =>
         }, 3000);
 
         clearInterval(interval);
+
+        location.href = "../order-endpage/order-endpage.html";
     }
 }, 600);
 
