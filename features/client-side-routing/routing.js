@@ -14,7 +14,7 @@ const routes = {
         page: "sign-up-page/signup",
         requiresAuth: false
     },
-    operator_dash: {
+    operator_main: {
         page: "operator-dashboard/operator_dashboard",
         requiresAuth: true,
         roleRequired: "operator"
@@ -24,10 +24,20 @@ const routes = {
         requiresAuth: true,
         roleRequired: "operator"
     },
-    vendor_dash: {
+    vendor_main: {
         page: "vendor-pages/vendor-dashboard",
         requiresAuth: true,
         roleRequired: "vendor"  
+    },
+    customer_main: {
+        page: "main-menu/mainmenu",
+        requiresAuth: true,
+        roleRequired: "customer"
+    },
+    nea_main: {
+        page: "nea/neaofficer-dashboard",
+        requiresAuth: true,
+        roleRequired: "nea"
     }
 }
 
@@ -70,8 +80,14 @@ export function router() {
 
     if (!route) {
         if (currentUser) {
-            const role = localStorage.getItem("role");
-            location.hash = `#/${role}_dash`;
+            const role = sessionStorage.getItem("role");
+
+            if (role != null) {
+                location.hash = `#/${role}_main`;
+            } else {
+                location.hash = "#/login";
+            }
+            
         } else {
             location.hash = "#/login";
         }
@@ -88,10 +104,10 @@ export function router() {
 
     // role guard yes
     if (route.roleRequired) {
-        const userRole = localStorage.getItem("role");
+        const userRole = sessionStorage.getItem("role");
         if (userRole !== route.roleRequired) {
             console.log("Access Denied lil bro")
-            iframe.src = "../../assets/access_denied.html";
+            iframe.src = "./features/Role-based-access-control/access_denied.html";
             return;
         }
     }

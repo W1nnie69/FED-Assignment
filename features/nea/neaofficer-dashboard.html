@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEA Officer Dashboard</title>
+    <link rel="stylesheet" href="./css/common.css"/>
+    <link rel="stylesheet" href="./css/neaofficer-dashboard.css"/>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="logo">NEA Officer</div>
+
+      <ul class="nav-links" id="navLinks">
+        <li class="active">
+          <a href="neaofficer-dashboard.html">Dashboard</a>
+        </li>
+        <li>
+          <a href="nea-officer-inspection.html"
+            >Inspection Form</a
+          >
+        </li>
+        <li>
+          <a href="hygiene-history.html">Hygiene History</a>
+        </li>
+        <li>
+          <a href="inspection-schedule.html"
+            >Inspection Scheduling</a
+          >
+        </li>
+        <li>
+          <a href="complaint.html">Complaints</a>
+        </li>
+        <li>
+          <a href="feedback-review.html">Feedback</a>
+        </li>
+      </ul>
+
+      <div class="right-section">
+        <div class="officer-id" id="officerPill">Officer ID: -</div>
+        <button class="menu-toggle" type="button" onclick="toggleMenu()">
+          ☰
+        </button>
+      </div>
+    </nav>
+
+    <div class="page-wrap">
+      <main class="dashboard-container">
+        <div class="form-container">
+          <h2>Officer Dashboard</h2>
+
+          <div class="grid-3">
+            <div class="stat-card">
+              <div class="stat-label">Total Inspections Done</div>
+              <div class="stat-value" id="totalInspections">0</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-label">Average Score</div>
+              <div class="stat-value" id="avgScore">-</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-label">Average Grade</div>
+              <div class="stat-value" id="avgGrade">-</div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <h3 class="section">Recent Inspections</h3>
+
+          <div style="overflow-x: auto">
+            <table class="history-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Hawker Centre</th>
+                  <th>Stall Name</th>
+                  <th>Score</th>
+                  <th>Grade</th>
+                  <th>Remarks</th>
+                </tr>
+              </thead>
+              <tbody id="recentTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="./js/navbar.js"></script>
+    <script src="./js/nea-officer-dashboard.js"></script>
+  </body>
+</html>

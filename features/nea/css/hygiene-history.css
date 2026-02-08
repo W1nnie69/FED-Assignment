@@ -1,0 +1,104 @@
+/* /FED-Assignment/css/hygiene-history.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f8;
+
+  /* allow page to grow + scroll */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+
+  margin: 0;
+  padding: 40px 16px;
+}
+
+.form-container {
+  background-color: #fff;
+  padding: 40px 50px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+  /* make it wider for table */
+  width: 95%;
+  max-width: 1100px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.history-table th,
+.history-table td {
+  padding: 12px 14px;
+  text-align: left;
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+  vertical-align: top;
+}
+
+.history-table th {
+  background: #f9fafb;
+  color: #555;
+  font-weight: bold;
+
+  /* optional: sticky header when scrolling page */
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.history-table tr:last-child td {
+  border-bottom: none;
+}
+
+.submitbtn {
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
+}
+
+.submitbtn button {
+  background-color: grey;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.submitbtn button:hover {
+  background-color: #1e90ff;
+}
+
+/* Grade colors */
+.grade-A {
+  color: #15803d;
+  font-weight: bold;
+}
+.grade-B {
+  color: #a16207;
+  font-weight: bold;
+}
+.grade-C,
+.grade-D {
+  color: #b91c1c;
+  font-weight: bold;
+}
+
+
+
+

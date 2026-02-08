@@ -1,0 +1,168 @@
+/* Only page styling. Header comes from mainmenu.css */
+
+.page{
+  padding: 22px;
+  margin-top: 90px;  /* under header */
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-title{
+  margin: 0 0 16px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #222;
+}
+
+.panel{
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 14px;
+}
+
+/* list spacing */
+.orders{
+  display: flex;
+  flex-direction: column;
+  gap: 14px; /* makes cards distinct */
+}
+
+/* order card */
+.order-card{
+  padding: 16px;
+}
+
+/* top row of card */
+.order-top{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.order-left{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.order-id-row{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.order-id{
+  font-weight: 800;
+  font-size: 13px;
+  color: #111;
+}
+
+.badge{
+  font-size: 10px;
+  font-weight: 800;
+  padding: 4px 8px;
+  border-radius: 999px;
+  line-height: 1;
+  display: inline-block;
+}
+
+.badge.completed{ background:#1db954; color:#fff; }
+.badge.delivered{ background:#2f6fed; color:#fff; }
+
+.order-date{
+  font-size: 11px;
+  color: #777;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* right side total */
+.order-right{
+  text-align: right;
+}
+
+.total-label{
+  font-size: 11px;
+  color: #777;
+  margin: 0 0 4px;
+}
+
+.total-amount{
+  font-size: 18px;
+  font-weight: 900;
+  margin: 0;
+  color: #111;
+}
+
+/* divider */
+.hr{
+  height: 1px;
+  background: #eee;
+  margin: 10px 0;
+}
+
+/* items */
+.items-head{
+  font-size: 11px;
+  color: #777;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.item-line{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  background: #fafafa;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+.item-name{
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.item-sub{
+  font-size: 11px;
+  color: #777;
+  margin: 3px 0 0;
+}
+
+.item-price{
+  font-size: 12px;
+  font-weight: 800;
+  margin: 0;
+}
+
+/* empty */
+.empty{
+  padding: 40px;
+  text-align: center;
+}
+
+.empty h3{
+  margin: 0 0 6px;
+}
+
+.empty p{
+  margin: 0 0 12px;
+  color: #777;
+  font-size: 13px;
+}
+
+.empty a{
+  text-decoration: none;
+  font-weight: 800;
+  color: #111;
+}

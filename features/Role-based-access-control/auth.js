@@ -5,6 +5,13 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebas
 
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js"
 
+import {
+    getDatabase,
+    ref,
+    get,
+    child
+} from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
+
 import { firebaseConfig } from "../../assets/js/config.js";
 
 /* ================================
@@ -32,15 +39,35 @@ onAuthStateChanged(auth, (user) => {
     callbacks.forEach(cb => cb());
     callbacks = [];
 
-    if (window.router) window.router();
+    if (!user) {
+        if (window.router) window.router();
+        return;
+    }
 
     // once user is logged in, it will redirect to the respective dashboard
-    if (user) {
-        const role = localStorage.getItem("role");
-        if (location.hash === "#/login") {
-            window.parent.location.hash = `#/${role}_dash`;
-        }
+    const dbRef = ref(getDatabase());
+
+    try {
+        get(child(dbRef, `users/${user.uid}`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                const userData = snapshot.val();
+                const userRole = userData.role;
+                
+                sessionStorage.setItem("role", userRole);
+                sessionStorage.setItem("userid", user.uid);
+                
+                if (location.hash === "#/login") {
+                    location.hash = `#/${userRole}_main`;
+                }
+            } else {
+                console.error("No user data in DB!");
+            }
+        })
+    } catch(error) {
+        console.error("Failed to get user data!!!!!!!!!");
     }
+
+    if (window.router) window.router();
 });
 
 export function onAuthReady(cb) {

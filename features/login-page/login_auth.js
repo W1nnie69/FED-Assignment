@@ -38,27 +38,31 @@ loginForm.addEventListener("submit", function(event) {
             // Signed in thru auth
             const user = userCredential.user;
             console.log("Logging on as:", user.uid)
+
+            loginsuccessMsg.textContent = "Login successful!";
             
             // queries the db for user's role
-            get(child(dbRef, `users/${user.uid}`)).then((snapshot) => {
-                if (snapshot.exists()) {
-                    const userData = snapshot.val();
-                    console.log("user data", userData);
-                    const userRole = userData.role;
-                    console.log("User role:", userRole);
-                    loginsuccessMsg.textContent = "Login successful!";
+            // get(child(dbRef, `users/${user.uid}`)).then((snapshot) => {
+            //     if (snapshot.exists()) {
+            //         const userData = snapshot.val();
+            //         console.log("user data", userData);
+            //         const userRole = userData.role;
+            //         console.log("User role:", userRole);
+            //         loginsuccessMsg.textContent = "Login successful!";
 
-                    // cache user's role in localstorage
-                    // cache user's id in sessionstorage
-                    localStorage.setItem("role", userRole);
-                    sessionStorage.setItem("userid", user.uid);
+            //         // cache user's role in localstorage
+            //         // cache user's id in sessionstorage
+            //         sessionStorage.setItem("role", userRole);
+            //         sessionStorage.setItem("userid", user.uid);
+
+            //         // window.parent.location.hash = `#/${userRole}_main`;
                     
-                } else {
-                    console.log("No user data found in db (u messed up)");
-                }
-            }).catch((error) => {
-                console.log("error:", error);
-            });            
+            //     } else {
+            //         console.log("No user data found in db (u messed up)");
+            //     }
+            // }).catch((error) => {
+            //     console.log("error:", error);
+            // });            
         
         })
         .catch((error) => {

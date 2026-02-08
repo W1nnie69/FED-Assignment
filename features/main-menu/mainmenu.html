@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,172 +11,199 @@
 </head>
 
 <body>
+  <div id="google_translate_element" style="display:none;"></div>
 
 <header>
   <div class="logo">
     <img src="images/foodhub_logo.jpg" alt="Hawker Logo">
   </div>
-  <nav aria-label="Main navigation">
+
+  <nav>
     <ul>
-      <li><a href="#" class="active">Home</a></li>
-      <li><a href="#">Locations</a></li>
-      <li><a href="#">Order History</a></li>
+      <li><a href="mainmenu.html" class="active">Home</a></li>
+      <li><a href="../location/location.html">Locations</a></li>
+      <li><a href="../order-history/order-history.html">Order History</a></li>
     </ul>
   </nav>
 
-  <button class="lang" type="button">Us Eng</button>
+  <div class="lang-wrap">
+    <button class="lang" type="button" id="langBtn">EN</button>
+    <div class="lang-menu" id="langMenu">
+      <button type="button" data-lang="en">English</button>
+      <button type="button" data-lang="zh-CN">中文</button>
+      <button type="button" data-lang="ms">BM</button>
+      <button type="button" data-lang="ta">தமிழ்</button>
+    </div>
+  </div>
 
   <div class="actions">
+    <a href="../cart/cart.html" class="icon">
+      <img src="https://cdn-icons-png.flaticon.com/128/1170/1170678.png" alt="Cart">
+    </a>
 
-  <div class="icon">
-    <img src="https://cdn-icons-png.flaticon.com/128/1170/1170678.png" alt="Cart">
+    <div class="icon">
+      <img src="https://cdn-icons-png.flaticon.com/128/3602/3602145.png" alt="Notifications">
+    </div>
+
+    <button class="logout" onclick="window.parent.logout()">Logout</button>
+
+    <div class="profile">
+      <img src="https://cdn-icons-png.flaticon.com/128/848/848043.png" alt="User profile">
+    </div>
   </div>
-
-  <div class="icon">
-    <img src="https://cdn-icons-png.flaticon.com/128/3602/3602145.png" alt="Notifications">
-  </div>
-
-  <button class="logout">Logout</button>
-
-  <div class="profile">
-    <img src="https://cdn-icons-png.flaticon.com/128/848/848043.png" alt="User profile">
-  </div>
-
-</div>
-
 </header>
 
-
 <main class="page">
-  <!-- Featured Items -->
-  <section class="menu-section">
-    <div class="section-header">
-      <h3 class="section-title">Featured Items</h3>
-      <span class="view-all">View All</span>
-    </div>
 
-    <div class="card-row">
-      <article class="card">
-        <div class="card-image">
-          <img src="https://th.bing.com/th/id/OIP.nedEqmFVvzaihJYIyAjVSQHaE6?w=271&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Chicken Rice">
-        <div class="card-content">
-          <h4 class="item-title">Hainanese Chicken Rice</h4>
-          <p class="item-desc">Tender poached chicken with fragrant rice</p>
-          <p class="item-price">$5.50</p>
-        </div>
-      </article>
+<!-- Featured Items -->
+<section class="menu-section">
+  <div class="section-header">
+    <h3 class="section-title">Featured Items</h3>
+    <a class="view-all" href="../view-all/view-all.html">View All</a>
+  </div>
 
-      <article class="card">
-        <div class="card-image">
-          <img src="https://tse3.mm.bing.net/th/id/OIP.rReww2qRLgb-c7QJptviygHaFS?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Laksa">
-        </div>
-        <div class="card-content">
-          <h4 class="item-title">Laksa</h4>
-          <p class="item-desc">Spicy coconut noodle soup with prawns</p>
-          <p class="item-price">$6.00</p>
-        </div>
-      </article>
+  <div class="card-row">
 
-      <article class="card">
-        <div class="card-image">
-          <img src="https://th.bing.com/th/id/OIP.4lLBqUSgcVRLElyz3USElgHaE9?w=295&h=197&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Char Kway Teow">
-        </div>
-        <div class="card-content">
-          <h4 class="item-title">Char Kway Teow</h4>
-          <p class="item-desc">Wok-fried flat noodles with cockles &amp; egg</p>
-          <p class="item-price">$4.50</p>
-        </div>
-      </article>
+    <article class="card">
+      <div class="card-image">
+        <img src="https://th.bing.com/th/id/OIP.nedEqmFVvzaihJYIyAjVSQHaE6?w=271&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3">
+      </div>
+      <div class="card-content">
+        <h4 class="item-title"><a href="../item/item.html">Hainanese Chicken Rice</a></h4>
+        <p class="item-loc">Chinatown Complex</p>
+        <p class="item-desc">Tender poached chicken with fragrant rice</p>
+        <p class="item-price">$5.50</p>
+      </div>
+    </article>
 
-      <article class="card">
-        <div class="card-image">
-          <img src="https://th.bing.com/th/id/OIP.3YrOYyKsNcVLB5JVlcCobQHaE6?w=264&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Roti Prata">
-        </div>
-        <div class="card-content">
-          <h4 class="item-title">Roti Prata</h4>
-          <p class="item-desc">Crispy flatbread served with curry</p>
-          <p class="item-price">$2.00</p>
-        </div>
-      </article>
+    <article class="card">
+      <div class="card-image">
+        <img src="https://tse3.mm.bing.net/th/id/OIP.rReww2qRLgb-c7QJptviygHaFS?rs=1&pid=ImgDetMain&o=7&rm=3">
+      </div>
+      <div class="card-content">
+        <h4 class="item-title">Laksa</h4>
+        <p class="item-loc">Katong Laksa</p>
+        <p class="item-desc">Spicy coconut noodle soup with prawns</p>
+        <p class="item-price">$6.00</p>
+      </div>
+    </article>
 
-      <article class="card">
-        <div class="card-image">
-          <img src="https://th.bing.com/th/id/OIP.l9W84YdALeoaPSj-boYJYQHaE8?w=251&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Chilli Crab">
-        </div>
-        <div class="card-content">
-          <h4 class="item-title">Chilli Crab</h4>
-          <p class="item-desc">Sweet and spicy crab in rich sauce</p>
-          <p class="item-price">$25.00</p>
-        </div>
-      </article>
-    </div>
-  </section>
+    <article class="card">
+      <div class="card-image">
+        <img src="https://th.bing.com/th/id/OIP.4lLBqUSgcVRLElyz3USElgHaE9?w=295&h=197&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3">
+      </div>
+      <div class="card-content">
+        <h4 class="item-title">Char Kway Teow</h4>
+        <p class="item-loc">Old Airport Road FC</p>
+        <p class="item-desc">Wok-fried flat noodles with cockles & egg</p>
+        <p class="item-price">$4.50</p>
+      </div>
+    </article>
 
-  <!-- Most Ordered -->
-  <section class="menu-section">
-    <div class="section-header">
-      <h3 class="section-title">Most Ordered</h3>
-      <span class="view-all">View All</span>
-    </div>
+    <article class="card">
+      <div class="card-image">
+        <img src="https://th.bing.com/th/id/OIP.3YrOYyKsNcVLB5JVlcCobQHaE6?w=264&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3">
+      </div>
+      <div class="card-content">
+        <h4 class="item-title">Roti Prata</h4>
+        <p class="item-loc">Tekka Centre</p>
+        <p class="item-desc">Crispy flatbread served with curry</p>
+        <p class="item-price">$2.00</p>
+      </div>
+    </article>
 
-    <div class="card-row">
-      <article class="card">
-        <div class="card-image">
-          <img src="https://tse4.mm.bing.net/th/id/OIP.hJ5Tf61PsjtHaYTB2mEDUQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Nasi Lemak">
-        </div>
-        <div class="card-content">
-          <h4 class="item-title">Nasi Lemak</h4>
-          <p class="item-desc">Coconut rice with sambal &amp; fried chicken</p>
-          <p class="item-price">$5.00</p>
-        </div>
-      </article>
+    <article class="card">
+      <div class="card-image">
+        <img src="https://th.bing.com/th/id/OIP.l9W84YdALeoaPSj-boYJYQHaE8?w=251&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3">
+      </div>
+      <div class="card-content">
+        <h4 class="item-title">Chilli Crab</h4>
+        <p class="item-loc">Lau Pa Sat</p>
+        <p class="item-desc">Sweet and spicy crab in rich sauce</p>
+        <p class="item-price">$25.00</p>
+      </div>
+    </article>
 
-      <article class="card">
-        <div class="card-image">
-          <img src="https://sethlui.com/wp-content/uploads/2021/10/Best-BKT-Tuan-Yuan-BKT-Featured.jpg" alt="Bak Kut Teh">
-        </div>
-        <div class="card-content">
-          <h4 class="item-title">Bak Kut Teh</h4>
-          <p class="item-desc">Peppery pork rib soup with garlic</p>
-          <p class="item-price">$7.00</p>
-        </div>
-      </article>
+  </div>
+</section>
 
-      <article class="card">
-        <div class="card-image">
-          <img src="https://tse4.mm.bing.net/th/id/OIP.QqZRNQxRPiaD_E6CUK5PUAHaDO?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Mee Goreng">
-        </div>
-        <div class="card-content">
-          <h4 class="item-title">Mee Goreng</h4>
-          <p class="item-desc">Spicy fried noodles with seafood</p>
-          <p class="item-price">$5.50</p>
-        </div>
-      </article>
+<!-- Most Ordered -->
+<!-- Most Ordered -->
+<section class="menu-section">
+  <div class="section-header">
+    <h3 class="section-title">Most Ordered</h3>
+  </div>
 
-      <article class="card">
-        <div class="card-image">
-          <img src="https://hungrygowhere.com/wp-content/uploads/2025/03/09-sy-Satay-Singapore-Satay-Street-HungryGoWhere.png" alt="Satay">
-        </div>
-        <div class="card-content">
-          <h4 class="item-title">Satay</h4>
-          <p class="item-desc">Grilled skewers with peanut sauce</p>
-          <p class="item-price">$6.50</p>
-        </div>
-      </article>
+  <div class="card-row">
 
-      <article class="card">
-        <div class="card-image">
-          <img src="https://tse3.mm.bing.net/th/id/OIP.ra3ox_oI6KZFNlAuEGgJ8wHaFj?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Carrot Cake">
-        </div>
-        <div class="card-content">
-          <h4 class="item-title">Carrot Cake</h4>
-          <p class="item-desc">Stir-fried radish cake with egg</p>
-          <p class="item-price">$4.00</p>
-        </div>
-      </article>
-    </div>
-  </section>
+    <article class="card">
+      <div class="card-image">
+        <img src="https://tse4.mm.bing.net/th/id/OIP.hJ5Tf61PsjtHaYTB2mEDUQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Nasi Lemak">
+      </div>
+      <div class="card-content">
+        <h4 class="item-title">Nasi Lemak</h4>
+        <p class="item-loc">Changi Village</p>
+        <p class="item-desc">Coconut rice with sambal & fried chicken</p>
+        <p class="item-price">$5.00</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-image">
+        <img src="https://sethlui.com/wp-content/uploads/2021/10/Best-BKT-Tuan-Yuan-BKT-Featured.jpg" alt="Bak Kut Teh">
+      </div>
+      <div class="card-content">
+        <h4 class="item-title">Bak Kut Teh</h4>
+        <p class="item-loc">Balestier</p>
+        <p class="item-desc">Peppery pork rib soup with garlic</p>
+        <p class="item-price">$7.00</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-image">
+        <img src="https://tse4.mm.bing.net/th/id/OIP.QqZRNQxRPiaD_E6CUK5PUAHaDO?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Mee Goreng">
+      </div>
+      <div class="card-content">
+        <h4 class="item-title">Mee Goreng</h4>
+        <p class="item-loc">Geylang Serai</p>
+        <p class="item-desc">Spicy fried noodles with seafood</p>
+        <p class="item-price">$5.50</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-image">
+        <img src="https://hungrygowhere.com/wp-content/uploads/2025/03/09-sy-Satay-Singapore-Satay-Street-HungryGoWhere.png" alt="Satay">
+      </div>
+      <div class="card-content">
+        <h4 class="item-title">Satay</h4>
+        <p class="item-loc">Lau Pa Sat</p>
+        <p class="item-desc">Grilled skewers with peanut sauce</p>
+        <p class="item-price">$6.50</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-image">
+        <img src="https://tse3.mm.bing.net/th/id/OIP.ra3ox_oI6KZFNlAuEGgJ8wHaFj?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Carrot Cake">
+      </div>
+      <div class="card-content">
+        <h4 class="item-title">Carrot Cake</h4>
+        <p class="item-loc">Bedok 85</p>
+        <p class="item-desc">Stir-fried radish cake with egg</p>
+        <p class="item-price">$4.00</p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+
 </main>
+
+<script src="../translate.js"></script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>
