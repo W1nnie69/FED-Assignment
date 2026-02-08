@@ -2,14 +2,19 @@ const form = document.getElementById("complaintForm");
 const toast = document.getElementById("toast");
 
 form.addEventListener("submit", (e) => {
-  e.preventDefault(); // remove this if you want to send to backend
+  e.preventDefault(); // prevent page reload
 
-  // Show success message
+  // Show success toast
   toast.style.display = "block";
 
-  // Hide after a bit + reset form
+  // After delay: hide toast, reset form, redirect
   setTimeout(() => {
     toast.style.display = "none";
     form.reset();
+
+    // 🚀 Redirect to order end page
+    window.location.href = "order-endpage.html";
   }, 2200);
 });
+
+

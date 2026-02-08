@@ -12,7 +12,9 @@ const requiredFields = [
   document.getElementById("comments"),
 ];
 
-// --- Stars ---
+/* =========================
+   Stars
+========================= */
 function paintStars(value) {
   stars.forEach((btn) => {
     const v = Number(btn.dataset.value);
@@ -32,7 +34,7 @@ stars.forEach((btn) => {
     updateSubmitState();
   });
 
-  // hover preview
+  // Hover preview
   btn.addEventListener("mouseenter", () => {
     paintStars(Number(btn.dataset.value));
   });
@@ -42,9 +44,13 @@ stars.forEach((btn) => {
   });
 });
 
-// --- Enable button only when required inputs are filled + rating selected ---
+/* =========================
+   Enable submit only when valid
+========================= */
 function updateSubmitState() {
-  const basicFilled = requiredFields.every((el) => el.value.trim() !== "");
+  const basicFilled = requiredFields.every(
+    (el) => el.value.trim() !== ""
+  );
   const ratingPicked = Number(ratingValue.value) > 0;
 
   if (basicFilled && ratingPicked) {
@@ -58,18 +64,27 @@ function updateSubmitState() {
   }
 }
 
-requiredFields.forEach((el) => el.addEventListener("input", updateSubmitState));
-requiredFields.forEach((el) => el.addEventListener("change", updateSubmitState));
+requiredFields.forEach((el) =>
+  el.addEventListener("input", updateSubmitState)
+);
+requiredFields.forEach((el) =>
+  el.addEventListener("change", updateSubmitState)
+);
 
+// Init
 updateSubmitState();
 paintStars(0);
 
-// --- Submit ---
+/* =========================
+   Submit feedback
+========================= */
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
+  // Show success toast
   toast.style.display = "block";
 
+  // After delay: reset + redirect
   setTimeout(() => {
     toast.style.display = "none";
     form.reset();
@@ -77,5 +92,9 @@ form.addEventListener("submit", (e) => {
     ratingValue.value = "0";
     paintStars(0);
     updateSubmitState();
+
+    // 🚀 Redirect to order end page
+    window.location.href = "order-endpage.html";
   }, 2200);
 });
+
