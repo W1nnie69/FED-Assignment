@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order History</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- header styles (same as other pages) -->
+  <link rel="stylesheet" href="../main-menu/mainmenu.css" />
+  <!-- page styles -->
+  <link rel="stylesheet" href="order-history.css" />
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <img src="../images/foodhub_logo.jpg" alt="Hawker Logo">
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="../main-menu/mainmenu.html">Home</a></li>
+      <li><a href="../location/location.html">Locations</a></li>
+      <li><a href="../order-history/order-history.html" class="active">Order History</a></li>
+    </ul>
+  </nav>
+
+  <div class="lang-wrap">
+   <button class="lang" type="button" id="langBtn">EN</button>
+
+   <div class="lang-menu" id="langMenu">
+     <button type="button" data-lang="en">English</button>
+     <button type="button" data-lang="zh-CN">中文</button>
+     <button type="button" data-lang="ms">BM</button>
+     <button type="button" data-lang="ta">தமிழ்</button>
+   </div>
+ </div>
+  <div class="actions">
+    <!-- Cart -->
+    <a class="icon" href="../cart/cart.html" aria-label="Cart">
+      <img src="https://cdn-icons-png.flaticon.com/128/1170/1170678.png" alt="Cart">
+    </a>
+
+    <!-- Notifications -->
+    <a class="icon" href="#" aria-label="Notifications">
+      <img src="https://cdn-icons-png.flaticon.com/128/3602/3602145.png" alt="Notifications">
+    </a>
+
+    <button class="logout" type="button" onclick="window.parent.logout()">Logout</button>
+
+    <a class="profile" href="#" aria-label="User profile">
+      <img src="https://cdn-icons-png.flaticon.com/128/848/848043.png" alt="User profile">
+    </a>
+  </div>
+</header>
+
+<main class="page">
+  <h2 class="page-title">Order History</h2>
+
+  <div id="orders" class="orders"></div>
+
+  <div id="empty" class="empty panel" style="display:none;">
+    <h3>No orders yet</h3>
+    <p>Place an order to see it here.</p>
+    <a href="../main-menu/mainmenu.html">Go to menu</a>
+  </div>
+</main>
+
+<script src="order-history.js"></script>
+<script src="../translate.js"></script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

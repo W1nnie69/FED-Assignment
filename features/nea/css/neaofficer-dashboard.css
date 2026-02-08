@@ -1,0 +1,55 @@
+/* /FED-Assignment/css/nea-officer-dashboard.css */
+/* minimal; relies on common.css */
+
+/* Center page content below fixed navbar */
+.page-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+  margin-top: 88px; /* important: space below fixed navbar */
+}
+
+/* Controls page width */
+.dashboard-container {
+  width: 100%;
+  max-width: 1100px;
+}
+
+/* Optional: if your common.css already styles form-container, keep it.
+   This just ensures it fills container properly. */
+.form-container {
+  width: 100%;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+.stat-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  background: #fff;
+}
+
+.stat-label {
+  color: #6b7280;
+  font-weight: 700;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.stat-value {
+  color: #111827;
+  font-weight: 900;
+  font-size: 26px;
+}
+
+@media (max-width: 768px) {
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
