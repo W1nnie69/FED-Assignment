@@ -20,7 +20,6 @@ function setLastSavedUI() {
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  // Get values
   const hawkerCentre = document.getElementById("hcname").value.trim();
   const stallName = document.getElementById("stallName").value.trim();
   const officerId = document.getElementById("officerId").value.trim();
@@ -29,7 +28,6 @@ form.addEventListener("submit", (e) => {
   const grade = document.getElementById("grade").value;
   const remarks = document.getElementById("remarks").value.trim();
 
-  // Create inspection record
   const record = {
     hawkerCentre,
     stallName,
@@ -46,13 +44,13 @@ form.addEventListener("submit", (e) => {
   history.push(record);
   localStorage.setItem("inspectionHistory", JSON.stringify(history));
 
-  // Save last inspected stall (for View History button)
+  // Save last inspection info (optional UI)
   localStorage.setItem(
     "lastInspection",
     JSON.stringify({ hawkerCentre, stallName })
   );
 
-  // ✅ Save current officer ID (for dashboard + navbar)
+  // Save current officer ID (dashboard / navbar use)
   localStorage.setItem("currentOfficerId", officerId);
 
   alert("Inspection submitted successfully!");
@@ -61,32 +59,17 @@ form.addEventListener("submit", (e) => {
 });
 
 /* =========================
-   View Hygiene History
+   View ALL Hygiene History
 ========================= */
 viewHistoryBtn.addEventListener("click", () => {
-  let hawkerCentre = document.getElementById("hcname").value.trim();
-  let stallName = document.getElementById("stallName").value.trim();
-
-  // If form is empty (after reset), use lastInspection
-  if (!hawkerCentre || !stallName) {
-    const last = JSON.parse(localStorage.getItem("lastInspection"));
-    if (!last) {
-      alert("Please submit an inspection first.");
-      return;
-    }
-    hawkerCentre = last.hawkerCentre;
-    stallName = last.stallName;
-  }
-
-  // ✅ RELATIVE path (prevents Cannot GET error)
-  const url =
-    `hygiene-history.html?hawker=${encodeURIComponent(hawkerCentre)}` +
-    `&stall=${encodeURIComponent(stallName)}`;
-
-  window.location.href = url;
+  // 🚀 No query params = show ALL records
+  window.location.href = "hygiene-history.html";
 });
 
-// Init
+/* =========================
+   Init
+========================= */
 setLastSavedUI();
+
 
 
