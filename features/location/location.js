@@ -40,16 +40,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 function goToMap(place) {
-    window.location.href =
-      "../map/map.html?place=" + encodeURIComponent(place);
-  }
+  // window.location.href = "../map/map.html?place=" + encodeURIComponent(place);
+  localStorage.setItem("location", place);
+}
 
-  // make other buttons interactive
-  document.getElementById("notifIcon").onclick = () =>
-    alert("Notifications clicked");
+// make other buttons interactive
+document.getElementById("notifIcon").onclick = () =>
+  alert("Notifications clicked");
 
-  document.getElementById("profileIcon").onclick = () =>
-    alert("Profile clicked");
+document.getElementById("profileIcon").onclick = () =>
+  alert("Profile clicked");
 
-  document.getElementById("logoutBtn").onclick = () =>
-    alert("Logged out");
+document.getElementById("logoutBtn").onclick = () =>
+  alert("Logged out");

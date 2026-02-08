@@ -6,8 +6,9 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   // Get place from URL
-  const params = new URLSearchParams(window.location.search);
-  const place = params.get("place") || "Singapore";
+  // const params = new URLSearchParams(window.location.search);
+  // const place = params.get("place") || "Singapore";
+  const place = localStorage.getItem("location");
 
   // Set title text
   const titleEl = document.getElementById("placeTitle");
