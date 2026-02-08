@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Clear cart
     localStorage.removeItem(CART_KEY);
 
-    window.location.href = "../order-endpage/order-endpage.html";
+    window.location.href = "../queue-page-feature/queue_page.html";
 
   });
 
