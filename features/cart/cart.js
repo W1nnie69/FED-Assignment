@@ -143,10 +143,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Clear cart
     localStorage.removeItem(CART_KEY);
 
-    alert("Payment successful!");
+    window.location.href = "../queue-page-feature/queue_page.html";
 
-    // Redirect to order history page
-    window.location.href = "../order-history/order-history.html";
   });
 
   // Run render when page loads

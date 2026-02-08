@@ -31,8 +31,9 @@ let authResolved = false;
 let callbacks = [];
 
 
-// enforces auth with firebase, make sure user is logged in.
+// This auth listener runs when a page loads, user logs in or user logs out
 onAuthStateChanged(auth, (user) => {
+    // Saves the user state (important!)
     currentUser = user;
     authResolved = true;
 
@@ -44,7 +45,8 @@ onAuthStateChanged(auth, (user) => {
         return;
     }
 
-    // once user is logged in, it will redirect to the respective dashboard
+    // once user is logged in, it query the db for user's data such as their role
+    // then with that it redirects the user accordingly
     const dbRef = ref(getDatabase());
 
     try {

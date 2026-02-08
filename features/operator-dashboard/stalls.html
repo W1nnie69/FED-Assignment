@@ -27,18 +27,45 @@ body{
 /* sidebar */
 .sidebar{
   height:100vh;
-  background: linear-gradient(180deg,var(--blue-dark),#0f172a);
+  background: linear-gradient(180deg,var(--blue-dark), var(--blue-main));
+  box-shadow: 4px 0 20px rgba(0,0,0,0.15);
 }
 
+.sidebar h4{
+  font-weight:700;
+  color:#fff;
+}
+
+/* sidebar links */
 .sidebar .nav-link{
   color:#cbd5e1;
+  padding:12px 14px;
   border-radius:10px;
   margin-bottom:6px;
+  transition:0.2s;
+  font-weight:500;
 }
 
 .sidebar .nav-link:hover{
-  background:rgba(255,255,255,0.1);
-  color:white;
+  background: rgba(255,255,255,0.08);
+  color:#fff;
+  transform: translateX(4px);
+}
+
+.sidebar .nav-link i{
+  color:#60a5fa;
+  margin-right:6px;
+}
+
+/* logout button */
+.sidebar .btn-danger{
+  background: var(--orange-main);
+  border:none;
+  font-weight:600;
+}
+
+.sidebar .btn-danger:hover{
+  background:#ea580c;
 }
 
 /* cards */
@@ -78,21 +105,23 @@ body{
 <div class="row">
 
 <!-- Sidebar -->
-<nav class="col-md-2 sidebar text-white p-3 d-flex flex-column">
+<nav class="col-md-2 d-md-block sidebar text-white p-3 d-flex flex-column">
   <h4 class="text-center mb-4">Operator Panel</h4>
 
   <ul class="nav flex-column">
     <li class="nav-item"><a class="nav-link" href="operator_dashboard.html"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
     <li class="nav-item"><a class="nav-link active bg-primary text-white" href="stalls.html"><i class="bi bi-shop"></i> Stalls</a></li>
-    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-receipt"></i> Rental Agreements</a></li>
-    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-cash-stack"></i> Sales</a></li>
-  </ul>
+    <!-- <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-receipt"></i> Rental Agreements</a></li>
+    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-cash-stack"></i> Sales</a></li> -->
+  
 
-  <div class="mt-auto">
-    <button class="btn w-100" style="background:var(--orange-main);color:white;" onclick="window.parent.logout()">
-      <i class="bi bi-box-arrow-right"></i> Logout
-    </button>
-  </div>
+    <div class="mt-auto pt-4">
+      <hr class="text-secondary">
+        <button class="btn w-100" style="background:var(--orange-main);color:white;" onclick="window.parent.logout()">
+          <i class="bi bi-box-arrow-right"></i> Logout
+        </button>
+    </div>
+  </ul>
 </nav>
 
 <!-- Main -->

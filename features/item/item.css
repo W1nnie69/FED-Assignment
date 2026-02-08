@@ -274,3 +274,82 @@
   nav ul{ flex-wrap: wrap; }
   .detail-layout{ grid-template-columns: 1fr; }
 }
+
+
+@media (max-width: 520px){
+
+  .page{
+    padding: 16px;
+  }
+
+  /* Stack image + info vertically */
+  .detail-layout{
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  /* Reduce big image height */
+  .image-panel{
+    min-height: 240px;
+  }
+
+  /* Title */
+  .item-page-title{
+    font-size: 18px;
+  }
+
+  /* Price row */
+  .topline{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .price{
+    font-size: 14px;
+  }
+
+  /* Add-on grid becomes single column */
+  .addon-grid{
+    grid-template-columns: 1fr;
+  }
+
+  /* Bigger tap targets */
+  .pill{
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .addon{
+    padding: 12px;
+    font-size: 12px;
+  }
+
+  .qty-btn{
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Add to cart bar stacked */
+  .addbar{
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .addcart{
+    width: 100%;
+    text-align: center;
+  }
+
+  .addtotal{
+    text-align: center;
+  }
+
+  /* Nutrition section stacked */
+  .nutrition-row{
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+}

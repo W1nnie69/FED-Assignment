@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Profile - Food Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/vendor-styles.css">
+    <style>
+        /* Profile page specific styles */
+        .profile-container {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 2rem;
+        }
+
+        .profile-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .profile-card {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+
+        .profile-image-section {
+            text-align: center;
+        }
+
+        .profile-image-wrapper {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+            border: 4px solid var(--bg-primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .upload-btn {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s;
+        }
+
+        .upload-btn:hover {
+            transform: scale(1.1);
+            background: var(--primary-dark);
+        }
+
+        .upload-btn input {
+            display: none;
+        }
+
+        .business-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .business-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.375rem 1rem;
+            background: rgba(6, 214, 160, 0.1);
+            color: var(--success);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .stats-mini {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat-mini {
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg-primary);
+            border-radius: 10px;
+        }
+
+        .stat-mini-value {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-mini-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .quick-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: var(--bg-primary);
+            border-radius: 8px;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .info-value {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .profile-main {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .edit-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .edit-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .save-btn {
+            background: var(--success);
+        }
+
+        .cancel-btn {
+            background: var(--text-muted);
+        }
+
+        .operating-hours {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .hours-day {
+            display: grid;
+            grid-template-columns: 120px 1fr 1fr 100px;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .day-label {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--border);
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--success);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .profile-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hours-day {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="layout-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-logo">
+                Food<span>Hub</span>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-section-title">Main</div>
+                <a href="vendor-dashboard.html" class="nav-link">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="vendor-orders.html" class="nav-link">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                    </svg>
+                    Orders
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Business</div>
+                <a href="vendor-menu.html" class="nav-link">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                    </svg>
+                    Menu Management
+                </a>
+                <a href="vendor-profile.html" class="nav-link active">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                    </svg>
+                    Business Profile
+                </a>
+                <a href="vendor-analytics.html" class="nav-link">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                    Analytics
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Compliance</div>
+                <a href="vendor-rental.html" class="nav-link">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                    Rental & Compliance
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Account</div>
+                <a href="vendor-settings.html" class="nav-link">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    Settings
+                </a>
+                <a onclick="window.parent.logout()" class="nav-link">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                    </svg>
+                    Logout
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <h1 class="page-title">Business Profile</h1>
+            </header>
+
+            <div class="profile-container">
+                <!-- Sidebar -->
+                <aside class="profile-sidebar">
+                    <div class="profile-card profile-image-section">
+                        <div class="profile-image-wrapper">
+                            <div class="profile-image" id="profileImage">JD</div>
+                        </div>
+                        <h2 class="business-name" id="displayBusinessName">Joe's Diner</h2>
+                        <div class="business-status">
+                            <span class="status-indicator"></span>
+                            Active
+                        </div>
+
+                        <div class="stats-mini">
+                            <div class="stat-mini">
+                                <div class="stat-mini-value">4.7</div>
+                                <div class="stat-mini-label">Rating</div>
+                            </div>
+                            <div class="stat-mini">
+                                <div class="stat-mini-value">847</div>
+                                <div class="stat-mini-label">Reviews</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-card quick-info">
+                        <div class="info-item">
+                            <div class="info-icon">📧</div>
+                            <div class="info-content">
+                                <div class="info-label">Email</div>
+                                <div class="info-value" id="sideEmail">joe@joesdiner.com</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div class="info-content">
+                                <div class="info-label">Phone</div>
+                                <div class="info-value" id="sidePhone">+1 (555) 123-4567</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">📅</div>
+                            <div class="info-content">
+                                <div class="info-label">Member Since</div>
+                                <div class="info-value" id="sideMemberSince">January 2023</div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <main class="profile-main">
+                    <!-- Business Information -->
+                    <section class="section-card">
+                        <div class="section-header">
+                            <h2 class="section-title">Business Information</h2>
+                            <button class="edit-btn" onclick="toggleEdit(event, 'businessInfo')">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                </svg>
+                                Edit
+                            </button>
+                        </div>
+
+                        <form id="businessInfoForm">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label">Business Name</label>
+                                    <input type="text" class="form-input" value="Joe's Diner" disabled id="businessName">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Business Type</label>
+                                    <select class="form-select" disabled id="businessType">
+                                        <option value="food-truck" selected>Food Truck</option>
+                                        <option value="stall">Food Stall</option>
+                                        <option value="kiosk">Kiosk</option>
+                                        <option value="popup">Pop-up Restaurant</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Cuisine Types</label>
+                                    <input type="text" class="form-input" value="American, Burgers, Fast Food" disabled id="cuisineTypes">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Tax ID / EIN</label>
+                                    <input type="text" class="form-input" value="12-3456789" disabled id="taxId">
+                                </div>
+                                <div class="form-group" style="grid-column: 1 / -1;">
+                                    <label class="form-label">Business Description</label>
+                                    <textarea class="form-textarea" disabled id="businessDesc">Welcome to Joe's Diner! We serve classic American comfort food with a modern twist. Our specialty burgers and homemade fries have been community favorites for over 10 years.</textarea>
+                                </div>
+                            </div>
+                            <div class="action-buttons hidden" id="businessInfoActions">
+                                <button type="button" class="edit-btn cancel-btn" onclick="cancelEdit('businessInfo')">Cancel</button>
+                                <button type="submit" class="edit-btn save-btn" onclick="saveEdit(event, 'businessInfo')">Save Changes</button>
+                            </div>
+                        </form>
+                    </section>
+
+                    <!-- Contact Information -->
+                    <section class="section-card">
+                        <div class="section-header">
+                            <h2 class="section-title">Contact Information</h2>
+                            <button class="edit-btn" onclick="toggleEdit(event, 'contactInfo')">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                </svg>
+                                Edit
+                            </button>
+                        </div>
+
+                        <form id="contactInfoForm">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label">Primary Email</label>
+                                    <input type="email" class="form-input" value="joe@joesdiner.com" disabled id="email">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-input" value="+1 (555) 123-4567" disabled id="phone">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Secondary Phone</label>
+                                    <input type="tel" class="form-input" value="+1 (555) 987-6543" disabled id="secondaryPhone">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Website</label>
+                                    <input type="url" class="form-input" value="https://joesdiner.com" disabled id="website">
+                                </div>
+                                <div class="form-group" style="grid-column: 1 / -1;">
+                                    <label class="form-label">Business Address</label>
+                                    <input type="text" class="form-input" value="123 Main Street, Downtown, City, State 12345" disabled id="address">
+                                </div>
+                            </div>
+                            <div class="action-buttons hidden" id="contactInfoActions">
+                                <button type="button" class="edit-btn cancel-btn" onclick="cancelEdit('contactInfo')">Cancel</button>
+                                <button type="submit" class="edit-btn save-btn" onclick="saveEdit(event, 'contactInfo')">Save Changes</button>
+                            </div>
+                        </form>
+                    </section>
+
+                    <!-- Operating Hours -->
+                    <section class="section-card">
+                        <div class="section-header">
+                            <h2 class="section-title">Operating Hours</h2>
+                            <button class="edit-btn" onclick="toggleEdit(event, 'operatingHours')">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                </svg>
+                                Edit
+                            </button>
+                        </div>
+
+                        <div class="operating-hours">
+                            <div class="hours-day">
+                                <span class="day-label">Monday</span>
+                                <input type="time" class="form-input" value="08:00" disabled id="monOpen">
+                                <input type="time" class="form-input" value="20:00" disabled id="monClose">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked disabled id="monActive">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="hours-day">
+                                <span class="day-label">Tuesday</span>
+                                <input type="time" class="form-input" value="08:00" disabled id="tueOpen">
+                                <input type="time" class="form-input" value="20:00" disabled id="tueClose">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked disabled id="tueActive">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="hours-day">
+                                <span class="day-label">Wednesday</span>
+                                <input type="time" class="form-input" value="08:00" disabled id="wedOpen">
+                                <input type="time" class="form-input" value="20:00" disabled id="wedClose">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked disabled id="wedActive">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="hours-day">
+                                <span class="day-label">Thursday</span>
+                                <input type="time" class="form-input" value="08:00" disabled id="thuOpen">
+                                <input type="time" class="form-input" value="20:00" disabled id="thuClose">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked disabled id="thuActive">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="hours-day">
+                                <span class="day-label">Friday</span>
+                                <input type="time" class="form-input" value="08:00" disabled id="friOpen">
+                                <input type="time" class="form-input" value="22:00" disabled id="friClose">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked disabled id="friActive">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="hours-day">
+                                <span class="day-label">Saturday</span>
+                                <input type="time" class="form-input" value="10:00" disabled id="satOpen">
+                                <input type="time" class="form-input" value="22:00" disabled id="satClose">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked disabled id="satActive">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="hours-day">
+                                <span class="day-label">Sunday</span>
+                                <input type="time" class="form-input" value="10:00" disabled id="sunOpen">
+                                <input type="time" class="form-input" value="18:00" disabled id="sunClose">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" disabled id="sunActive">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="action-buttons hidden" id="operatingHoursActions">
+                            <button type="button" class="edit-btn cancel-btn" onclick="cancelEdit('operatingHours')">Cancel</button>
+                            <button type="button" class="edit-btn save-btn" onclick="saveOperatingHours()">Save Changes</button>
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="./js/vendor-profile.js"></script>
+
+</body>
+</html>

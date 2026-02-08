@@ -19,11 +19,6 @@ const routes = {
         requiresAuth: true,
         roleRequired: "operator"
     },
-    operator_stalls: {
-        page: "operator-dashboard/stalls",
-        requiresAuth: true,
-        roleRequired: "operator"
-    },
     vendor_main: {
         page: "vendor-pages/vendor-dashboard",
         requiresAuth: true,
@@ -50,13 +45,10 @@ onAuthReady(() => {
 // reference the iframe in index.html
 const iframe = document.getElementById("page-frame");
 
+// for when user signup. The hash will be something like: #/signup?role="customer"
+// so this function extract the role and the route separately from hash ^
 function parseHash() {
-    // location.hash = "#/signup?role=vendor"
     let full = location.hash.slice(2); // remove "#/"
-
-    // if (!full) {
-    //     full = "#/login";
-    // }
 
     const [route, queryString] = full.split("?");
 
@@ -71,30 +63,35 @@ function parseHash() {
     return { route, params };
 }
 
+// main routing function
 export function router() {
     console.log("running router");
     if (!authInitialized) return;
-    // const routeName = location.hash.replace("#/", "") || "login";
     const { route: routeName, params } = parseHash();
     const route = routes[routeName]
 
+    // When user refreshes the page, it will bring them back to login
+    // This condition below checks if the role has been stored in sessionStorage and will redirect accordingly  
     if (!route) {
         if (currentUser) {
             const role = sessionStorage.getItem("role");
 
+            // If the role is null, it will redirect to login
             if (role != null) {
                 location.hash = `#/${role}_main`;
             } else {
                 location.hash = "#/login";
             }
-            
+        
+        // If user is not logged in, it will redirect to login
         } else {
             location.hash = "#/login";
         }
         return;
     }
 
-    // auth
+    // This handles the login/auth requirement where if a page requires the user to be logged in, it will check 
+    // whether if currentUser is null or not 
     if (route.requiresAuth && !currentUser) {
         console.log("User not logged in")
         alert("User is not logged in")
@@ -102,7 +99,8 @@ export function router() {
         return;
     }
 
-    // role guard yes
+    // This handles the role requirement where if a page is exclusive to a role, the IF block will check below
+    // And if the current user's role doesnt match, it will send them to the access_denied page
     if (route.roleRequired) {
         const userRole = sessionStorage.getItem("role");
         if (userRole !== route.roleRequired) {
@@ -112,11 +110,13 @@ export function router() {
         }
     }
 
+    // adds back the ?role="customer" if needed.
     let src = `./features/${route.page}.html`;
     if (Object.keys(params).length) {
         src += "?" + new URLSearchParams(params).toString();
     }
 
+    // page finally loads here
     iframe.src = src;
 
 

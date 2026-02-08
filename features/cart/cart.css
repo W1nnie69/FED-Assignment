@@ -152,3 +152,92 @@
 .pay-btn:hover {
   opacity: 0.9;
 }
+@media (max-width: 900px){
+
+  .cart-layout{
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .cart-items{
+    order: 1;
+  }
+
+  .cart-summary{
+    order: 2;
+  }
+
+  .cart-summary{
+    position: static;
+    width: 100%;
+  }
+
+  .cart-item{
+    gap: 12px;
+  }
+
+  .cart-image{
+    width: 90px;
+    height: 90px;
+  }
+
+}
+
+
+/* ================================= */
+/* MOBILE - 520px and below */
+/* ================================= */
+@media (max-width: 520px){
+
+  .page{
+    padding: 16px;
+  }
+
+  /* Stack item layout */
+  .cart-item{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .cart-image{
+    width: 100%;
+    height: 180px;
+    border-radius: 14px;
+  }
+
+  .cart-details{
+    width: 100%;
+  }
+
+  .cart-title{
+    font-size: 14px;
+  }
+
+  .cart-price{
+    font-size: 13px;
+  }
+
+  /* Quantity row spacing */
+  .qty{
+    margin-top: 6px;
+  }
+
+  .qty-btn{
+    width: 38px;
+    height: 38px;
+  }
+
+  /* Summary becomes full width */
+  .cart-summary{
+    width: 100%;
+    border-radius: 16px;
+  }
+
+  /* Pay button full width */
+  .pay-btn{
+    width: 100%;
+    text-align: center;
+  }
+
+}
