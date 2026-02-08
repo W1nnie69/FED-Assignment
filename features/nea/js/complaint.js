@@ -13,7 +13,7 @@ form.addEventListener("submit", (e) => {
     form.reset();
 
     // 🚀 Redirect to order end page
-    window.location.href = "order-endpage.html";
+    window.location.href = "../../order-endpage/order-endpage.html";
   }, 2200);
 });
 
