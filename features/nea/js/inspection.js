@@ -1,3 +1,9 @@
+import { db } from "./firebase.js";
+import {
+  ref,
+  push,
+} from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
+
 const form = document.getElementById("inspectionForm");
 const viewHistoryBtn = document.getElementById("viewHistoryBtn");
 const lastSavedText = document.getElementById("lastSavedText"); // optional UI text
@@ -15,78 +21,62 @@ function setLastSavedUI() {
 }
 
 /* =========================
-   Submit inspection
+   Submit inspection (Firebase)
 ========================= */
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  // Get values
   const hawkerCentre = document.getElementById("hcname").value.trim();
   const stallName = document.getElementById("stallName").value.trim();
   const officerId = document.getElementById("officerId").value.trim();
   const date = document.getElementById("inspectionDate").value;
-  const score = document.getElementById("score").value.trim();
+  const scoreRaw = document.getElementById("score").value.trim();
   const grade = document.getElementById("grade").value;
   const remarks = document.getElementById("remarks").value.trim();
 
-  // Create inspection record
   const record = {
     hawkerCentre,
     stallName,
     officerId,
     date,
-    score,
+    score: scoreRaw === "" ? null : Number(scoreRaw),
     grade,
     remarks,
+    createdAt: Date.now(), // ✅ for sorting in history page
   };
 
-  // Save ALL inspections
-  const history =
-    JSON.parse(localStorage.getItem("inspectionHistory")) || [];
-  history.push(record);
-  localStorage.setItem("inspectionHistory", JSON.stringify(history));
+  try {
+    // ✅ Save to Realtime Database
+    await push(ref(db, "inspections"), record);
 
-  // Save last inspected stall (for View History button)
-  localStorage.setItem(
-    "lastInspection",
-    JSON.stringify({ hawkerCentre, stallName })
-  );
+    // ✅ Optional localStorage (for UI / navbar / dashboard)
+    localStorage.setItem(
+      "lastInspection",
+      JSON.stringify({ hawkerCentre, stallName })
+    );
+    localStorage.setItem("currentOfficerId", officerId);
 
-  // ✅ Save current officer ID (for dashboard + navbar)
-  localStorage.setItem("currentOfficerId", officerId);
-
-  alert("Inspection submitted successfully!");
-  form.reset();
-  setLastSavedUI();
+    alert("Inspection submitted successfully!");
+    form.reset();
+    setLastSavedUI();
+  } catch (err) {
+    console.error(err);
+    alert("Failed to submit inspection. Check console.");
+  }
 });
 
 /* =========================
-   View Hygiene History
+   View ALL Hygiene History
 ========================= */
 viewHistoryBtn.addEventListener("click", () => {
-  let hawkerCentre = document.getElementById("hcname").value.trim();
-  let stallName = document.getElementById("stallName").value.trim();
-
-  // If form is empty (after reset), use lastInspection
-  if (!hawkerCentre || !stallName) {
-    const last = JSON.parse(localStorage.getItem("lastInspection"));
-    if (!last) {
-      alert("Please submit an inspection first.");
-      return;
-    }
-    hawkerCentre = last.hawkerCentre;
-    stallName = last.stallName;
-  }
-
-  // ✅ RELATIVE path (prevents Cannot GET error)
-  const url =
-    `hygiene-history.html?hawker=${encodeURIComponent(hawkerCentre)}` +
-    `&stall=${encodeURIComponent(stallName)}`;
-
-  window.location.href = url;
+  window.location.href = "hygiene-history.html";
 });
 
-// Init
+/* =========================
+   Init
+========================= */
 setLastSavedUI();
+
+
 
 
