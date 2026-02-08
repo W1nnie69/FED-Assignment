@@ -19,7 +19,7 @@ onAuthStateChanged(auth, (user) => {
 // ===== Helpers =====
 function $(id) {
   return document.getElementById(id);
-}
+} ``
 
 function setDisabled(sectionId, disabled) {
   if (sectionId === "operatingHours") {
