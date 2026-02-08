@@ -17,7 +17,7 @@
             <ul>
                 <li><a href="../mainmenu/mainmenu.html">Home</a></li>
                 <li><a href="../location/location.html">Locations</a></li>
-                <li><a href="../order-history/order-history.html" class="active">Order History</a></li>
+                <li><a href="../order-history/order-history.html">Order History</a></li>
             </ul>
         </nav>
 
@@ -42,8 +42,16 @@
 
             <button class="logout">Logout</button>
 
-            <div class="profile">
-                <img src="https://cdn-icons-png.flaticon.com/128/848/848043.png" alt="User profile">
+            <div class="profile-wrap"> 
+                <div class="profile" id="profileIcon">
+                    <img src="https://cdn-icons-png.flaticon.com/128/848/848043.png" alt="User profile">
+                </div>
+                
+                <div class="profile-menu hidden" id="profileMenu">
+                    <button class="profile-link">Promotion</button>
+                    <button class="profile-link">Likes</button>
+                    <button class="profile-link">Review</button>
+                </div>
             </div>
         </div>
     </header>

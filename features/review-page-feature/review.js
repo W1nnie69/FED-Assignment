@@ -24,8 +24,38 @@ const submitbtn = document.getElementById("submitReview");
 const reviewtxt = document.getElementById("review");
 const thankyou = document.getElementById("thankyou");
 const reviews = document.getElementById("reviews-container");
+const profileIcon = document.getElementById("profileIcon");
+const profileMenu = document.getElementById("profileMenu");
+const profileLinks = document.querySelectorAll(".profile-link");
 
 let rating = 0;
+
+profileIcon.addEventListener("click", (e) => {
+    e.stopPropagation(); // prevent click from closing immediately
+    profileMenu.classList.toggle("hidden");
+});
+
+// Close the menu if clicking outside
+document.addEventListener("click", () => {
+    if (!profileMenu.classList.contains("hidden")) {
+        profileMenu.classList.add("hidden");
+    }
+});
+
+
+profileLinks.forEach(link => {
+    link.addEventListener("click", () => {
+        const text = link.textContent.trim();
+
+        if (text === "Promotion") {
+            window.location.href = "../promotion-page/promotion.html";
+        }
+
+        if (text === "Likes") {
+            window.location.href = "../likes-feature/likes.html";
+        }
+    });
+});
 
 
 // Enable / disable submit button
