@@ -337,56 +337,12 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-
-        .image-upload:hover {
-            border-color: var(--primary);
-            background: var(--bg-primary);
-        }
-
-        .image-upload input {
-            display: none;
-        }
-
-        .image-preview {
-            max-width: 100%;
-            max-height: 200px;
-            border-radius: 10px;
-            margin-top: 1rem;
-        }
-
-        .tag-input-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            padding: 0.75rem;
-            border: 2px solid var(--border);
-            border-radius: 10px;
-            min-height: 50px;
-        }
-
-        .tag-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.375rem 0.75rem;
+        .image-upload-static {
             background: var(--primary);
             color: white;
-            border-radius: 20px;
-            font-size: 0.85rem;
-        }
-
-        .tag-remove {
-            cursor: pointer;
-            font-weight: 700;
-        }
-
-        .tag-input {
             border: none;
-            outline: none;
-            flex: 1;
-            min-width: 120px;
-            font-family: 'IBM Plex Sans', sans-serif;
         }
+
 
         .modal-footer {
             padding: 1.5rem 2rem;
@@ -552,116 +508,88 @@
         </main>
     </div>
 
-    <!-- Add/Edit Modal -->
-    <div class="modal" id="menuModal">
+        <!-- Add/Edit Modal -->
+        <div class="modal" id="menuModal">
         <div class="modal-content">
+
             <div class="modal-header">
-                <h2 class="modal-title" id="modalTitle">Add Menu Item</h2>
-                <button class="close-btn" onclick="closeModal()">✕</button>
+            <h2 class="modal-title" id="modalTitle">Add Menu Item</h2>
+            <button class="close-btn" onclick="closeModal()">✕</button>
             </div>
+
+            <!-- ONE FORM ONLY -->
             <form id="menuForm">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label class="form-label">Item Name *</label>
-                        <input type="text" class="form-input" id="itemName" required placeholder="e.g., Classic Burger">
-                    </div>
 
-                    <div class="form-group">
-                        <label class="form-label">Description *</label>
-                        <textarea class="form-textarea" id="itemDescription" required placeholder="Describe your delicious item..."></textarea>
-                    </div>
+            <div class="modal-body">
 
-                    <div class="form-group">
-                        <label class="form-label">Price ($) *</label>
-                        <input type="number" class="form-input" id="itemPrice" step="0.01" min="0" required placeholder="12.99">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Category *</label>
-                        <select class="form-select" id="itemCategory" required>
-                            <option value="">Select Category</option>
-                            <option value="Mains">Mains</option>
-                            <option value="Sides">Sides</option>
-                            <option value="Drinks">Drinks</option>
-                            <option value="Desserts">Desserts</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Cuisine Tags (press Enter to add)</label>
-                        <div class="tag-input-container" id="tagContainer">
-                            <input type="text" class="tag-input" id="tagInput" placeholder="e.g., American" onkeypress="handleTagInput(event)">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Item Image</label>
-                        <label class="image-upload" for="imageInput">
-                            <svg width="40" height="40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                            </svg>
-                            <p>Click to upload image or drag and drop</p>
-                            <input type="file" id="imageInput" accept="image/*" onchange="handleImageChange(event)">
-                        </label>
-                        <img id="imagePreview" class="image-preview" style="display: none;">
-                    </div>
+                <div class="form-group">
+                <label class="form-label">Item Name *</label>
+                <input class="form-input" id="itemName" required />
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-cancel" onclick="closeModal()">Cancel</button>
-                    <button type="submit" class="btn btn-save">Save Item</button>
+
+                <div class="form-group">
+                <label class="form-label">Description *</label>
+                <textarea class="form-textarea" id="itemDescription" required></textarea>
                 </div>
+
+                <div class="form-group">
+                <label class="form-label">Price (SGD) *</label>
+                <input class="form-input" id="itemPrice" type="number" step="0.01" min="0" required />
+                </div>
+
+                <div class="form-group">
+                <label class="form-label">Category *</label>
+                <select class="form-select" id="itemCategory" required>
+                    <option value="">Select category</option>
+                    <option value="Mains">Mains</option>
+                    <option value="Sides">Sides</option>
+                    <option value="Drinks">Drinks</option>
+                    <option value="Desserts">Desserts</option>
+                </select>
+                </div>
+
+                <div class="form-group">
+                <label class="form-label">Cuisine *</label>
+                <select class="form-select" id="itemCuisine" required>
+                    <option value="">Select cuisine</option>
+                    <option value="American">American</option>
+                    <option value="Italian">Italian</option>
+                    <option value="Mexican">Mexican</option>
+                    <option value="Asian">Asian</option>
+                </select>
+                </div>
+
+                <div class="form-group">
+                <label class="form-label">Status *</label>
+                <select class="form-select" id="itemStatus" required>
+                    <option value="available">Available</option>
+                    <option value="soldout">Sold Out</option>
+                </select>
+                </div>
+
+                <!-- Image placeholder only -->
+                <div class="form-group">
+                <label class="form-label">Item Image</label>
+                <div class="image-upload image-upload-static">
+                    <p style="margin:0;">Image upload not required for this demo.</p>
+                </div>
+                </div>
+
+            </div>
+
+            <!-- ONE FOOTER -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-cancel" onclick="closeModal()">Cancel</button>
+                <button type="submit" class="btn btn-save">Save Item</button>
+            </div>
+
             </form>
         </div>
-    </div>
+        </div>
 
+
+    <script type="module" src="./js/vendor-menu.js"></script>
     <script>
-        // Sample menu data
-        let menuItems = [
-            {
-                id: 1,
-                name: "Classic Burger",
-                description: "Juicy beef patty with lettuce, tomato, and our special sauce",
-                price: 12.99,
-                category: "Mains",
-                cuisines: ["American", "Fast Food"],
-                image: null,
-                available: true
-            },
-            {
-                id: 2,
-                name: "Margherita Pizza",
-                description: "Fresh mozzarella, basil, and tomato sauce on crispy crust",
-                price: 14.99,
-                category: "Mains",
-                cuisines: ["Italian"],
-                image: null,
-                available: true
-            },
-            {
-                id: 3,
-                name: "Chicken Tacos",
-                description: "Three soft tacos with grilled chicken and fresh salsa",
-                price: 10.99,
-                category: "Mains",
-                cuisines: ["Mexican"],
-                image: null,
-                available: false
-            },
-            {
-                id: 4,
-                name: "French Fries",
-                description: "Crispy golden fries with sea salt",
-                price: 4.99,
-                category: "Sides",
-                cuisines: ["American"],
-                image: null,
-                available: true
-            }
-        ];
-
-        let currentEditId = null;
-        let currentTags = [];
-
         function renderMenu() {
             const grid = document.getElementById('menuGrid');
             grid.innerHTML = '';
