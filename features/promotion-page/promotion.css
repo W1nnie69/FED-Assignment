@@ -212,6 +212,13 @@ nav a:hover {
     color: var(--primary);
 }
 
+.profile img{
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+
 .hidden {
     display: none;
 }
