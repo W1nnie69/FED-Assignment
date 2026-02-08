@@ -32,7 +32,7 @@ The goal of this project is to apply front-end fundamentals to create a function
 FED-Assignment/  
 │  
 ├── assets/        # Images, media, and other assets  
-├── features/      # Additional feature pages/components  
+├── features/      # Individual features pages/components  
 ├── index.html     # Main homepage  
 ├── README.md      # Project documentation  
 └── .gitignore  
